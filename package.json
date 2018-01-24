@@ -1,0 +1,17 @@
+{
+  "name": "focus",
+  "version": "1.0.0",
+  "description": "Server side and RESTFul API for Focus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "RESTFul",
+    "API",
+    "server",
+    "database"
+  ],
+  "author": "Nazmuz Shakib Pranto <npranto@gmail.com>",
+  "license": "ISC"
+}
