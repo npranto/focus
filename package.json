@@ -4,7 +4,7 @@
   "description": "Server side and RESTFul API for Focus",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index.js"
   },
   "keywords": [
     "RESTFul",
@@ -13,5 +13,9 @@
     "database"
   ],
   "author": "Nazmuz Shakib Pranto <npranto@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^5.0.1"
+  }
 }
