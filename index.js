@@ -2,8 +2,8 @@
 require('dotenv').config();	// to access environmental variables
 const express = require('express');
 const mongoose = require('mongoose');
+require('./models');
 const routes = require('./routes');
-
 
 // INITIALZE NEW EXPESS APP
 const app = express();
