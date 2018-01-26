@@ -1,1 +1,2 @@
-// models
+// MODELS
+require('./Review');
