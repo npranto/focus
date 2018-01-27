@@ -2,9 +2,15 @@
 require('dotenv').config();	// to access environmental variables
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
+const passport = require('passport');
+
 require('./models');
+require('./services/passport');
 const routes = require('./routes');
+
+
 
 // INITIALZE NEW EXPESS APP
 const app = express();
@@ -12,8 +18,14 @@ const app = express();
 
 
 // MIDDLEWARES
+app.use(cookieSession({
+	maxAge: process.env.COOKIE_SESSION_MAX_AGE,
+	keys: [process.env.COOKIE_SESSION_KEY_1]
+}))
 app.use(bodyParser.urlencoded({ extended: false }))		// parse application/x-www-form-urlencoded
 app.use(bodyParser.json())		// parse application/json
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 
@@ -21,6 +33,9 @@ app.use(bodyParser.json())		// parse application/json
 app.get('/', (req, res, next) => {
 	res.send('Welcome to Focus API!');
 });
+app.get('/dashboard', (req, res, next) => {
+	res.send('Welcome to the Dashboard!');
+})
 routes(app);
 
 
