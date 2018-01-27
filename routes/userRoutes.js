@@ -14,7 +14,7 @@ router.post('/', (req, res, next) => {
 	        })
 		}	
 		if (userCreated) {
-			res.status(200).json({
+			res.status(201).json({
 				success: true,
 	        	message: 'Great, your profile has been created!',
 	        	data: userCreated
