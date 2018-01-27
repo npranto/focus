@@ -1,36 +1,35 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const reviewSchema = new Schema({
+const userSchema = new Schema({
 	firstName: {
 		type: String,
 		trim: true,
-		maxlength: 75,
-		required: true
+		maxlength: 75
 	},
 	lastName: {
 		type: String,
 		trim: true,
-		maxlength: 75,
+		maxlength: 75
+	},
+	fullName: {
+		type: String,
+		trim: true,
+		maxlength: 200,
 		required: true
 	},
-	role: {
+	email: {
 		type: String,
 		trim: true,
 		maxlength: 150,
+		minlength: 5,
 		required: true
 	},
-	company: {
+	password: {
 		type: String,
-		trim: true,
-		maxlength: 150,
+		minlength: 6
 	},
-	feedback: {
-		type: String,
-		trim: true,
-		required: true,
-		maxlength: 300
-	}
+	profilePicture: {}
 })
 
-mongoose.model('Review', reviewSchema);
+mongoose.model('User', userSchema);
