@@ -1,6 +1,7 @@
 // IMPORT PACKAGES/DEPENDENCIES & LOCAL FILES
 require('dotenv').config();	// to access environmental variables
 const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('./models');
 const routes = require('./routes');
@@ -11,6 +12,8 @@ const app = express();
 
 
 // MIDDLEWARES
+app.use(bodyParser.urlencoded({ extended: false }))		// parse application/x-www-form-urlencoded
+app.use(bodyParser.json())		// parse application/json
 
 
 
