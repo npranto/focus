@@ -11,13 +11,11 @@ router.post('/local', passport.authenticate('local'), (req, res, next) => {
 	res.redirect('/dashboard');
 });
 
-router.post('/google', (req, res, next) => {
-	res.send('Sign in an user with Google OAuth');
-})
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }) );
 
-router.post('/google/callback', (req, res, next) => {
-	res.send('Return token for Google OAuth verification');
-})
+router.get('/google/callback', passport.authenticate('google'), (req, res, next) => {
+	res.redirect('/dashboard');
+});
 
 router.get('/logout', (req, res) => {
   req.logout();
