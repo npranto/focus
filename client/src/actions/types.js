@@ -1,1 +1,1 @@
-export const COOL_INDEX = 'COOL_INDEX';
+export const FETCH_CURRENT_USER = 'FETCH_CURRENT_USER';

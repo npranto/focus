@@ -4,7 +4,10 @@ const router = express.Router();
 
 // AUTH ROUTES
 router.get('/currentUser', (req, res, next) => {
-	res.send(req.user);
+	if (!req.user) {
+	    return res.send(null);
+    }
+    return res.send(req.user);
 });
 
 router.post('/local', passport.authenticate('local', { failureRedirect: '/signup' }), (req, res, next) => {

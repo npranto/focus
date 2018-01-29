@@ -1,10 +1,14 @@
-import { COOL_INDEX } from './types';
+import axios from 'axios';
 
-export const changeTitle = () => {
-	return (dispatch, getState) => {
+import { FETCH_CURRENT_USER } from './types';
+
+export const fetchCurrentUser = () => {
+	return async (dispatch, getState) => {
+        const currentUser = await axios.get('/auth/currentUser');
+        console.log(currentUser);
 		dispatch({
-			type: COOL_INDEX,
-			payload: 'Cool Index'
+			type: FETCH_CURRENT_USER,
+			payload: currentUser
 		})
 	}
 }
