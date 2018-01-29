@@ -37,8 +37,8 @@ passport.use(
 
 passport.use(
 	new GoogleStrategy({
-		clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
-		clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+		clientID: process.env.DEV_GOOGLE_OAUTH_CLIENT_ID,
+		clientSecret: process.env.DEV_GOOGLE_OAUTH_CLIENT_SECRET,
 		callbackURL: '/auth/google/callback' 
 	}, async (accessToken, refreshToken, profile, cb) => {
 		const userFound = await User.findOne({userId: profile.id});
