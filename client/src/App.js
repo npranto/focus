@@ -15,7 +15,13 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-                <h1> App Component </h1>
+                <Router>
+                    <div className="routes">
+                        {/*<NavigationBar />*/}
+                        {/*<Route path={'/'} component={}/>*/}
+                        {/*<Route path={'/'} component={}/>*/}
+                    </div>
+                </Router>
             </div>
         );
     }
