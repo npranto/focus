@@ -13,7 +13,7 @@ const routes = require('./routes');
 
 
 
-// INITIALZE NEW EXPESS APP
+// INITIALIZE NEW EXPRESS APP
 const app = express();
 
 
