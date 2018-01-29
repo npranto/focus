@@ -5,22 +5,43 @@ const User = mongoose.model('User');
 
 // USER ROUTES
 router.post('/', (req, res, next) => {
-	new User(req.body).save((err, userCreated) => {
+	User.findOne({ email: req.body.email }, (err, userFound) => {
 		if (err) {
 			return res.status(400).json({
 				success: false,
-	        	message: 'Oops! Unable to create a new profile at the moment. Please try again later.',
-	        	data: null
+	        	message: 'Oops! Unable to find your profile at the moment. Please try again later.',
+	        	data: err
 	        })
-		}	
-		if (userCreated) {
-			res.status(201).json({
-				success: true,
-	        	message: 'Great, your profile has been created!',
-	        	data: userCreated
+		}
+		if (userFound) {
+			if (userFound.password === req.body.password) {
+				return res.status(200).json({
+					success: false,
+		        	message: 'Haah! Looks like you already have an account with us.',
+		        	data: userFound
+				})
+			}
+		}
+		if (!userFound) {
+			new User(req.body).save((err, userCreated) => {
+				if (err) {
+					return res.status(400).json({
+						success: false,
+			        	message: 'Oops! Unable to create a new profile at the moment. Please try again later.',
+			        	data: err
+			        })
+				}	
+				if (userCreated) {
+					return res.status(201).json({
+						success: true,
+			        	message: 'Great, your profile has been created!',
+			        	data: userCreated
+					})
+				}
 			})
 		}
 	})
+	
 })
 
 router.put('/:userId', (req, res, next) => {
@@ -29,7 +50,7 @@ router.put('/:userId', (req, res, next) => {
 			return res.status(400).json({
 				success: false,
             	message: 'Oops! We are unable to update your profile at the moment. Please try again later.',
-            	data: null
+            	data: err
             });
 		}
 		if (userUpdated) {
@@ -48,7 +69,7 @@ router.delete('/:userId', (req, res, next) => {
 			return res.status(400).json({
 				success: false,
             	message: 'Oops! We are unable to delete your account at the moment. Please try again later.',
-            	data: null
+            	data: err
             });
 		}
 		if (userRemoved) {

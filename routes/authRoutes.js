@@ -7,7 +7,7 @@ router.get('/currentUser', (req, res, next) => {
 	res.send(req.user);
 });
 
-router.post('/local', passport.authenticate('local'), (req, res, next) => {
+router.post('/local', passport.authenticate('local', { failureRedirect: '/signup' }), (req, res, next) => {
 	res.redirect('/dashboard');
 });
 
