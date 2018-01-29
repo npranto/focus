@@ -1,0 +1,1 @@
+export const COOL_INDEX = 'COOL_INDEX';
