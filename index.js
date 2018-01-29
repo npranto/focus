@@ -31,8 +31,14 @@ app.use(passport.session());
 
 
 // ROUTE HANDLERS
+app.get('/', (req, res, next) => {
+	res.send('Welcome to Focus API!');
+})
 app.get('/dashboard', (req, res, next) => {
 	res.send('Welcome to the Dashboard!');
+})
+app.get('/signup', (req, res, next) => {
+	res.send('Please sign up!');
 })
 routes(app);
 
