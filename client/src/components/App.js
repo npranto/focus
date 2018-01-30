@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import * as actions from './actions';
-import logo from './logo.svg';
+import * as actions from '../actions/index';
 import './App.css';
+
+
 
 class App extends Component {
 
@@ -14,7 +15,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="app">
+            <div className="app-component">
                 <Router>
                     <div className="routes">
                         {/*<NavigationBar />*/}
