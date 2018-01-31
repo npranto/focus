@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import * as actions from '../actions/index';
+import NavigationBar from './NavigationBar/NavigationBar';
 import './App.css';
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
             <div className="app-component">
                 <Router>
                     <div className="routes">
-                        {/*<NavigationBar />*/}
+                        <NavigationBar />
                         {/*<Route path={'/'} component={}/>*/}
                         {/*<Route path={'/'} component={}/>*/}
                     </div>
