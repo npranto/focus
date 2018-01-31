@@ -5,8 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import * as actions from '../actions/index';
 import './App.css';
 
-
-
 class App extends Component {
 
     componentDidMount() {
