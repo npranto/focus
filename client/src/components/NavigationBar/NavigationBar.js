@@ -69,7 +69,7 @@ class NavigationBar extends Component {
                     { this.renderLoggedInDropdownTabs(tabs.loggedIn) }
                 </ul>
                 <div className="logo">
-                    <h4> Focus </h4>
+                    <h4 className="name"> Focus </h4>
                 </div>
                 {
                     this.props.auth.displayEnabled 
