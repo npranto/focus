@@ -1,0 +1,25 @@
+.jumbotron-component {
+	width: 100%;
+	height: 90vh;
+	color: black;
+	background-image: url('./../../../assets/young-man-working-at-desk.jpg');
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding: 5% 5%;
+}
+.title {
+	color: #2196f3;
+	font-size: 6em;
+}
+.subtitle {
+	color: #263238;
+}
+.actions {
+	margin-top: 5%;
+}
+.actions a {
+	margin-top: 0.5%;
+	margin-bottom: 0.5%;
+}
+
