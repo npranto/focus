@@ -6,17 +6,18 @@
 	background-position: center center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	padding: 5% 5%;
+	padding: 7% 5%;
 }
 .title {
 	color: #2196f3;
 	font-size: 6em;
+	font-family: 'Pacifico', cursive;
 }
 .subtitle {
-	color: #263238;
+	color: #455a64;
 }
 .actions {
-	margin-top: 5%;
+	margin-top: 4%;
 }
 .actions a {
 	margin-top: 0.5%;

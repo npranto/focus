@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Jumbotron from './Jumbotron/Jumbotron';
+import Features from './Features/Features';
 import './Landing.css';
 
 class Landing extends Component {
@@ -8,6 +9,7 @@ class Landing extends Component {
 		return (
 			<div className="landing-component">
 				<Jumbotron />
+				<Features />
 			</div>	
 		)
 	}
