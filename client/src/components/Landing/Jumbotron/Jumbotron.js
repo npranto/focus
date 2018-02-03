@@ -7,11 +7,11 @@ class Jumbotron extends Component {
 		return (
 			<div className="jumbotron-component">
 				<h1 className="title"> Focus</h1>
-				<h2 className="subtitle"> Get your work <br/> done today </h2>
+				<h3 className="subtitle"> Get your work <br/> done today! </h3>
 				<div className="actions">
-					<a class="waves-effect waves-light btn deep-orange darken-4"> Login </a>
+					<a className="waves-effect waves-light btn deep-orange darken-4"> Login </a>
 					<br />
-					<a class="waves-effect waves-light btn green darken-3"> Sign Up </a>
+					<a className="waves-effect waves-light btn green darken-3"> Create New Account </a>
 				</div>
 			</div>	
 		)

@@ -10,6 +10,7 @@
 }
 .name {
   color: #2196f3;
+  font-family: 'Pacifico', cursive;
 }
 .navigation-tabs {
   flex-grow: 1;
