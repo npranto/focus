@@ -1,5 +1,7 @@
 .review-component {
-
+	width: 100%;
+	/*margin-top: 10%;*/
+	/*margin-bottom: 10%;*/
 }
 .review-component .title {
 	font-weight: bold;

@@ -7,7 +7,7 @@ class Reviews extends Component {
 
 	renderReviews(reviews) {
 		return reviews.map((review, index) => {
-			return <Review key={index} review={review} />
+			return <Review key={index} index={index} review={review} />
 		})
 	}
 
@@ -46,7 +46,7 @@ class Reviews extends Component {
 		]
 
 		return (
-			<div className="reviews-component container">
+			<div className="reviews-component container grey lighten-3">
 				{
 					this.renderReviews(reviews)
 				}

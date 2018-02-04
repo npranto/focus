@@ -10,6 +10,12 @@ class Landing extends Component {
 		return (
 			<div className="landing-component">
 				<Jumbotron />
+				{/*<div className="white">
+					<Features />
+				</div>
+				<div className="grey lighten-3">
+					<Reviews />
+				</div>*/}
 				<Features />
 				<Reviews />
 			</div>	

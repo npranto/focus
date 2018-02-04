@@ -21,7 +21,6 @@ class App extends Component {
                         <NavigationBar />
                         <section className="routes">
                             <Route path={'/'} component={Landing} />
-                            {/*<Route path={'/'} component={}/>*/}
                         </section>
                     </main>
                 </Router>
