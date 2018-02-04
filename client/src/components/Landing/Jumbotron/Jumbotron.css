@@ -15,6 +15,7 @@
 }
 .jumbotron-component .subtitle {
 	color: #455a64;
+	font-weight: 300;
 }
 .jumbotron-component .actions {
 	margin-top: 4%;
