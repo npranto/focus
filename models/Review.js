@@ -20,7 +20,7 @@ const reviewSchema = new Schema({
 		maxlength: 150,
 		required: true
 	},
-	company: {
+	organization: {
 		type: String,
 		trim: true,
 		maxlength: 150,

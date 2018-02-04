@@ -7,7 +7,7 @@ class Features extends Component {
 
 	renderFeatures(features) {
 		return features.map((feature, index) => {
-			return <Feature key={index} alternateText={feature.photo.alt} photo={feature.photo.src} description={feature.description} />
+			return <Feature key={index} alt={feature.photo.alt} src={feature.photo.src} description={feature.description} />
 		})
 	}
 
