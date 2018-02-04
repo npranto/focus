@@ -1,0 +1,16 @@
+.review-component {
+
+}
+.review-component .title {
+	font-weight: bold;
+}
+.review-component .feedback {
+	color: gray;
+	font-style: italic;
+}
+.review-component .collection {
+	border: none;
+}
+.review-component .collection-item {
+	background: transparent;
+}

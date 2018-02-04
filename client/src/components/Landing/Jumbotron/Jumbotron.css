@@ -8,18 +8,18 @@
 	background-repeat: no-repeat;
 	padding: 7% 5%;
 }
-.title {
+.jumbotron-component .title {
 	color: #2196f3;
 	font-size: 6em;
 	font-family: 'Pacifico', cursive;
 }
-.subtitle {
+.jumbotron-component .subtitle {
 	color: #455a64;
 }
-.actions {
+.jumbotron-component .actions {
 	margin-top: 4%;
 }
-.actions a {
+.jumbotron-component .actions a {
 	margin-top: 0.5%;
 	margin-bottom: 0.5%;
 }

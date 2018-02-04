@@ -13,7 +13,7 @@ class Feature extends Component {
 			<div className="feature-component">
 				<p className="feature-description"> {this.props.description} </p>
 				<div className="feature-photo-container">
-					<img src={this.props.photo} alt={this.props.alternateText} />
+					<img src={this.props.src} alt={this.props.alt} />
 				</div>
 			</div>
 		)
