@@ -64,7 +64,7 @@ class NavigationBar extends Component {
         }
 
         return (
-            <div className="navigation-bar-component">
+            <div className="navigation-bar-component z-depth-2">
                 <ul id='dropdown1' className='dropdown-content'>
                     { this.renderLoggedInDropdownTabs(tabs.loggedIn) }
                 </ul>
