@@ -58,10 +58,12 @@ class Features extends Component {
 		]
 
 		return (
-			<div className="features-component container">
-				{
-					this.renderFeatures(features)
-				}
+			<div className="features-component">
+				<div className="container">
+					{
+						this.renderFeatures(features)
+					}
+				</div>
 			</div>
 		)
 	}

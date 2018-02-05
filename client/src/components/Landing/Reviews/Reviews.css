@@ -1,5 +1,6 @@
 .reviews-component {
-	/*width: 100%;*/
-	display: flex;
-	flex-direction: column;
+	width: 100%;
+	background: lightyellow;
+	padding-top: 3%;
+	padding-bottom: 3%;
 }
