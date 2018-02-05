@@ -3,18 +3,78 @@
 	background-color: gold;
 	overflow: auto;
 }
-.sign-in-component .local-sign-in-form-container {
-	/*width: 100%;*/
-}
 .sign-in-component .welcome-back {
 	padding: 3%;
 }
 .sign-in-component form {
-	padding: 7% !important;
+	padding: 5% !important;
+	border-radius: 1%;
 }
 .sign-in-component form .row {
 	margin-bottom: 0;
 }
-.login-button-container {
-
+.sign-in-component form a {
+	margin: 0 auto;
 }
+.sign-in-with-google {
+	display: flex;
+	flex-direction: row;
+	padding-left: 0 !important;
+	font-size: 1.10em;
+	color: black;
+	margin-top: 2%;
+}
+.sign-in-with-google p {
+	flex-grow: 1;
+}
+.google-plus-icon-container {
+	padding-right: 2.5%;
+	padding-left: 2.5%;
+	margin-right: 5%;
+}
+
+/* label color */
+   .sign-in-component .input-field input {
+   	 font-weight: bold;
+   }
+   .sign-in-component .input-field label {
+     color: black;
+   }
+   /* label focus color */
+   .sign-in-component .input-field input[type=text]:focus + label {
+     color: #2196f3;
+   }
+   .sign-in-component .input-field input[type=password]:focus + label {
+     color: #2196f3;
+   }
+   /* label underline focus color */
+   .sign-in-component .input-field input[type=text]:focus {
+     border-bottom: 1px solid #2196f3;
+     box-shadow: 0 1px 0 0 #2196f3;
+   }
+   .sign-in-component .input-field input[type=password]:focus {
+     border-bottom: 1px solid #2196f3;
+     box-shadow: 0 1px 0 0 #2196f3;
+   }
+   /* valid color */
+   .sign-in-component .input-field input[type=text].valid {
+     border-bottom: 1px solid green;
+     box-shadow: 0 1px 0 0 green;
+   }
+   .sign-in-component .input-field input[type=password].valid {
+     border-bottom: 1px solid green;
+     box-shadow: 0 1px 0 0 green;
+   }
+   /* invalid color */
+   .sign-in-component .input-field input[type=text].invalid {
+     border-bottom: 1px solid red;
+     box-shadow: 0 1px 0 0 red;
+   }
+   .sign-in-component .input-field input[type=password].invalid {
+     border-bottom: 1px solid red;
+     box-shadow: 0 1px 0 0 red;
+   }
+   /* icon prefix focus color */
+   .sign-in-component .input-field .prefix.active {
+     color: black;
+   }
