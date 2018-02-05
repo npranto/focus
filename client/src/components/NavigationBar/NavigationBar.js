@@ -53,12 +53,12 @@ class NavigationBar extends Component {
             loggedIn: [
                 {name: 'Profile'},
                 {name: 'Settings'},
+                {name: 'Feedback'},
                 {name: 'Logout', isDanger: true}
             ],
             loggedOut: [
                 {name: 'Features'},
                 {name: 'Reviews'},
-                {name: 'Feedback'},
                 {name: 'Get started', isButton: true},
             ]
         }
