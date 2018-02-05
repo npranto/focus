@@ -1,10 +1,14 @@
 .sign-in-component {
 	width: 100%;
-	background-color: gold;
+	/*background-color: gold;*/
 	overflow: auto;
 }
 .sign-in-component .welcome-back {
 	padding: 3%;
+}
+.sign-in-form-container {
+	display: flex;
+	flex-direction: column;
 }
 .sign-in-component form {
 	padding: 5% !important;
@@ -22,7 +26,10 @@
 	padding-left: 0 !important;
 	font-size: 1.10em;
 	color: black;
-	margin-top: 2%;
+}
+.divider {
+	width: 25%;
+	margin: 3% auto;
 }
 .sign-in-with-google p {
 	flex-grow: 1;
