@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as actions from '../actions/index';
 import NavigationBar from './NavigationBar/NavigationBar';
 import Landing from './Landing/Landing';
+import SignIn from './SignIn/SignIn';
 import './App.css';
 
 class App extends Component {
@@ -20,7 +21,8 @@ class App extends Component {
                     <main>
                         <NavigationBar />
                         <section className="routes">
-                            <Route path={'/'} component={Landing} />
+                            <Route exact path={'/'} component={Landing} />
+                            <Route path={'/signin'} component={SignIn} />
                         </section>
                     </main>
                 </Router>

@@ -1,0 +1,20 @@
+.sign-in-component {
+	width: 100%;
+	background-color: gold;
+	overflow: auto;
+}
+.sign-in-component .local-sign-in-form-container {
+	/*width: 100%;*/
+}
+.sign-in-component .welcome-back {
+	padding: 3%;
+}
+.sign-in-component form {
+	padding: 7% !important;
+}
+.sign-in-component form .row {
+	margin-bottom: 0;
+}
+.login-button-container {
+
+}
