@@ -6,8 +6,8 @@ class Review extends Component {
 
 	render() {
 		return (
-			<div className="review-component row">
-				<ul className={`collection col m6 l6 ${(this.props.index%2) === 0 ? `offset-m6 l6` : ``}`}>
+			<div className="review-component">
+				<ul className="collection">
 				    <li className="collection-item avatar">
 						<img src="https://avatars2.githubusercontent.com/u/13524077?v=4" alt="" className="circle" />
 						<span className="title"> {this.props.review.name} </span>

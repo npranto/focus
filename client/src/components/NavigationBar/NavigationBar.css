@@ -42,7 +42,7 @@
   animation-name: fadeIn;
   animation-duration: 0.7s;
   animation-timing-function: ease-in;
-  transition: 0.1s ease-in;
+  transition: 0.2s ease-in-out;
 }
 .tab-list li a:hover {
   color: black;
