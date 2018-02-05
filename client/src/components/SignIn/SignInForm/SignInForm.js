@@ -53,16 +53,35 @@ class SignInForm extends Component {
 		]
 
 		return (
-			<form onSubmit={this.props.handleSubmit(form => this.logFormValues(form))} className="local-sign-in col s12 m6 l6 offset-m3 offset-l3 grey lighten-3">
+			<form onSubmit={this.props.handleSubmit(form => this.props.onSignInFormSubmit(form))} className="local-sign-in col s12 m6 l6 offset-m3 offset-l3 grey lighten-3">
 				{
 					this.renderInputFields(inputFields)
 				}
-				<button type="submit" className="waves-effect waves-light btn light-green darken-4">Login</button>
+				<button type="submit" className={`waves-effect waves-light btn light-green darken-4 ${this.props.submitting ? 'disabled' : ''}`}>Login</button>
 			</form>
 		)
 	}
 }
 
+const validate = (form) => {
+	let errors = {};
+
+	if (!form.password) {
+		errors.email = 'Please enter your password';
+	} else if (form.password.length < 6) {
+		errors.email = 'Your password must be at least 6 characters long'
+	} 
+
+	if (!form.email) {
+		errors.email = 'Please enter your email';
+	} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(form.email)) {
+		errors.email = 'Please enter a valid email'
+	} 
+
+	return errors;
+}
+
 export default reduxForm({
-	form: 'signInForm'
+	form: 'signInForm',
+	validate
 })(SignInForm);
