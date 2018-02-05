@@ -1,3 +1,10 @@
-.sign-in-form-input-field {
-	
+.sign-in-form-input-field .input-field {
+	margin-bottom: 10% !important;
+}
+.sign-in-form-input-field input {
+	margin-bottom: 0 !important;
+}
+.sign-in-form-input-field .input-field p {
+	margin-top: 0;
+	text-align: right;
 }

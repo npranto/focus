@@ -12,3 +12,9 @@ export const fetchCurrentUser = () => {
 		})
 	}
 }
+
+export const signInUserWithEmailAndPassword = (form) => {
+	return async (dispatch, getState) => {
+		
+	}
+}
