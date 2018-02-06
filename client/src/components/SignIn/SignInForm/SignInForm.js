@@ -18,16 +18,10 @@ class SignInForm extends Component {
 						placeholder={inputField.placeholder}
 						id={inputField.id}
 						type={inputField.type}
-						className={inputField.validate}
 						htmlFor={inputField.htmlFor}
 						label={inputField.label}
 						component={SignInFormInputField} />
 		})
-	}
-
-	logFormValues(values) {
-		console.log(values);
-		window.alert(values);
 	}
 
 	render() {
@@ -57,7 +51,7 @@ class SignInForm extends Component {
 				{
 					this.renderInputFields(inputFields)
 				}
-				<button type="submit" className={`waves-effect waves-light btn light-green darken-4 ${this.props.submitting ? 'disabled' : ''}`}>Login</button>
+				<button type="submit" className="waves-effect waves-light btn light-green darken-4">Login</button>
 			</form>
 		)
 	}
@@ -66,16 +60,17 @@ class SignInForm extends Component {
 const validate = (form) => {
 	let errors = {};
 
-	if (!form.password) {
-		errors.email = 'Please enter your password';
-	} else if (form.password.length < 6) {
-		errors.email = 'Your password must be at least 6 characters long'
-	} 
-
 	if (!form.email) {
 		errors.email = 'Please enter your email';
 	} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(form.email)) {
 		errors.email = 'Please enter a valid email'
+	} 
+
+
+	if (!form.password) {
+		errors.password = 'Please enter your password';
+	} else if (form.password.length < 6) {
+		errors.password = 'Your password must be at least 6 characters long'
 	} 
 
 	return errors;

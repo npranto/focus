@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import qs from 'qs';
 
 import { FETCH_CURRENT_USER } from './types';
 
@@ -13,8 +14,8 @@ export const fetchCurrentUser = () => {
 	}
 }
 
-export const signInUserWithEmailAndPassword = (form) => {
-	return async (dispatch, getState) => {
-		
-	}
-}
+// export const signInUserWithEmailAndPassword = (form) => {
+// 	return async (dispatch, getState) => {
+// 		let axios.post('/auth/local', qs.stringify(form));
+// 	}
+// }

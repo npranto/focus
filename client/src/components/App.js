@@ -22,7 +22,7 @@ class App extends Component {
                         <NavigationBar />
                         <section className="routes">
                             <Route exact path={'/'} component={Landing} />
-                            <Route path={'/signin'} component={SignIn} />
+                            <Route path={'/sign-in'} component={SignIn} />
                         </section>
                     </main>
                 </Router>

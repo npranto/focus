@@ -10,6 +10,13 @@
 	display: flex;
 	flex-direction: column;
 }
+.spaced {
+	margin-top: 2%;
+	margin-bottom: 2%;
+} 
+.no-left-padding {
+	padding-left: 0 !important;
+}
 .sign-in-component form {
 	padding: 5% !important;
 	border-radius: 1%;

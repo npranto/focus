@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import $ from 'jquery';
 import FaAngleDown from 'react-icons/lib/fa/angle-down';
 
+import UserIcon from './../../assets/user-icon.png';
 import './NavigationBar.css';
 
 class NavigationBar extends Component {
@@ -43,8 +44,8 @@ class NavigationBar extends Component {
     renderLoggedInDropdownTabs(loggedInDropdownTabs) {
         return loggedInDropdownTabs.map((tab, index) => {
             return tab.isDanger 
-                ? <li key={index}><a href="#!" className="red-text"> {tab.name} </a></li>
-                : <li key={index}><a href="#!"> {tab.name} </a></li>
+                ? <li key={index}><a href={tab.link ? tab.link : "#!"} className="red-text"> {tab.name} </a></li>
+                : <li key={index}><a href={tab.link ? tab.link : "#!"}> {tab.name} </a></li>
         })
     }
 
@@ -54,7 +55,7 @@ class NavigationBar extends Component {
                 {name: 'Profile'},
                 {name: 'Settings'},
                 {name: 'Feedback'},
-                {name: 'Logout', isDanger: true}
+                {name: 'Logout', link: '/auth/logout', isDanger: true}
             ],
             loggedOut: [
                 {name: 'Features'},
@@ -82,9 +83,9 @@ class NavigationBar extends Component {
                                                 <li>
                                                     <div className="profile-tab">
                                                         <div className="profile-info">
-                                                            <p className="profile-fullname"> Nazmuz Shakib Pranto </p>
+                                                            <p className="profile-fullname"> {this.props.auth.currentUser.fullName} </p>
                                                             <div className="profile-picture-container">
-                                                              <img src="https://avatars2.githubusercontent.com/u/13524077?v=4" alt="Mini Profile Picture" />
+                                                              <img src={this.props.auth.currentUser.profilePicture ? this.props.auth.currentUser.profilePicture : UserIcon} alt="Mini Profile Picture" />
                                                             </div>
                                                         </div>
                                                         <div className="dropdown-icon dropdown-button" data-activates='dropdown1'>
