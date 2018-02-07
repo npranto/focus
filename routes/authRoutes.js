@@ -10,8 +10,33 @@ router.get('/currentUser', (req, res, next) => {
     return res.send(req.user);
 });
 
-router.post('/local', passport.authenticate('local', { failureRedirect: '/signup' }), (req, res, next) => {
-	res.redirect('/dashboard');
+router.post('/local', (req, res, next) => {
+	passport.authenticate('local', (err, user, info) => {
+		if (err) { 
+			res.status(200).json({
+				success: false,
+				message: 'Unable to log in at the moment, please try again later',
+				data: err
+			})
+		}
+		if (!user) { 
+			return res.status(200).json({
+				success: false,
+				message: 'Incorrect username or password',
+				data: null
+			})
+		}
+		req.logIn(user, (err) => {
+			if (err) { 
+				return next(err); 
+			}
+			return res.status(200).json({
+				success: true,
+				message: null,
+				data: user
+			})
+		});
+	})(req, res, next);
 });
 
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }) );
