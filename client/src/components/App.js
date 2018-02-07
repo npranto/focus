@@ -6,6 +6,7 @@ import * as actions from '../actions/index';
 import NavigationBar from './NavigationBar/NavigationBar';
 import Landing from './Landing/Landing';
 import SignIn from './SignIn/SignIn';
+import Dashboard from './Dashboard/Dashboard';
 import './App.css';
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
                         <section className="routes">
                             <Route exact path={'/'} component={Landing} />
                             <Route path={'/sign-in'} component={SignIn} />
+                            <Route path={'/users/:userId/dashboard'} component={Dashboard} />
                         </section>
                     </main>
                 </Router>

@@ -1,7 +1,10 @@
 import axios from 'axios';
-// import qs from 'qs';
+import qs from 'qs';
 
-import { FETCH_CURRENT_USER } from './types';
+import { 
+	FETCH_CURRENT_USER, 
+	SIGN_IN_USER_WITH_EMAIL_AND_PASSWORD 
+} from './types';
 
 export const fetchCurrentUser = () => {
 	return async (dispatch, getState) => {
@@ -14,8 +17,18 @@ export const fetchCurrentUser = () => {
 	}
 }
 
-// export const signInUserWithEmailAndPassword = (form) => {
-// 	return async (dispatch, getState) => {
-// 		let axios.post('/auth/local', qs.stringify(form));
-// 	}
-// }
+export const signInUserWithEmailAndPassword = (form) => {
+	return async (dispatch, getState) => {
+		let signedInStatus = await axios.post('/auth/local', qs.stringify(form));
+		const currentUser = await axios.get('/auth/currentUser');
+		dispatch({
+			type: FETCH_CURRENT_USER,
+			payload: currentUser
+		})
+		dispatch({
+			type: SIGN_IN_USER_WITH_EMAIL_AND_PASSWORD,
+			payload: signedInStatus
+		})
+	}
+}
+
