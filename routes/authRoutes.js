@@ -41,8 +41,18 @@ router.post('/local', (req, res, next) => {
 
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }) );
 
-router.get('/google/callback', passport.authenticate('google'), (req, res, next) => {
-	res.redirect('/dashboard');
+router.get('/google/callback', (req, res, next) => {
+	passport.authenticate('google', (err, user, info) => {
+		if (err) { 
+			return res.redirect('/');
+		}
+		req.logIn(user, (err) => {
+			if (err) { 
+				return next(err); 
+			}
+			return res.redirect(`/users/${user._id}/dashboard`);
+		});
+	})(req, res, next);
 });
 
 router.get('/logout', (req, res) => {
@@ -51,3 +61,4 @@ router.get('/logout', (req, res) => {
 });
 
 module.exports = router;
+

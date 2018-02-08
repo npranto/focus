@@ -3,7 +3,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = mongoose.model('User');
-const helpers = require('./../services/helpers');
+const createNewUserObject = require('./helpers');
 
 passport.serializeUser((user, done) => {
 	done(null, user.id);
@@ -46,7 +46,7 @@ passport.use(
 			console.log('USER HAS BEEN FOUND >>>>>\n', userFound);
 			return cb(null, userFound);
 		} else {
-			new User(helpers.createNewUserObject(profile)).save((err, userSaved) => {
+			new User(createNewUserObject(profile)).save((err, userSaved) => {
 				if (err) {
 					return cb(err, null);
 				}
