@@ -1,0 +1,131 @@
+.sign-up-component {
+	width: 100%;
+	flex-grow: 1;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+.sign-up-form {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.sign-up-form .sign-up-form-inputs, .sign-up-form .profile-picture-container {
+	width: 50%;
+}
+.sign-up-form .sign-up-form-inputs {
+	padding-right: 3%;
+}
+.sign-up-form .profile-picture-container {
+	padding-left: 3%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.sign-up-component form {
+	padding: 3% !important;
+	border-radius: 1%;
+}
+.sign-up-component form .row {
+	margin-bottom: 0;
+}
+.sign-up-form-input-field .input-field {
+	margin-bottom: 5% !important;
+}
+.sign-up-form-input-field input {
+	margin-bottom: 0 !important;
+}
+.sign-up-form-input-field .input-field p {
+	margin-top: 0;
+	text-align: right;
+}
+.sign-up-component .profile-picture-container {
+	display: flex;
+	flex-direction: column; 
+	text-align: center; 	
+}
+.sign-up-component .profile-picture-container img {
+	max-width: 100%;
+	max-height: 300px;
+}
+.sign-up-submit-button {
+	width: 100%;
+	padding: 2%;
+}
+.already-have-account {
+	padding: 1%;
+}
+
+
+/* label color */
+   .sign-up-component .input-field input {
+   	 font-weight: bold;
+   }
+   .sign-up-component .input-field label {
+     color: black;
+   }
+   /* label focus color */
+   .sign-up-component .input-field input[type=text]:focus + label {
+     color: #2196f3;
+   }
+   .sign-up-component .input-field input[type=password]:focus + label {
+     color: #2196f3;
+   }
+   /* label underline focus color */
+   .sign-up-component .input-field input[type=text]:focus {
+     border-bottom: 1px solid #2196f3;
+     box-shadow: 0 1px 0 0 #2196f3;
+   }
+   .sign-up-component .input-field input[type=password]:focus {
+     border-bottom: 1px solid #2196f3;
+     box-shadow: 0 1px 0 0 #2196f3;
+   }
+   /* valid color */
+   .sign-up-component .input-field input[type=text].valid {
+     border-bottom: 1px solid green;
+     box-shadow: 0 1px 0 0 green;
+   }
+   .sign-up-component .input-field input[type=password].valid {
+     border-bottom: 1px solid green;
+     box-shadow: 0 1px 0 0 green;
+   }
+   /* invalid color */
+   .sign-up-component .input-field input[type=text].invalid {
+     border-bottom: 1px solid red;
+     box-shadow: 0 1px 0 0 red;
+   }
+   .sign-up-component .input-field input[type=password].invalid {
+     border-bottom: 1px solid red;
+     box-shadow: 0 1px 0 0 red;
+   }
+   /* icon prefix focus color */
+   .sign-up-component .input-field .prefix.active {
+     color: black;
+   }
+
+@media only screen and (max-width: 900px) {
+	.sign-up-form {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		overflow: auto;
+	}
+	.sign-up-form .sign-up-form-inputs, .sign-up-form .profile-picture-container {
+		width: 100%;
+	}
+	.sign-up-form .sign-up-form-inputs {
+		margin-top: 5%;
+	}
+	.sign-up-form .profile-picture-container {
+		order: -1;
+	}
+	.sign-up-component .profile-picture-container img {
+		max-width: 100%;
+		max-height: 360px;
+	}
+}
