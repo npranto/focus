@@ -18,7 +18,7 @@
 	padding-left: 0 !important;
 }
 .sign-in-component form {
-	padding: 5% !important;
+	padding: 3% !important;
 	border-radius: 1%;
 }
 .sign-in-component form .row {
@@ -44,7 +44,6 @@
 .google-plus-icon-container {
 	padding-right: 2.5%;
 	padding-left: 2.5%;
-	margin-right: 5%;
 }
 
 /* label color */

@@ -39,7 +39,7 @@ class SignIn extends Component {
 							<div className="google-plus-icon-container valign-wrapper red darken-5">
 								<FaGooglePlus className="white-text" size={32} />
 							</div>
-							<p> Sign in with Google </p>
+							<p className="center-align"> Join with Google </p>
 						</a>
 						<div className="divider"></div>
 						<a href="/sign-up" className="no-left-padding col s12 m6 l6 offset-m3 offset-l3"> Create New Account </a>
