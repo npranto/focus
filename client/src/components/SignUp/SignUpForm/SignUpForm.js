@@ -1,10 +1,60 @@
 import React, {Component} from 'react';
+import { Field, reduxForm } from 'redux-form'
 
 import ProfilePicturePlaceholder from './../../../assets/profile-picture-placeholder.png';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
+
 	render() {
+		const inputFields = [
+			{
+				name: 'first_name',
+				placeholder: '',
+				id: 'first_name',
+				type: 'text',
+				className: 'validate',
+				htmlFor: 'first_name',
+				label: 'First Name'
+			},
+			{
+				name: 'last_name',
+				placeholder: '',
+				id: 'last_name',
+				type: 'text',
+				className: 'validate',
+				htmlFor: 'last_name',
+				label: 'Last Name'
+			},
+			{
+				name: 'email',
+				placeholder: '',
+				id: 'email',
+				type: 'text',
+				className: 'validate',
+				htmlFor: 'email',
+				label: 'Email'
+			},
+			{
+				name: 'password',
+				placeholder: '',
+				id: 'password',
+				type: 'password',
+				className: 'validate',
+				htmlFor: 'password',
+				label: 'Password'
+			},
+			{
+				name: 'confirm_password',
+				placeholder: '',
+				id: 'confirm_password',
+				type: 'password',
+				className: 'validate',
+				htmlFor: 'confirm_password',
+				label: 'Confirm Password'
+			}
+		]
+
 		return (
 			<form className="sign-up-form"> 
 				<div className="sign-up-form-inputs">
@@ -119,4 +169,6 @@ class SignUpForm extends Component {
 	}
 }
 
-export default SignUpForm;
+export default reduxForm({
+	form: 'signUpForm'
+})(SignUpForm);
