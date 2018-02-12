@@ -4,7 +4,14 @@ import {
 } from './../actions/types';
 import cloneDeep from 'lodash.clonedeep';
 
-const authReducer = (state = {isAuthenticated: false, currentUser: null, displayEnabled: false, signInStatus: { signInMessage: null, signInAttempted: false}}, action) => {
+const authReducer = (state = {
+    isAuthenticated: false, 
+    currentUser: null, 
+    displayEnabled: false, 
+    signInStatus: { 
+        signInMessage: null, 
+        signInAttempted: false
+    }}, action) => {
     switch (action.type) {
         case FETCH_CURRENT_USER: {
             return {

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form'
+import axios from 'axios';
 
 import SignUpFormInputField from './SignUpFormInputField/SignUpFormInputField';
 import ProfilePicturePlaceholder from './../../../assets/profile-picture-placeholder.png';
@@ -9,22 +10,41 @@ import './SignUpForm.css';
 
 class SignUpForm extends Component {
 
+	handleProfilePictureSelected(e) {
+		const profilePictureInfo = (e.target.files)[0];
+		const form = new FormData();
+		form.set('profilePicture', profilePictureInfo);
+		axios({
+			method: 'POST',
+			url: '/api/uploads/profilePicture',
+			data: form,
+			config: { headers: {'Content-Type': 'multipart/form-data' }}
+		}).then(response => {
+		    //handle success
+		    console.log(response);
+		}).catch(response => {
+		    //handle error
+		    console.log(response);
+		});
+	}
+
 	renderInputFields(inputFields) {
 		return inputFields.map((inputField, index) => {
 			return <Field 
-					key={index}
-					name={inputField.name}
-					placeholder={inputField.placeholder}
-					id={inputField.id}
-					type={inputField.type}
-					className={inputField.className}
-					htmlFor={inputField.htmlFor}
-					label={inputField.label} 
-					component={SignUpFormInputField} />
+						key={index}
+						name={inputField.name}
+						placeholder={inputField.placeholder}
+						id={inputField.id}
+						type={inputField.type}
+						className={inputField.className}
+						htmlFor={inputField.htmlFor}
+						label={inputField.label} 
+						component={SignUpFormInputField} />
 		})
 	}
 
 	render() {
+
 		const inputFields = [
 			{
 				name: 'firstName',
@@ -95,12 +115,11 @@ class SignUpForm extends Component {
 						</p>
 						<div className="btn orange darken-1">
 							<span> Photo </span>
-							<input type="file" />
+							<input type="file" name="profilePicture" onChange={this.handleProfilePictureSelected} />
 						</div>
 
 						<div className="file-path-wrapper">
 							<input className="file-path validate" type="text" />
-							
 						</div>
 					</div>
 				</div>
