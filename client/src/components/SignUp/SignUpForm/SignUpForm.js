@@ -27,7 +27,7 @@ class SignUpForm extends Component {
 	render() {
 		const inputFields = [
 			{
-				name: 'first_name',
+				name: 'firstName',
 				placeholder: '',
 				id: 'first_name',
 				type: 'text',
@@ -36,7 +36,7 @@ class SignUpForm extends Component {
 				label: 'First Name'
 			},
 			{
-				name: 'last_name',
+				name: 'lastName',
 				placeholder: '',
 				id: 'last_name',
 				type: 'text',
@@ -63,7 +63,7 @@ class SignUpForm extends Component {
 				label: 'Password'
 			},
 			{
-				name: 'confirm_password',
+				name: 'confirmPassword',
 				placeholder: '',
 				id: 'confirm_password',
 				type: 'password',
@@ -113,6 +113,45 @@ class SignUpForm extends Component {
 	}
 }
 
+const validate = (form) => {
+	let errors = {};
+
+	if (!form.firstName) {
+		errors.firstName = 'Required!';
+	} else if (form.firstName.length > 75) {
+		errors.firstName = 'Must be less than 150 characters';
+	}
+
+	if (!form.lastName) {
+		errors.lastName = 'Required!';
+	} else if (form.lastName.length > 75) {
+		errors.lastName = 'Must be less than 150 characters';
+	}
+
+	if (!form.email) {
+		errors.email = 'Required!';
+	} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(form.email)) {
+		errors.email = 'Invalid email address';
+	} else if (form.email.length > 150) {
+		errors.email = 'Must be less than 150 characters';
+	}
+
+	if (!form.password) {
+		errors.password = 'Please enter your password';
+	} else if (form.password.length < 6) {
+		errors.password = 'Your password must be at least 6 characters long'
+	} 
+
+	if (!form.confirmPassword) {
+		errors.confirmPassword = 'Please re-enter your password';
+	} else if (form.confirmPassword !== form.password) {
+		errors.confirmPassword = 'Oops! Password mismatch'
+	} 
+
+	return errors;
+}
+
 export default reduxForm({
-	form: 'signUpForm'
+	form: 'signUpForm',
+	validate
 })(SignUpForm);
