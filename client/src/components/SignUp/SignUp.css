@@ -50,7 +50,7 @@
 }
 .sign-up-component .profile-picture-container img {
 	max-width: 100%;
-	max-height: 300px;
+	max-height: 375px;
 }
 .sign-up-submit-button {
 	width: 100%;
@@ -126,6 +126,12 @@
 	}
 	.sign-up-component .profile-picture-container img {
 		max-width: 100%;
-		max-height: 360px;
+		max-height: 300px;
+	}
+	.sign-up-form .sign-up-form-inputs {
+		padding-right: 0;
+	}
+	.sign-up-form .profile-picture-container {
+		padding-left: 0;
 	}
 }
