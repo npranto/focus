@@ -8,7 +8,7 @@ class SignUp extends Component {
 		return (
 			<div className="sign-up-component">
 				<h4 className="center-align"> Create New Account </h4>
-				<SignUpForm />
+				<SignUpForm onSignUpFormSubmit={form => console.log(form)}/>
 			</div>
 		)
 	}

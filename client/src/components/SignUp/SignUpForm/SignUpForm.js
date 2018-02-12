@@ -1,10 +1,28 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form'
 
+import SignUpFormInputField from './SignUpFormInputField/SignUpFormInputField';
 import ProfilePicturePlaceholder from './../../../assets/profile-picture-placeholder.png';
+import ProfilePicturePlaceholderPortrait from './../../../assets/profile-picture-placeholder-portrait.jpg';
+import ProfilePicturePlaceholderLandscape from './../../../assets/profile-picture-placeholder-landscape.jpeg';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
+
+	renderInputFields(inputFields) {
+		return inputFields.map((inputField, index) => {
+			return <Field 
+					key={index}
+					name={inputField.name}
+					placeholder={inputField.placeholder}
+					id={inputField.id}
+					type={inputField.type}
+					className={inputField.className}
+					htmlFor={inputField.htmlFor}
+					label={inputField.label} 
+					component={SignUpFormInputField} />
+		})
+	}
 
 	render() {
 		const inputFields = [
@@ -55,89 +73,16 @@ class SignUpForm extends Component {
 			}
 		]
 
-		return (
-			<form className="sign-up-form"> 
+		return ( 
+			<form onSubmit={ this.props.handleSubmit(form => this.props.onSignUpFormSubmit(form)) } className="sign-up-form grey lighten-3"> 
 				<div className="sign-up-form-inputs">
 
-					<div className="sign-up-form-input-field row">	
-						<div className="input-field col s12 m12 l12">
-							<input placeholder="" id="first_name" type="text" className="validate"/>
-							<label htmlFor="first_name"> First Name </label>
-							<p className="red-text">
-								<sub> Error Message </sub>
-									{/*
-									(this.props.meta.touched && this.props.meta.error) 
-										? <sub> {this.props.meta.error} </sub>
-										: <sub></sub>
-								*/}
-							</p>
-				        </div>
-			        </div>
-
-			        <div className="sign-up-form-input-field row">	
-						<div className="input-field col s12 m12 l12">
-							<input placeholder="" id="last_name" type="text" className="validate"/>
-							<label htmlFor="last_name"> Last Name </label>
-							<p className="red-text">
-								<sub> Error Message </sub>
-									{/*
-									(this.props.meta.touched && this.props.meta.error) 
-										? <sub> {this.props.meta.error} </sub>
-										: <sub></sub>
-								*/}
-							</p>
-				        </div>
-			        </div>
-
-			        <div className="sign-up-form-input-field row">	
-						<div className="input-field col s12 m12 l12">
-							<input placeholder="" id="email" type="text" className="validate"/>
-							<label htmlFor="email"> Email </label>
-							<p className="red-text">
-								<sub> Error Message </sub>
-									{/*
-									(this.props.meta.touched && this.props.meta.error) 
-										? <sub> {this.props.meta.error} </sub>
-										: <sub></sub>
-								*/}
-							</p>
-				        </div>
-			        </div>
-
-			        <div className="sign-up-form-input-field row">	
-						<div className="input-field col s12 m12 l12">
-							<input placeholder="" id="password" type="password" className="validate"/>
-							<label htmlFor="password"> Password </label>
-							<p className="red-text">
-								<sub> Error Message </sub>
-									{/*
-									(this.props.meta.touched && this.props.meta.error) 
-										? <sub> {this.props.meta.error} </sub>
-										: <sub></sub>
-								*/}
-							</p>
-				        </div>
-			        </div>
-
-			        <div className="sign-up-form-input-field row">	
-						<div className="input-field col s12 m12 l12">
-							<input placeholder="" id="confirm_password" type="password" className="validate"/>
-							<label htmlFor="confirm_password"> Confirm Password </label>
-							<p className="red-text">
-								<sub> Error Message </sub>
-									{/*
-									(this.props.meta.touched && this.props.meta.error) 
-										? <sub> {this.props.meta.error} </sub>
-										: <sub></sub>
-								*/}
-							</p>
-				        </div>
-			        </div>
+					{ this.renderInputFields(inputFields) }
 
 				</div>
 				<div className="profile-picture-container">
 					<div className="profile-picture-preview">
-						<img src={ProfilePicturePlaceholder} alt="Profile Picture" />
+						<img src={ProfilePicturePlaceholderLandscape} alt="Profile Picture" />
 					</div>
 					<div className="file-field input-field">
 						<p className="red-text center-align">
@@ -157,7 +102,6 @@ class SignUpForm extends Component {
 							<input className="file-path validate" type="text" />
 							
 						</div>
-
 					</div>
 				</div>
 				<div className="sign-up-submit-button">
