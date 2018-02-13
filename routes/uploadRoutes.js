@@ -35,9 +35,6 @@ const upload = multer({
 	}
 }).single('profilePicture');
 
-const checkFileType = (file, cb) => {
-	
-}
 
 router.post('/profilePicture', (req, res, next) => {
 	upload(req, res, (err) => {
