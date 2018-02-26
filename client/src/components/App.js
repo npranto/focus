@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { BrowserRouter as Router } from "react-router-dom";
 
 import NavigationBar from './NavigationBar/NavigationBar';
 import View from './View/View';
@@ -12,18 +13,21 @@ class App extends Component {
 		this.props.fetchCurrentUser();
 	}
 
-  render() {
-    return (
-      <main className="app">
-        <header>
-        	<NavigationBar />
-        </header>
-        <section>	
-        	<View />
-        </section>
-      </main>
-    );
-  }
+	render() {
+		return (
+			<Router>
+				<main className="app">
+					<header>
+						<NavigationBar />
+					</header>
+					<section>	
+						<View />
+					</section>
+				</main>
+			</Router>
+			
+		);
+	}
 
 }
 

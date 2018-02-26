@@ -5,4 +5,15 @@ body {
   width: 100vw;
   height: 100vh;
 }
+:root {
+  --theme: #039be5;
+}
 
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
