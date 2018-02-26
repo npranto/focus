@@ -15,14 +15,26 @@ export default const defaultStore = {
 						name: 'Get started',
 						link: '/sign-in',
 						isLinkToComponent: true,
-						isButton: true
+						isButton: true,
+						customClass: 'green-text'
 					}
 				],
 				authenticatedTabs: [
 					{
 						name: 'Dashboard',
-						link: '#'
+						link: '/users/:userId/dashboard'
 					},
+					{
+						name: 'Settings',
+						link: '/users/:userId/settings'
+					},
+					{
+						name: 'Give Feedback',
+						link: '/users/:userId/give-feedback'
+					},
+					{
+						name: 'Logout'
+					}
 				]
 			}
 		}
