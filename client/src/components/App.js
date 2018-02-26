@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 
+import NavigationBar from './NavigationBar/NavigationBar';
+import View from './View/View';
 import './App.css';
 
 class App extends Component {
 
-    componentDidMount() {
+  render() {
+    return (
+      <main className="app">
+        <header>
+        	<NavigationBar />
+        </header>
+        <section>	
+        	<View />
+        </section>
+      </main>
+    );
+  }
 
-    }
-
-    render() {
-        return (
-            <div className="app-component">
-                <h1> App Component! </h1>
-            </div>
-        );
-    }
 }
 
 export default App;
