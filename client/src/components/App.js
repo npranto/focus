@@ -3,9 +3,14 @@ import {connect} from 'react-redux';
 
 import NavigationBar from './NavigationBar/NavigationBar';
 import View from './View/View';
+import * as actionsCreators from './../actions';
 import './App.css';
 
 class App extends Component {
+
+	componentDidMount() {
+		this.props.fetchCurrentUser();
+	}
 
   render() {
     return (
@@ -22,4 +27,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default connect(null, actionsCreators)(App);
