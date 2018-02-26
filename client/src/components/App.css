@@ -1,4 +1,16 @@
-.app-component {
-    width: 100vw;
-    height: 100vh;
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.app header, .app section {
+	width: 100%;
+}
+.app header {
+	background-color: white;
+}
+.app section {
+	flex-grow: 1;
+	background-color: lightpink;
 }
