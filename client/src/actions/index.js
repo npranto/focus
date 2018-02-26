@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {FETCH_CURRENT_USER} from './types.js';
+import {FETCH_CURRENT_USER, LOGOUT} from './types.js';
 
 export const fetchCurrentUser = () => {
 	return async (dispatch, getState) => {
@@ -8,6 +8,19 @@ export const fetchCurrentUser = () => {
 		dispatch({
 			type: FETCH_CURRENT_USER,
 			payload: currentUser.data
+		})
+	}
+}
+
+export const logout = () => {
+	return async (dispatch, getState) => {
+		const logout = await axios.get('/auth/logout');
+		dispatch({
+			type: LOGOUT,
+			payload: {
+				currentUser: null,
+				isAuthenticated: false
+			}
 		})
 	}
 }
