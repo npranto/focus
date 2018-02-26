@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import NavigationBar from './NavigationBar/NavigationBar';
 import View from './View/View';
