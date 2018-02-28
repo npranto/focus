@@ -21,12 +21,12 @@ class Landing extends Component {
 				<section className="jumbotron-container">
 					<Jumbotron />
 				</section>
-				<section className="features-container">
+				{/*<section className="features-container">
 					<Features features={landing.features}/>
 				</section>
 				<section className="reviews-container">
 					<Reviews reviews={landing.reviews}/>
-				</section>
+				</section>*/}
 			</div>
 		)
 	}
