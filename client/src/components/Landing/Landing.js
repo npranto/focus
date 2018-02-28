@@ -18,9 +18,9 @@ class Landing extends Component {
 
 		return (
 			<div className="landing">
-				{/*<section className="jumbotron-container">
+				<section className="jumbotron-container">
 					<Jumbotron />
-				</section>*/}
+				</section>
 				<section className="features-container">
 					<Features features={landing.features}/>
 				</section>

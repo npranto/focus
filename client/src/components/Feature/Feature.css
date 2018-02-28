@@ -1,3 +1,25 @@
 .feature {
 	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 3%;
+	margin-bottom: 3%;
+}
+.feature .feature-photo, .feature .feature-description {
+	width: 50%;
+	display: flex;
+	align-items: center;
+}
+.feature .feature-photo {
+	/*background: lightgreen;*/
+}
+.feature .feature-description {
+	/*background: lightblue;*/
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+.feature .feature-photo img {
+	max-width: 100%;
 }
