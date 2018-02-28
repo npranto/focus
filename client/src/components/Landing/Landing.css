@@ -1,6 +1,6 @@
 .landing {
 	width: 100%;
-	background-color: lightpink;
+	/*background-color: lightpink;*/
 	display: flex;
 	flex-direction: column;
 }
