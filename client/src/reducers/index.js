@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux';
 import authReducer from './authReducer';
-import defaultStore from './defaultStore';
+import componentsReducer from './componentsReducer';
 
 const reducers = combineReducers({
+	components: componentsReducer,
 	auth: authReducer
 })
 
