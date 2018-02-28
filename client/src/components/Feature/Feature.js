@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Media from 'react-media';
 
 import './Feature.css';
 
@@ -13,10 +14,28 @@ class Feature extends Component {
 
 		return (
 			<div className="feature">
-				<div className="feature-photo" style={{order: this.setOrder(index)}}>
-					<img src={feature.photo.src} alt={feature.photo.alt} />
-				</div>
-				<p className="feature-description flow-text center-align"> {feature.description} </p>
+				<Media query="(min-width: 600px)">
+		        	{matches =>
+		        		matches 
+		        			? (
+		        				<div className="large-screen">
+									<div className="feature-photo" style={{order: this.setOrder(index)}}>
+										<img src={feature.photo.src} alt={feature.photo.alt} />
+									</div>
+									<p className="feature-description flow-text center-align"> {feature.description} </p>
+								</div>
+		        			)
+		        			: (	
+		        				<div className="small-screen">
+									<div className="feature-photo">
+										<img src={feature.photo.src} alt={feature.photo.alt} />
+									</div>
+									<p className="feature-description flow-text center-align"> {feature.description} </p>
+								</div>
+		        			)
+		        
+		        }
+		        </Media>
 			</div>
 		)
 	}
