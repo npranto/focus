@@ -1,3 +1,28 @@
 .jumbotron {
 	width: 100%;
 }
+.jumbotron .jumbotron-background-picture {
+	height: 90vh;
+	background-image: url("./../../assets/young-man-working-at-desk.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	padding: 5% 7.5%;
+}
+.jumbotron .title {
+	font-size: 5em;
+	font-family: 'Pacifico', cursive;
+	color: var(--theme);
+}
+.jumbotron .subtitle {
+	font-weight: 200;
+	font-size: 3em;
+}
+.jumbotron .jumbotron-actions {
+	margin-top: 5%;
+}
+.jumbotron .jumbotron-actions a {
+	margin-top: 0.75%;
+	margin-bottom: 0.75%;
+}
+
