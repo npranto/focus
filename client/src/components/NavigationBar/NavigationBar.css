@@ -9,6 +9,7 @@
 }
 .navigation-bar .name h4 {
 	color: var(--theme);
+	font-family: 'Pacifico', cursive;
 }
 .navigation-bar .nav-tabs {
 	flex-grow: 1;
@@ -52,7 +53,6 @@
 	border-radius: 50%;
 }
 
-
 @media all and (max-width: 699px) {
     /*small*/
     .small {
@@ -71,4 +71,3 @@
     	display: flex;
     }
 }
-
