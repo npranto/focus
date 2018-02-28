@@ -1,21 +1,23 @@
 import React, {Component} from 'react';
 
+import Feature from './../Feature/Feature';
 import './Features.css';
 
 class Features extends Component {
 
-	renderFeatures() {
-		return this.props.features.map((feature, index) => {
-			return <p key={index}> {feature.description} </p>
+	renderFeatures(features) {
+		return features.map((feature, index) => {
+			return <Feature key={index} feature={feature} />
 		})
 	}
 
 	render() {
+		const {features} = this.props;
+
 		return (
 			<div className="features">
-				<h3> Features </h3>
 				{
-					this.renderFeatures()
+					this.renderFeatures(features)
 				}
 			</div>
 		)

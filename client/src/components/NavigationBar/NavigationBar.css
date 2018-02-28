@@ -52,22 +52,3 @@
 	height: 50px;
 	border-radius: 50%;
 }
-
-@media all and (max-width: 699px) {
-    /*small*/
-    .small {
-    	display: block;
-    }
-    .large {
-    	display: none;
-    }
-}
-@media all and (min-width: 700px) {
-    /*large*/
-    .small {
-    	display: block;
-    }
-    .large {
-    	display: flex;
-    }
-}
