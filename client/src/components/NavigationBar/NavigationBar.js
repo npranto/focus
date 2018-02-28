@@ -37,6 +37,8 @@ class NavigationBar extends Component {
 				<li className="tab">
 					<Link to="/sign-in" className="waves-effect waves-light btn white-text"> Get Started! </Link>
 				</li>
+				<li className="tab large"> Show on large </li>
+				<li className="tab small"> Show on small </li>
 				<li className="tab">
 					<a className='dropdown-button' href='#' data-activates='notAuthenticatedTabsDropdown'>
 						<FaAngleDown size={32}/>
@@ -57,24 +59,24 @@ class NavigationBar extends Component {
 		)
 	}
 
-	renderAuthenticatedTabs() {
+	renderAuthenticatedTabs(auth) {
 		return (
 			<ul className="nav-tabs">
 				<li className="tab">
 					<div className="profile-tab valign-wrapper">
-						<p className="name valign-wrapper"> Nazmuz Shakib Pranto </p>
+						<p className="name valign-wrapper"> {auth.currentUser.fullName} </p>
 						<a className="avatar valign-wrapper dropdown-button" href='#' data-activates='authenticatedTabsDropdown'> 
-							<img src={UserIcon} alt="Profile Avatar"/>
+							<img src={auth.currentUser.profilePicture ? auth.currentUser.profilePicture : UserIcon} alt="Profile Avatar"/>
 						</a>
 						<ul id='authenticatedTabsDropdown' className='dropdown-content'>
 						    <li>
-						    	<Link to="/users/:userId/dashboard" className="animated-link center-align"> Dashboard </Link>
+						    	<Link to={`/users/${auth.currentUser._id}/dashboard`} className="animated-link center-align"> Dashboard </Link>
 						    </li>
 						    <li>
-						    	<Link to="/users/:userId/settings" className="animated-link center-align"> Settings </Link>
+						    	<Link to={`/users/${auth.currentUser._id}/settings`} className="animated-link center-align"> Settings </Link>
 						    </li>
 						    <li>
-						    	<Link to="/users/:userId/give-feedback" className="animated-link center-align"> Give Feedback </Link>
+						    	<Link to={`/users/${auth.currentUser._id}/give-feedback`} className="animated-link center-align"> Give Feedback </Link>
 						    </li>
 						    <li>
 								<a href="/auth/logout" className="animated-link center-align red-text"> Logout </a>
@@ -88,13 +90,13 @@ class NavigationBar extends Component {
 					</a>
 					<ul id='authenticatedTabsDropdown' className='dropdown-content'>
 					    <li>
-					    	<Link to="/users/:userId/dashboard" className="animated-link center-align"> Dashboard </Link>
+					    	<Link to={`/users/${auth.currentUser._id}/dashboard`} className="animated-link center-align"> Dashboard </Link>
 					    </li>
 					    <li>
-					    	<Link to="/users/:userId/settings" className="animated-link center-align"> Settings </Link>
+					    	<Link to={`/users/${auth.currentUser._id}/settings`} className="animated-link center-align"> Settings </Link>
 					    </li>
 					    <li>
-							<Link to="/users/:userId/give-feedback" className="animated-link center-align"> Give Feedback </Link>
+							<Link to={`/users/${auth.currentUser._idd}/give-feedback`} className="animated-link center-align"> Give Feedback </Link>
 						</li>
 						<li>
 							<a href="/auth/logout" className="animated-link center-align red-text"> Logout </a>
@@ -106,14 +108,22 @@ class NavigationBar extends Component {
 	}
 	
 	render() {
+		const {auth} = this.props;
+
 		return (
 			<div className="navigation-bar">
 				<div className="name">
-					<h4> Focus </h4>
+					<Link to={
+						auth.isAuthenticated 
+							? `/users/${auth.currentUser._id}/dashboard` 
+							: '/'
+					}>
+						<h4> Focus </h4>
+					</Link>
 				</div>
 				{
-					this.props.auth.isAuthenticated 
-						? this.renderAuthenticatedTabs()
+					auth.isAuthenticated 
+						? this.renderAuthenticatedTabs(auth)
 						: this.renderNotAuthenticatedTabs()
 				}
 			</div>
