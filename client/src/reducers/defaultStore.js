@@ -1,36 +1,27 @@
-export default const defaultStore = {
+const defaultStore = {
 	components: {
 		navigationBar: {
 			tabs: {
 				notAuthenticatedTabs: [
 					{
-						name: 'Feature',
-						link: '/#features'
+						name: 'Feature'
 					},
 					{
-						name: 'Reviews',
-						link: '/#reviews'
+						name: 'Reviews'
 					},
 					{
-						name: 'Get started',
-						link: '/sign-in',
-						isLinkToComponent: true,
-						isButton: true,
-						customClass: 'green-text'
+						name: 'Get started'
 					}
 				],
 				authenticatedTabs: [
 					{
-						name: 'Dashboard',
-						link: '/users/:userId/dashboard'
+						name: 'Dashboard'
 					},
 					{
-						name: 'Settings',
-						link: '/users/:userId/settings'
+						name: 'Settings'
 					},
 					{
-						name: 'Give Feedback',
-						link: '/users/:userId/give-feedback'
+						name: 'Give Feedback'
 					},
 					{
 						name: 'Logout'
@@ -40,3 +31,5 @@ export default const defaultStore = {
 		}
 	}
 }
+
+export default defaultStore;

@@ -11,16 +11,18 @@ import './NavigationBar.css';
 class NavigationBar extends Component {
 
 	componentWillUpdate() {
-		$('.dropdown-button').dropdown({
-	      inDuration: 300,
-	      outDuration: 225,
-	      constrainWidth: false, // Does not change width of dropdown to that of the activator
-	      hover: false, // Activate on hover
-	      gutter: 0, // Spacing from edge
-	      belowOrigin: true, // Displays dropdown below the button
-	      alignment: 'center', // Displays dropdown with edge aligned to the left of button
-	      stopPropagation: false // Stops event propagation
-	    });
+		$(document).ready(function(){
+			$('.dropdown-button').dropdown({
+				inDuration: 300,
+				outDuration: 225,
+				constrainWidth: false, // Does not change width of dropdown to that of the activator
+				hover: false, // Activate on hover
+				gutter: 0, // Spacing from edge
+				belowOrigin: true, // Displays dropdown below the button
+				alignment: 'center', // Displays dropdown with edge aligned to the left of button
+				stopPropagation: false // Stops event propagation
+		    });
+	    })
 	}
 
 	renderNotAuthenticatedTabs() {
@@ -75,7 +77,7 @@ class NavigationBar extends Component {
 						    	<Link to="/users/:userId/give-feedback" className="animated-link center-align"> Give Feedback </Link>
 						    </li>
 						    <li>
-								<a onClick={this.props.logout} className="animated-link center-align red-text"> Logout </a>
+								<a href="/auth/logout" className="animated-link center-align red-text"> Logout </a>
 							</li>
 					  	</ul>
 					</div>
@@ -95,7 +97,7 @@ class NavigationBar extends Component {
 							<Link to="/users/:userId/give-feedback" className="animated-link center-align"> Give Feedback </Link>
 						</li>
 						<li>
-							<a onClick={this.props.logout} className="animated-link center-align red-text"> Logout </a>
+							<a href="/auth/logout" className="animated-link center-align red-text"> Logout </a>
 						</li>
 				  </ul>
 				</li>

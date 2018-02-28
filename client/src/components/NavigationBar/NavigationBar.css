@@ -10,6 +10,7 @@
 }
 .navigation-bar .name h4 {
 	color: var(--theme);
+	font-family: 'Pacifico', cursive;
 }
 .navigation-bar .nav-tabs {
 	flex-grow: 1;
@@ -51,5 +52,3 @@
 	width: 50px;
 	height: 50px;
 }
-
-
