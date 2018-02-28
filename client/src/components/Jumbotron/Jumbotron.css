@@ -2,7 +2,7 @@
 	width: 100%;
 }
 .jumbotron .jumbotron-background-picture {
-	height: 90vh;
+	height: 80vh;
 	background-image: url("./../../assets/young-man-working-at-desk.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -24,5 +24,12 @@
 .jumbotron .jumbotron-actions a {
 	margin-top: 0.75%;
 	margin-bottom: 0.75%;
+}
+.jumbotron .small-screen {
+	padding-bottom: 5%;
+}
+.jumbotron .jumbotron-picture img {
+	width: 100%;
+	height: auto;
 }
 
