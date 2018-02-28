@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Route} from 'react-router-dom';
 
+import Landing from './../Landing/Landing';
 import './View.css';
 
 class View extends Component {
@@ -15,6 +17,7 @@ class View extends Component {
 						<Route path="" component={} />
 					*/
 				}
+				<Route path="/" component={Landing} />
 			</div>
 		)
 	}
