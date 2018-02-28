@@ -13,4 +13,6 @@
 .app section {
 	flex-grow: 1;
 	background-color: lightpink;
+	display: flex;
+	flex-direction: column;
 }
