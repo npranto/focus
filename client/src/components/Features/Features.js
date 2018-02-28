@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+import Feature from './../Feature/Feature';
 import './Features.css';
 
 class Features extends Component {
@@ -16,7 +17,7 @@ class Features extends Component {
 		return (
 			<div className="features">
 				{
-					this.renderFeatures(features);
+					this.renderFeatures(features)
 				}
 			</div>
 		)
