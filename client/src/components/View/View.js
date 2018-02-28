@@ -9,6 +9,7 @@ class View extends Component {
 
 	render() {
 		const {auth} = this.props;
+		
 		return (
 			<div className="view">
 				{
