@@ -37,8 +37,6 @@ class NavigationBar extends Component {
 				<li className="tab">
 					<Link to="/sign-in" className="waves-effect waves-light btn white-text"> Get Started! </Link>
 				</li>
-				<li className="tab large"> Show on large </li>
-				<li className="tab small"> Show on small </li>
 				<li className="tab">
 					<a className='dropdown-button' href='#' data-activates='notAuthenticatedTabsDropdown'>
 						<FaAngleDown size={32}/>
