@@ -1,0 +1,9 @@
+.landing {
+	width: 100%;
+	background-color: lightpink;
+	display: flex;
+	flex-direction: column;
+}
+.landing section {
+	width: 100%;
+}
