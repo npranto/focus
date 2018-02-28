@@ -24,9 +24,9 @@ class Landing extends Component {
 				<section className="features-container">
 					<Features features={landing.features}/>
 				</section>
-				{/*<section className="reviews-container">
+				<section className="reviews-container">
 					<Reviews reviews={landing.reviews}/>
-				</section>*/}
+				</section>
 			</div>
 		)
 	}
