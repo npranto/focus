@@ -18,13 +18,13 @@ class Landing extends Component {
 
 		return (
 			<div className="landing">
-				<section className="jumbotron-container">
+				{/*<section className="jumbotron-container">
 					<Jumbotron />
-				</section>
-				{/*<section className="features-container">
+				</section>*/}
+				<section className="features-container">
 					<Features features={landing.features}/>
 				</section>
-				<section className="reviews-container">
+				{/*<section className="reviews-container">
 					<Reviews reviews={landing.reviews}/>
 				</section>*/}
 			</div>
