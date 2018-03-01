@@ -15,8 +15,8 @@ class Reviews extends Component {
 		const {reviews} = this.props;
 
 		return (
-			<div className="reviews">
-				<h3 className="center-align"> What Others Says About Us </h3>
+			<div className="reviews grey lighten-4">
+				<h3 className="header center-align"> What Others Says About Us </h3>
 				{
 					this.renderReviews(reviews)
 				}
