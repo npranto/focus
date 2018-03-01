@@ -13,31 +13,31 @@ class Review extends Component {
 		return (index%2 === 0) ? 'flex-start' : 'flex-end';
 	}
 
-	renderReview(screenClass) {
+	renderReview(screenClass, review) {
 		return (
-			<li className={`collection-item avatar ${screenClass}`}>
-				<img src={ProfilePicturePlaceholderPortrait} alt="Reviewer Avatar" className="circle" />
-				<span className="title"> John White </span>
+			<li className={`collection-item avatar grey lighten-4 ${screenClass}`}>
+				<img src={review.photo ? review.photo : ProfilePicturePlaceholderPortrait} alt="Reviewer Avatar" className="circle" />
+				<span className="title"> {review.firstName} {review.lastName} </span>
 				<div className="reviewer-info">
 					<p className="reviewer-role-organization">
-						CEO, Google
+						{review.role}, {review.organization}
 					</p>
 					<p className="reviewer-rating">
 						<Rating 
 							start={0} 
 							stop={5} 
-							initialRating={4} 
+							initialRating={4} // rating given by reviewer
 							readonly 
 							emptySymbol={
 								<FaStarO size={24}/>
 							}
-								fullSymbol={
-									<FaStar size={24}/>
-								} 
-							/>
+							fullSymbol={
+								<FaStar size={24}/>
+							} 
+						/>
 					</p>
 					<blockquote className="reviewer-feedback">
-						For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+						{review.feedback}
 					</blockquote>
 					
 				</div>
@@ -55,10 +55,10 @@ class Review extends Component {
 		          		{matches =>
 		          			matches 
 		          			? (
-		          				this.renderReview('large-screen')
+		          				this.renderReview('large-screen', review)
 		          			)
 		          			: (
-		          				this.renderReview('small-screen')
+		          				this.renderReview('small-screen', review)
 		          			)
 		          		}
 		          	</Media>

@@ -8,7 +8,7 @@ import './Jumbotron.css';
 class Jumbotron extends Component {
 	render() {
 		return (
-			<div className="jumbotron blue-grey lighten-5">
+			<div className="jumbotron grey lighten-4">
 				<Media query="(min-width: 500px)">
 		          {matches =>
 		            matches ? (
