@@ -1,6 +1,5 @@
 const defaultStore = {
 	components: {
-
 		navigationBar: {
 			tabs: {
 				notAuthenticatedTabs: [
@@ -30,7 +29,6 @@ const defaultStore = {
 				]
 			}
 		},
-
 		landing: {
 			features: [
 				{
@@ -78,7 +76,27 @@ const defaultStore = {
 			],
 			reviews: []
 		},
-
+		signInForm: {
+			inputFields: [
+				{
+					name: "email",
+					placeholder: "",
+					id: "email",
+					type: "email",
+					htmlFor: "email",
+					label: "Email"
+				},
+				{
+					name: "password",
+					placeholder: "",
+					id: "password",
+					type: "password",
+					htmlFor: "password",
+					label: "Password"
+				}
+			],
+			signInError: null
+		}
 	}
 }
 

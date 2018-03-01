@@ -1,45 +1,45 @@
 import React, {Component} from 'react';
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form';
+import {connect} from 'react-redux';
 
-import SignInFormInput from './../SignInFormInput/SignInFormInput';
+import * as actionCreators from './../../actions';
+import SignInFormInputField from './../SignInFormInputField/SignInFormInputField';
 import './SignInForm.css';
 
 class SignInForm extends Component {
 
-	onSignInFormSubmit(values) {
-
+	onSignInFormSubmit(form) {
+		this.props.loginWithEmailAndPassword(form);
 	}
 
+	renderInputFields(inputFields) {
+		return inputFields.map((inputField, index) => {
+			return <Field
+			            key={index}
+						name={inputField.name}
+						placeholder={inputField.placeholder}
+						id={inputField.id}
+						type={inputField.type}
+						htmlFor={inputField.htmlFor}
+						label={inputField.label}
+						component={SignInFormInputField} />
+		})
+	}
+
+
 	render() {
-		const {pristine, submitting } = this.props;
+		const {handleSubmit, invalid, pristine, submitting, } = this.props;
+		const {inputFields, signInError} = this.props.components.signInForm;
 
 		return (
 			<div className="sign-in-form">
-				<form className="col s12 yellow lighten-5" onSubmit={this.onSignInFormSubmit}>
+				<form className="col s12 yellow lighten-5" onSubmit={handleSubmit(form => this.onSignInFormSubmit(form))}>
+					<p className="center-align red-text"> {signInError ? signInError : ''} </p>					
+					{
+						this.renderInputFields(inputFields)
+					}
 					<div className="row">
-						<Field
-				            key={0}
-							name="email"
-							placeholder=""
-							id="email"
-							type="email"
-							htmlFor="email"
-							label="Email"
-							component={SignInFormInput} />
-					</div>
-					<div className="row">
-						<Field
-				            key={1}
-							name="password"
-							placeholder=""
-							id="password"
-							type="password"
-							htmlFor="password"
-							label="Password"
-							component={SignInFormInput} />
-					</div>
-					<div className="row">
-						<button type="submit" disabled={pristine || submitting} className="login-button col s12 waves-effect waves-light btn green darken-2"> Login </button>
+						<button type="submit" disabled={invalid || pristine || submitting} className="login-button col s12 waves-effect waves-light btn green darken-2"> Login </button>
 			    	</div>
 			    </form>
 			</div>
@@ -66,7 +66,13 @@ const validate = (form) => {
 	return errors;
 }
 
+const mapStateToProps = (state) => {
+	return {
+		components: state.components
+	}
+}
+
 export default reduxForm({
 	form: 'signInForm',
 	validate
-})(SignInForm);
+})(connect(mapStateToProps, actionCreators)(SignInForm));
