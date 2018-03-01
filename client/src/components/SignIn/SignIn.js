@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import FaGooglePlus from 'react-icons/lib/fa/google-plus';
 import Media from 'react-media';
 
-// import SignInForm from './../SignInForm/SignInForm';
+import SignInForm from './../SignInForm/SignInForm';
 import './SignIn.css';
 
 class SignIn extends Component {
@@ -11,20 +11,11 @@ class SignIn extends Component {
 		return (
 			<div className={`sign-in ${screenClass}`}>
 				<div className="content-holder">
-					<h4 className="title center-align"> Focus </h4>
+					<h5 className="title center-align"> Sign In </h5>
 					<div className="divider"></div>
 					<div className="form-container">
-						{/*<form>
-							<div className="login">
-								<h5> Login </h5>
-								<div className="divider"></div>
-								SignInForm
-							</div>
-							<button type="submit" className="waves-effect waves-light btn"> Login </button>
-						</form>*/}
+						<SignInForm />
 					</div>
-
-					<br />
 
 					<a href="/auth/google" className="just-go-with-google-link">
 						<div className="just-go-with-google red darken-3">
@@ -37,8 +28,8 @@ class SignIn extends Component {
 
 					<br />
 
-					<a href="/forget-password" className={`forget-password ${(screenClass === 'small-screen') ? 'center-align' : 'left-align'}`}> Forget Password? </a>
-					<a href="/sign-up" className={`create-new-account ${(screenClass === 'small-screen') ? 'center-align' : 'left-align'}`}> Create New Account </a>
+					<a href="/forget-password" className={`forget-password ${(screenClass === 'sign-in-small-screen') ? 'center-align' : 'left-align'}`}> Forget Password? </a>
+					<a href="/sign-up" className={`create-new-account ${(screenClass === 'sign-in-small-screen') ? 'center-align' : 'left-align'}`}> Create New Account </a>
 
 				</div>
 			</div>
@@ -51,21 +42,21 @@ class SignIn extends Component {
 		          {matches =>
 		            matches 
 		            	? (
-			                this.renderSignIn('small-screen')
+			                this.renderSignIn('sign-in-small-screen')
 			            ) 
 			            : (
 			            	<Media query={{minWidth: 401, maxWidth: 799}}>
 						          {matches =>
 						            matches 
 							            ? (
-							                this.renderSignIn('medium-screen')
+							                this.renderSignIn('sign-in-medium-screen')
 							            ) 
 							            : (
 							            	 <Media query="(min-width: 800px)">
 										          {matches =>
 										            matches 
 											            ? (
-											                this.renderSignIn('large-screen')
+											                this.renderSignIn('sign-in-large-screen')
 											            ) 
 											            : ''
 										          }

@@ -55,10 +55,10 @@ class Review extends Component {
 		          		{matches =>
 		          			matches 
 		          			? (
-		          				this.renderReview('large-screen', review)
+		          				this.renderReview('review-large-screen', review)
 		          			)
 		          			: (
-		          				this.renderReview('small-screen', review)
+		          				this.renderReview('review-small-screen', review)
 		          			)
 		          		}
 		          	</Media>
