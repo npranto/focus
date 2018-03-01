@@ -16,6 +16,7 @@ class Reviews extends Component {
 
 		return (
 			<div className="reviews">
+				<h3 className="center-align"> What Others Says About Us </h3>
 				{
 					this.renderReviews(reviews)
 				}
