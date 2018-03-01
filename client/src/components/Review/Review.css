@@ -8,14 +8,14 @@
 	margin-top: 0;
 	margin-bottom: 0;
 }
-.review .large-screen {
+.review .review-large-screen {
 	padding-top: 0;
 	padding-bottom: 0;
 }
-.review .large-screen {
+.review .review-large-screen {
 	width: 50%;
 }
-.review .small-screen {
+.review .review-small-screen {
 	width: 100%;
 }
 .review .title {

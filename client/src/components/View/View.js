@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 
 import Landing from './../Landing/Landing';
 import SignIn from './../SignIn/SignIn';
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(View);
+export default withRouter(connect(mapStateToProps)(View));
