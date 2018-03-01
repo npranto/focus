@@ -1,3 +1,25 @@
 .review {
 	width: 100%;
 }
+.review .collection {
+	width: 100%;
+	border: none;
+	display: flex;
+}
+.review .large-screen {
+	width: 50%;
+}
+.review .small-screen {
+	width: 100%;
+}
+.review .title {
+	font-weight: bold;
+}
+.review .reviewer-rating {
+	padding-top: 3%;
+	color: gold;
+}
+.review .reviewer-role-organization {
+	color: gray;
+	font-style: italic;
+}
