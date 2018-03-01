@@ -1,0 +1,50 @@
+.sign-in {
+	width: 100%;
+	display: flex;
+}
+.large-screen {
+	padding: 2% 35%;
+}
+.medium-screen {
+	padding: 1% 25%;
+}
+.small-screen {
+	padding: 0% 0%;
+}
+.sign-in .content-holder {
+	background: lightyellow;
+	width: 100%;
+}
+.sign-in .content-holder .title {
+	background: var(--theme);
+	color: white;
+	margin: 0;
+	padding-top: 3%;
+	padding-bottom: 3%;
+}
+.sign-in .content-holder .form-container {
+	padding: 1% 3%;
+}
+.sign-in .just-go-with-google-link {
+	color: inherit;
+}
+.sign-in .forget-password,  .sign-in .create-new-account {
+	display: block;
+}
+.sign-in .just-go-with-google {
+	display: flex;
+	color: white;
+}
+.sign-in .just-go-with-google .google-icon {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 3%;
+	padding-right: 3%;
+	box-sizing: content-box;
+	border-right: 2px solid lightgray;
+}
+.sign-in .just-go-with-google p {
+	padding-left: 3%;
+	flex-grow: 1;
+}
