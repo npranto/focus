@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Route} from 'react-router-dom';
 
 import Landing from './../Landing/Landing';
+import SignIn from './../SignIn/SignIn';
 import './View.css';
 
 class View extends Component {
@@ -18,7 +19,8 @@ class View extends Component {
 						<Route path="" component={} />
 					*/
 				}
-				<Route path="/" component={Landing} />
+				<Route exact path="/" component={Landing} />
+				<Route path="/sign-in" component={SignIn} />
 			</div>
 		)
 	}
