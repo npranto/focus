@@ -22,29 +22,8 @@
 	padding-top: 5%;
 	padding-bottom: 5%;
 }
-.sign-in .content-holder .form-container {
-
-}
-.sign-in .just-go-with-google-link {
-	color: inherit;
-}
 .sign-in .forget-password, .sign-in .create-new-account {
 	display: block;
 }
-.sign-in .just-go-with-google {
-	display: flex;
-	color: white;
-}
-.sign-in .just-go-with-google .google-icon {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding-left: 3%;
-	padding-right: 3%;
-	box-sizing: content-box;
-	border-right: 2px solid lightgray;
-}
-.sign-in .just-go-with-google p {
-	padding-left: 3%;
-	flex-grow: 1;
-}
+
+

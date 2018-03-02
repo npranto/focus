@@ -1,0 +1,21 @@
+.google-oauth {
+	width: 100%;
+	color: inherit;
+}
+.google-oauth .just-go-with-google {
+	display: flex;
+	color: white;
+}
+.google-oauth .just-go-with-google .google-icon {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 3%;
+	padding-right: 3%;
+	/*box-sizing: content-box;*/
+	border-right: 2px solid lightgray;
+}
+.google-oauth .just-go-with-google p {
+	padding-left: 3%;
+	flex-grow: 1;
+}

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import FaGooglePlus from 'react-icons/lib/fa/google-plus';
 import Media from 'react-media';
 
 import SignInForm from './../SignInForm/SignInForm';
+import GoogleOauth from './../GoogleOauth/GoogleOauth';
 import './SignIn.css';
 
 class SignIn extends Component {
@@ -16,18 +16,8 @@ class SignIn extends Component {
 					<div className="form-container">
 						<SignInForm />
 					</div>
-
-					<a href="/auth/google" className="just-go-with-google-link">
-						<div className="just-go-with-google red darken-3">
-							<div className="google-icon">
-								<FaGooglePlus size={32}/>
-							</div>
-							<p> Just go with Google </p>
-						</div>
-					</a>
-
+					<GoogleOauth />
 					<br />
-
 					<a href="/forget-password" className={`forget-password ${(screenClass === 'sign-in-small-screen') ? 'center-align' : 'left-align'}`}> Forget Password? </a>
 					<a href="/sign-up" className={`create-new-account ${(screenClass === 'sign-in-small-screen') ? 'center-align' : 'left-align'}`}> Create New Account </a>
 
