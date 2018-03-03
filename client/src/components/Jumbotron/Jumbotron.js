@@ -22,7 +22,7 @@ class Jumbotron extends Component {
 							</div>
 						</div>
 		            ) : (
-		            	<div className="small-screen">
+		            	<div className="jumbotron-small-screen">
 		            		<h2 className="title center-align"> Focus </h2>
 							<div className="jumbotron-picture">
 								<img src={YoungManWorkingAtDeskXs} alt="Young Man Working at Desk" />

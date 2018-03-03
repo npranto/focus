@@ -18,7 +18,7 @@ class Feature extends Component {
 		        	{matches =>
 		        		matches 
 		        			? (
-		        				<div className="large-screen">
+		        				<div className="feature-large-screen">
 									<div className="feature-photo" style={{order: this.setOrder(index)}}>
 										<img src={feature.photo.src} alt={feature.photo.alt} />
 									</div>
@@ -26,7 +26,7 @@ class Feature extends Component {
 								</div>
 		        			)
 		        			: (	
-		        				<div className="small-screen">
+		        				<div className="feature-small-screen">
 									<div className="feature-photo">
 										<img src={feature.photo.src} alt={feature.photo.alt} />
 									</div>
