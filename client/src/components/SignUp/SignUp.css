@@ -1,0 +1,29 @@
+.sign-up {
+	width: 100%;
+	display: flex;
+}
+.sign-up-large-screen {
+	padding: 2% 10%;
+}
+.sign-up-medium-screen {
+	padding: 1% 10%;
+}
+.sign-up-small-screen {
+	padding: 0% 0%;
+}
+.sign-up .content-holder {
+	/*background: lightyellow;*/
+	width: 100%;
+}
+.sign-up .content-holder .title {
+	background: var(--theme);
+	color: white;
+	margin: 0;
+	padding-top: 2.5%;
+	padding-bottom: 2.5%;
+}
+.sign-up .forget-password, .sign-up .create-new-account {
+	display: block;
+}
+
+

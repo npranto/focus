@@ -4,6 +4,7 @@ import {Route, withRouter} from 'react-router-dom';
 
 import Landing from './../Landing/Landing';
 import SignIn from './../SignIn/SignIn';
+import SignUp from './../SignUp/SignUp';
 import './View.css';
 
 class View extends Component {
@@ -21,6 +22,7 @@ class View extends Component {
 				}
 				<Route exact path="/" component={Landing} />
 				<Route path="/sign-in" component={SignIn} />
+				<Route path="/sign-up" component={SignUp} />
 			</div>
 		)
 	}
