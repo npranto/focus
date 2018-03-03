@@ -3,6 +3,7 @@
 	color: inherit;
 }
 .google-oauth .just-go-with-google {
+	width: 200px;
 	display: flex;
 	color: white;
 }
@@ -12,10 +13,11 @@
 	justify-content: center;
 	padding-left: 3%;
 	padding-right: 3%;
-	/*box-sizing: content-box;*/
 	border-right: 2px solid lightgray;
 }
 .google-oauth .just-go-with-google p {
 	padding-left: 3%;
+	display: flex;
+	justify-content: center;
 	flex-grow: 1;
 }

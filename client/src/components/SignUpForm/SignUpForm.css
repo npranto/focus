@@ -1,0 +1,15 @@
+.sign-up-form {
+	width: 100%;
+	display: flex;
+}
+.sign-up-form .profile-picture-input {
+	width: 35%;
+}
+.sign-up-form .profile-info-inputs {
+	flex-grow: 1;
+}
+.sign-up-form .profile-info-inputs .profile-info-form {
+	width: 100%;
+	padding-top: 3%;
+	/*padding-bottom: 5%;*/
+}

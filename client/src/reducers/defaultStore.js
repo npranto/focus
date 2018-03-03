@@ -96,6 +96,51 @@ const defaultStore = {
 				}
 			],
 			signInError: null
+		},
+		signUpForm: {
+			inputFields: [
+				{
+					name: "first_name",
+					placeholder: "",
+					id: "first_name",
+					type: "text",
+					htmlFor: "first_name",
+					label: "First Name"
+				},
+				{
+					name: "last_name",
+					placeholder: "",
+					id: "last_name",
+					type: "text",
+					htmlFor: "last_name",
+					label: "Last Name"
+				},
+				{
+					name: "email",
+					placeholder: "",
+					id: "email",
+					type: "email",
+					htmlFor: "email",
+					label: "Email"
+				},
+				{
+					name: "password",
+					placeholder: "",
+					id: "password",
+					type: "password",
+					htmlFor: "password",
+					label: "Password"
+				},
+				{
+					name: "confirm_password",
+					placeholder: "",
+					id: "confirm_password",
+					type: "password",
+					htmlFor: "confirm_password",
+					label: "Confirm Password"
+				},
+			],
+			signUpError: null
 		}
 	}
 }
