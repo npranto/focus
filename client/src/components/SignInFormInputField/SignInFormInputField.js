@@ -4,21 +4,23 @@ import './SignInFormInputField.css';
 
 class SignInFormInputField extends Component {
 	render() {
+		const {input, placeholder, id, type, className, htmlFor, label, meta} = this.props;
+		const {touched, error} = meta;
+		
 		return (
 			<div className="row">
 				<div className="input-field col s12 sign-in-form-input-field">
 					<input 
-							{...this.props.input} 
-							placeholder={this.props.placeholder} 
-							id={this.props.id} 
-							type={this.props.type} 
-							className={this.props.className} />
+							{...input} 
+							placeholder={placeholder} 
+							id={id} 
+							type={type} />
 
 					<label 
-							htmlFor={this.props.htmlFor}> {this.props.label} </label>
+							htmlFor={htmlFor}> {label} </label>
 
 					<p className="validation-message right-align">
-						<sub className="red-text"> {(this.props.meta.touched && this.props.meta.error) ? this.props.meta.error : ''} </sub>
+						<sub className="red-text"> {(touched && error) ? error : ''} </sub>
 					</p>
 
 				</div>

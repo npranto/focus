@@ -14,32 +14,34 @@ class SignInForm extends Component {
 
 	renderInputFields(inputFields) {
 		return inputFields.map((inputField, index) => {
+			const {name, placeholder, id, type, htmlFor, label} = inputField;
 			return <Field
 			            key={index}
-						name={inputField.name}
-						placeholder={inputField.placeholder}
-						id={inputField.id}
-						type={inputField.type}
-						htmlFor={inputField.htmlFor}
-						label={inputField.label}
+						name={name}
+						placeholder={placeholder}
+						id={id}
+						type={type}
+						htmlFor={htmlFor}
+						label={label}
+						className="validate"
 						component={SignInFormInputField} />
 		})
 	}
 
 
 	render() {
-		const {handleSubmit, invalid, pristine, submitting, } = this.props;
+		const {handleSubmit, invalid, pristine, submitting } = this.props;
 		const {inputFields, signInError} = this.props.components.signInForm;
 
 		return (
 			<div className="sign-in-form">
-				<form className="col s12 yellow lighten-5" onSubmit={handleSubmit(form => this.onSignInFormSubmit(form))}>
+				<form className="col s12" onSubmit={handleSubmit(form => this.onSignInFormSubmit(form))}>
 					<p className="center-align red-text"> {signInError ? signInError : ''} </p>					
 					{
 						this.renderInputFields(inputFields)
 					}
 					<div className="row">
-						<button type="submit" disabled={invalid || pristine || submitting} className="login-button col s12 waves-effect waves-light btn green darken-2"> Login </button>
+						<button type="submit" disabled={invalid || pristine || submitting} className="login-button waves-effect waves-light btn green darken-2"> Login </button>
 			    	</div>
 			    </form>
 			</div>
