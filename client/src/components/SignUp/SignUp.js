@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 import Media from 'react-media';
 
-import SignInForm from './../SignInForm/SignInForm';
 import GoogleOauth from './../GoogleOauth/GoogleOauth';
-import './SignIn.css';
+import './SignUp.css';
 
-class SignIn extends Component {
-
-	renderSignIn(screenClass) {
+class SignUp extends Component {
+	renderSignUp(screenClass) {
 		return (
-			<div className={`sign-in ${screenClass}`}>
+			<div className={`sign-up ${screenClass}`}>
 				<div className="content-holder">
-					<h5 className="title center-align"> Sign In </h5>
+					<h5 className="title center-align"> Create New Account </h5>
 					<div className="form-container">
-						<SignInForm />
+						Sign Up Form 
 					</div>
 					<GoogleOauth />
 					<br />
@@ -27,30 +25,20 @@ class SignIn extends Component {
 
 	render() {
 		return (
-			<Media query="(max-width: 400px)">
+			<Media query="(max-width: 799px)">
 		          {matches =>
 		            matches 
 		            	? (
-			                this.renderSignIn('sign-in-small-screen')
+			                this.renderSignUp('sign-up-small-screen')
 			            ) 
 			            : (
-			            	<Media query={{minWidth: 401, maxWidth: 799}}>
+			            	<Media query="(min-width: 800px)">
 						          {matches =>
 						            matches 
 							            ? (
-							                this.renderSignIn('sign-in-medium-screen')
+							                this.renderSignUp('sign-up-large-screen')
 							            ) 
-							            : (
-							            	 <Media query="(min-width: 800px)">
-										          {matches =>
-										            matches 
-											            ? (
-											                this.renderSignIn('sign-in-large-screen')
-											            ) 
-											            : ''
-										          }
-										    </Media>
-							            )
+							            : ''
 						          }
 						    </Media>
 			           	)
@@ -60,4 +48,4 @@ class SignIn extends Component {
 	}
 }
 
-export default SignIn;
+export default SignUp;
