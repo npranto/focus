@@ -140,6 +140,8 @@ const defaultStore = {
 					label: "Confirm Password"
 				},
 			],
+			profilePicture: null,
+			profilePictureUploadError: null,
 			signUpError: null
 		}
 	}

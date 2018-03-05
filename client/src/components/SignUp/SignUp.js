@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Media from 'react-media';
+import {Link} from 'react-router-dom';
 
 import SignUpForm from './../SignUpForm/SignUpForm';
 import GoogleOauth from './../GoogleOauth/GoogleOauth';
@@ -16,8 +17,7 @@ class SignUp extends Component {
 					</div>
 					<GoogleOauth />
 					<br />
-					<a href="/forget-password" className={`forget-password ${(screenClass === 'sign-in-small-screen') ? 'center-align' : 'left-align'}`}> Forget Password? </a>
-					<a href="/sign-up" className={`create-new-account ${(screenClass === 'sign-in-small-screen') ? 'center-align' : 'left-align'}`}> Create New Account </a>
+					<Link to="/sign-in" className={`forget-password ${(screenClass === 'sign-in-small-screen') ? 'center-align' : 'left-align'}`}> Already have account? </Link>
 				</div>
 			</div>
 		)

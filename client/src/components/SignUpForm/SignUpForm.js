@@ -2,15 +2,37 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 
+import * as actionCreators from './../../actions';
 import SignUpFormInputField from './../SignUpFormInputField/SignUpFormInputField';
+import AddProfilePicture from './../AddProfilePicture/AddProfilePicture';
 import {containLettersOnly} from './../../helpers/utils.js';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
 
 	onSignUpFormSubmit(form) {
-		console.log(form);
+		console.log(this.props.components.signUpForm.profilePicture);
+		let profile = {
+			firstName: form.firstName,
+			lastName: form.lastName,
+			fullName: `${form.firstName} ${form.lastName}`,
+			email: form.email,
+			password: form.password, 
+		} 
+		if (this.props.components.signUpForm.profilePicture) {
+			profile.profilePicture = this.props.components.signUpForm.profilePicture;
+		}
+		this.props.signUpNewUser(profile);
 	}
+
+	onRemoveProfilePicture() {
+		this.props.removeProfilePicture();
+	}
+
+	onProfilePictureSelectToUpload(e) {
+		this.props.uploadProfilePicture(e.target.files[0]);
+	}
+
 
 	renderInputFields(inputFields) {
 		return inputFields.map((inputField, index) => {
@@ -31,15 +53,19 @@ class SignUpForm extends Component {
 
 	render() {
 		const {handleSubmit, invalid, pristine, submitting } = this.props;
-		const {inputFields} = this.props.components.signUpForm;
+		const {inputFields, profilePicture, profilePictureUploadError, signUpError} = this.props.components.signUpForm;
 
 		return (
 			<div className="sign-up-form">
 				<div className="profile-picture-input">
-					
+					<AddProfilePicture
+						defaultPhoto={profilePicture} 
+						profilePictureUploadError={profilePictureUploadError}
+						onProfilePictureSelectToPreview={(e) => this.onProfilePictureSelectToUpload(e)}
+						onRemoveProfilePicture={() => this.onRemoveProfilePicture()} />
 				</div>
-
 				<div className="profile-info-inputs">
+					<p className="center-align red-text"> {signUpError ? signUpError : ''} </p>	
 					<form className="profile-info-form" onSubmit={handleSubmit(form => this.onSignUpFormSubmit(form))}>
 						<div className="row">
 							{
@@ -116,5 +142,5 @@ const mapStateToProps = (state) => {
 export default reduxForm({
 	form: 'signUpForm',
 	validate
-})(connect(mapStateToProps)(SignUpForm));
+})(connect(mapStateToProps, actionCreators)(SignUpForm));
 
