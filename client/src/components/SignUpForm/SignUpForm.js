@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
+import Media from 'react-media';
 
 import * as actionCreators from './../../actions';
 import SignUpFormInputField from './../SignUpFormInputField/SignUpFormInputField';
@@ -51,12 +52,12 @@ class SignUpForm extends Component {
 		})
 	}
 
-	render() {
+	renderSignUpForm(screenClass) {
 		const {handleSubmit, invalid, pristine, submitting } = this.props;
 		const {inputFields, profilePicture, profilePictureUploadError, signUpError} = this.props.components.signUpForm;
 
 		return (
-			<div className="sign-up-form">
+			<div className={`sign-up-form ${screenClass}`}>
 				<div className="profile-picture-input">
 					<AddProfilePicture
 						defaultPhoto={profilePicture} 
@@ -84,6 +85,22 @@ class SignUpForm extends Component {
 					</form>
 				</div>
 			</div>
+		)
+	}
+
+	render() {
+		return (
+			<Media query="(min-width: 750px)">
+		        { matches =>
+		            matches 
+			            ? (
+			                this.renderSignUpForm('sign-up-form-large-screen')
+			            ) 
+			            : (
+			            	this.renderSignUpForm('sign-up-form-small-screen')
+			            )
+		        }
+		    </Media>
 		)
 	}
 
