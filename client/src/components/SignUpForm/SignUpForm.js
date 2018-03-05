@@ -36,7 +36,7 @@ class SignUpForm extends Component {
 		return (
 			<div className="sign-up-form">
 				<div className="profile-picture-input">
-					profile-picture-input
+					
 				</div>
 
 				<div className="profile-info-inputs">
@@ -45,6 +45,12 @@ class SignUpForm extends Component {
 							{
 								this.renderInputFields(inputFields)
 							}
+						</div>
+						<div className="row">
+							<p>
+								<Field name="agreedToTermsAndPrivacy" id="agreedToTermsAndPrivacy" component="input" type="checkbox"/>
+								<label htmlFor="agreedToTermsAndPrivacy"> I agree to all <a href="www.google.com">Terms of Conditions</a> and <a href="www.google.com">Privacy Policy</a> </label>
+						    </p>
 						</div>
 						<div className="row">
 							<button type="submit" disabled={invalid || pristine || submitting} className="sign-up-button waves-effect waves-light btn green darken-2"> Sign Up </button>
@@ -93,6 +99,10 @@ let validate = (form) => {
 	} else if (form.password !== form.confirm_password) {
 		errors.confirm_password = 'Password mismatch!'
 	} 
+
+	if (!form.agreedToTermsAndPrivacy) {
+		errors.agreedToTermsAndPrivacy = 'You must agree to both Terms of Conditions and Privacy Policy';
+	}
 
 	return errors;
 }

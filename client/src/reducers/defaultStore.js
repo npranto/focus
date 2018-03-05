@@ -100,7 +100,7 @@ const defaultStore = {
 		signUpForm: {
 			inputFields: [
 				{
-					name: "first_name",
+					name: "firstName",
 					placeholder: "",
 					id: "first_name",
 					type: "text",
@@ -108,7 +108,7 @@ const defaultStore = {
 					label: "First Name"
 				},
 				{
-					name: "last_name",
+					name: "lastName",
 					placeholder: "",
 					id: "last_name",
 					type: "text",
@@ -132,7 +132,7 @@ const defaultStore = {
 					label: "Password"
 				},
 				{
-					name: "confirm_password",
+					name: "confirmPassword",
 					placeholder: "",
 					id: "confirm_password",
 					type: "password",
