@@ -4,7 +4,11 @@ import {
 	FETCH_CURRENT_USER, 
 	LOGOUT,
 	FETCH_TOP_FIVE_HIGHLY_RATED_REVIEWS,
-	SHOW_SIGN_IN_ERROR_MESSAGE
+	SHOW_SIGN_IN_ERROR_MESSAGE,
+	SHOW_UPLOAD_PROFILE_PICTURE_PREVIEW,
+	SHOW_UPLOAD_PROFILE_PICTURE_ERROR_MESSAGE,
+	SHOW_SIGN_UP_ERROR_MESSAGE,
+	REMOVE_PROFILE_PICTURE_DURING_SIGN_UP
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -58,6 +62,61 @@ export const loginWithEmailAndPassword = (form) => {
 				payload: loginStatus.data.message
 			})	
 		}
+	}
+}
+
+export const uploadProfilePicture = (profilePictureInfo) => {
+	return async (dispatch, getState) => {
+		const form = new FormData();
+		form.set('profilePicture', profilePictureInfo);
+		const profilePictureUploaded = await axios({
+			method: 'POST',
+			url: '/api/uploads/profilePicture',
+			data: form,
+			config: { headers: {'Content-Type': 'multipart/form-data' }}
+		})
+		profilePictureUploaded.data && profilePictureUploaded.data.success 
+			? (
+				dispatch({
+					type: SHOW_UPLOAD_PROFILE_PICTURE_PREVIEW,
+					payload: profilePictureUploaded.data.data
+				})
+			)
+			: (
+				dispatch({
+					type: SHOW_UPLOAD_PROFILE_PICTURE_ERROR_MESSAGE,
+					payload: profilePictureUploaded.data.message
+				})
+			)
+	}
+	
+}
+
+export const signUpNewUser = (form) => {
+	console.log(form);
+	return async (dispatch, getState) => {
+		const newUser = await axios.post('/api/users', form);
+		if (newUser.data.success) {
+			dispatch({
+				type: FETCH_CURRENT_USER,
+				payload: newUser.data.data
+			})
+		}
+		if (!newUser.data.success) {
+			dispatch({
+				type: SHOW_SIGN_UP_ERROR_MESSAGE,
+				payload: newUser.data.message
+			})
+		}
+	}
+}
+
+export const removeProfilePicture = () => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: REMOVE_PROFILE_PICTURE_DURING_SIGN_UP,
+			payload: null
+		})
 	}
 }
 

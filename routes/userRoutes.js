@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const User = mongoose.model('User');
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 // USER ROUTES
 router.post('/', (req, res, next) => {
@@ -14,31 +16,36 @@ router.post('/', (req, res, next) => {
 	        })
 		}
 		if (userFound) {
-			if (userFound.password === req.body.password) {
-				return res.status(200).json({
-					success: false,
-		        	message: 'Haah! Looks like you already have an account with us.',
-		        	data: userFound
-				})
-			}
+			return res.status(200).json({
+				success: false,
+	        	message: 'Haah! Looks like you already have an account with us.',
+	        	data: userFound
+			})
 		}
 		if (!userFound) {
-			new User(req.body).save((err, userCreated) => {
-				if (err) {
-					return res.status(400).json({
-						success: false,
-			        	message: 'Oops! Unable to create a new profile at the moment. Please try again later.',
-			        	data: err
-			        })
-				}	
-				if (userCreated) {
-					return res.status(201).json({
-						success: true,
-			        	message: 'Great, your profile has been created!',
-			        	data: userCreated
-					})
-				}
-			})
+			if (req.body.password) {
+				bcrypt.hash(req.body.password, saltRounds)
+					.then((hash) => {
+					    // Store hash in your password DB.
+					    req.body.password = hash;
+					    new User(req.body).save((err, userCreated) => {
+							if (err) {
+								return res.status(400).json({
+									success: false,
+						        	message: 'Oops! Unable to create a new profile at the moment. Please try again later.',
+						        	data: err
+						        })
+							}	
+							if (userCreated) {
+								return res.status(201).json({
+									success: true,
+						        	message: 'Great, your profile has been created!',
+						        	data: userCreated
+								})
+							}
+						})
+					});
+			}
 		}
 	})
 	

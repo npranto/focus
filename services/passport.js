@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const bcrypt = require('bcrypt');
 const User = mongoose.model('User');
 const createNewUserObject = require('./helpers');
+
 
 passport.serializeUser((user, done) => {
 	done(null, user.id);
@@ -25,12 +27,14 @@ passport.use(
 				return done(err); 
 			}
 			if (!user) {
-				return done(null, false, { message: 'Incorrect username.' });
+				return done(null, false, { message: 'Incorrect username!' });
 			}
-			if (user.password !== password) {
-				return done(null, false, { message: 'Incorrect password.' });
-			}
-			return done(null, user);
+			bcrypt.compare(password, user.password).then(function(res) {
+			    if (!res) {
+					return done(null, false, { message: 'Incorrect password!' });
+			    }
+			    return done(null, user);
+			});
 	    });
 	})
 )

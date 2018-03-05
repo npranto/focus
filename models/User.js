@@ -32,7 +32,11 @@ const userSchema = new Schema({
 		type: String,
 		minlength: 6
 	},
-	profilePicture: {}
+	profilePicture: {
+		type: String,
+		trim: true,
+		maxlength: 100
+	}
 })
 
 mongoose.model('User', userSchema);
