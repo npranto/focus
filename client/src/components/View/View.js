@@ -7,6 +7,7 @@ import SignIn from './../SignIn/SignIn';
 import SignUp from './../SignUp/SignUp';
 import TermsOfConditions from './../TermsOfConditions/TermsOfConditions';
 import PrivacyPolicy from './../PrivacyPolicy/PrivacyPolicy';
+import Dashboard from './../Dashboard/Dashboard';
 import './View.css';
 
 class View extends Component {
@@ -27,6 +28,7 @@ class View extends Component {
 				<Route path="/sign-up" component={SignUp} />
 				<Route path="/terms-of-conditions" component={TermsOfConditions} />
 				<Route path="/privacy-policy" component={PrivacyPolicy} />
+				<Route path="/users/:userId/dashboard" component={Dashboard} />
 			</div>
 		)
 	}

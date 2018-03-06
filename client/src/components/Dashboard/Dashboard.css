@@ -1,0 +1,22 @@
+.dashboard {
+	width: 100%;
+	flex-grow: 1;
+	display: flex;
+	flex-wrap: wrap;
+}
+.dashboard-large-screen .track-progress-container {
+	flex-basis: 30%;
+}
+.dashboard-large-screen .tasks-container {
+	/*width: 100%;*/
+	flex-grow: 1;
+}
+.dashboard-medium-screen .track-progress-container {
+	width: 100%;
+}
+.dashboard-medium-screen .tasks-container {
+	width: 100%;
+}
+.dashboard-mini .tabs .tab {
+	width: 50%;
+}

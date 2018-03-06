@@ -1,10 +1,9 @@
 .landing {
-	flex-grow: 1;
+	/*flex-grow: 1;*/
 	width: 100%;
 	/*background-color: lightpink;*/
-	display: flex;
-	flex-direction: column;
-	overflow: auto;
+	/*display: flex;*/
+	/*flex-direction: column;*/
 }
 .landing section {
 	width: 100%;
