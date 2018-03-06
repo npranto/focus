@@ -1,15 +1,19 @@
 .sign-up-form {
-	width: 100%;
+	/*width: 100%;*/
 	display: flex;
 }
-.sign-up-form .profile-picture-input {
-	width: 40%;
+.sign-up-form-large-screen .profile-picture-input {
+	width: 90%;
 }
-.sign-up-form .profile-info-inputs {
-	width: 60%;
+.sign-up-form-large-screen .profile-info-inputs {
+	/*width: 60%;*/
+	/*flex-grow: 1;*/
 }
 .sign-up-form .profile-info-inputs .profile-info-form {
 	width: 100%;
 	padding-top: 3%;
 	/*padding-bottom: 5%;*/
+}
+.sign-up-form-small-screen {
+	flex-direction: column;
 }
