@@ -1,5 +1,6 @@
 .jumbotron {
 	width: 100%;
+	overflow: all;
 }
 .jumbotron .jumbotron-background-picture {
 	height: 80vh;
