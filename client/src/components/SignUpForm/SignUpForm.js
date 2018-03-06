@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Media from 'react-media';
 
@@ -76,7 +77,7 @@ class SignUpForm extends Component {
 						<div className="row">
 							<p>
 								<Field name="agreedToTermsAndPrivacy" id="agreedToTermsAndPrivacy" component="input" type="checkbox"/>
-								<label htmlFor="agreedToTermsAndPrivacy"> I agree to all <a href="www.google.com">Terms of Conditions</a> and <a href="www.google.com">Privacy Policy</a> </label>
+								<label htmlFor="agreedToTermsAndPrivacy"> I agree to all <Link to="/terms-of-conditions">Terms of Conditions</Link> and <Link to="/privacy-policy">Privacy Policy</Link> </label>
 						    </p>
 						</div>
 						<div className="row">
@@ -109,20 +110,20 @@ class SignUpForm extends Component {
 let validate = (form) => {
 	let errors = {};
 
-	if (!form.first_name) {
-		errors.first_name = 'Please enter your first name';
-	} else if (!containLettersOnly(form.first_name)) {
-		errors.first_name = 'Must contain letters only'
-	} else if (form.first_name.length > 50) {
-		errors.first_name = 'Must be less than 50 characters'
+	if (!form.firstName) {
+		errors.firstName = 'Please enter your first name';
+	} else if (!containLettersOnly(form.firstName)) {
+		errors.firstName = 'Must contain letters only'
+	} else if (form.firstName.length > 50) {
+		errors.firstName = 'Must be less than 50 characters'
 	}
 
-	if (!form.last_name) {
-		errors.last_name = 'Please enter your last name';
-	} else if (!containLettersOnly(form.last_name)) {
-		errors.last_name = 'Must contain letters only'
-	} else if (form.last_name.length > 50) {
-		errors.last_name = 'Must be less than 50 characters'
+	if (!form.lastName) {
+		errors.lastName = 'Please enter your last name';
+	} else if (!containLettersOnly(form.lastName)) {
+		errors.lastName = 'Must contain letters only'
+	} else if (form.lastName.length > 50) {
+		errors.lastName = 'Must be less than 50 characters'
 	}
  
 	if (!form.email) {
@@ -137,10 +138,10 @@ let validate = (form) => {
 		errors.password = 'Must be at least 6 characters long'
 	} 
 
-	if (!form.confirm_password) {
-		errors.confirm_password = 'Please re-enter your password';
-	} else if (form.password !== form.confirm_password) {
-		errors.confirm_password = 'Password mismatch!'
+	if (!form.confirmPassword) {
+		errors.confirmPassword = 'Please re-enter your password';
+	} else if (form.password !== form.confirmPassword) {
+		errors.confirmPassword = 'Password mismatch!'
 	} 
 
 	if (!form.agreedToTermsAndPrivacy) {
