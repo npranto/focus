@@ -5,30 +5,34 @@ import './Dashboard.css';
 
 class Dashboard extends Component {
 
+	renderFloatingCreateTaskButton() {
+		return (
+			<div className="fixed-action-btn">
+				<a className="btn-floating btn-large red">
+					<i className="large material-icons">mode_edit</i>
+				</a>
+			</div>
+		)
+	}	
+
 	renderMiniDashboard() {
 		return (
-			<div class="dashboard-mini">
-			    <div class="col s12">
-			        <ul class="tabs">
-				        <li class="tab col s6"><a href="#trackProgress"> Track Progress </a></li>
-				        <li class="tab col s6"><a href="#tasks"> Tasks </a></li>
+			<div className="dashboard-mini">
+			    <div className="col s12">
+			        <ul className="tabs">
+				        <li className="tab col s6"><a href="#trackProgress"> Track Progress </a></li>
+				        <li className="tab col s6"><a href="#tasks"> Tasks </a></li>
 			        </ul>
 			    </div>
-			    <div id="trackProgress" class="col s12" className="track-progress-container">
+			    <div id="trackProgress" className="col s12" className="track-progress-container">
 					Track Progress
 				</div>
-				<div id="tasks" class="col s12" className="tasks-container">
+				<div id="tasks" className="col s12" className="tasks-container">
 					Tasks
 				</div>
-				<div className="fixed-action-btn">
-					<a className="btn-floating btn-large red">
-						<i className="large material-icons">mode_edit</i>
-					</a>
-					<ul>
-						<li><a className="btn-floating red"><i className="material-icons">insert_chart</i></a></li>
-						<li><a className="btn-floating green"><i className="material-icons">publish</i></a></li>
-					</ul>
-				</div>
+				{
+					this.renderFloatingCreateTaskButton()
+				}
 			</div>
 		)
 	}
@@ -42,15 +46,9 @@ class Dashboard extends Component {
 				<div className="tasks-container">
 					Tasks
 				</div>
-				<div className="fixed-action-btn">
-					<a className="btn-floating btn-large red">
-						<i className="large material-icons">mode_edit</i>
-					</a>
-					<ul>
-						<li><a className="btn-floating red"><i className="material-icons">insert_chart</i></a></li>
-						<li><a className="btn-floating green"><i className="material-icons">publish</i></a></li>
-					</ul>
-				</div>
+				{
+					this.renderFloatingCreateTaskButton()
+				}
 			</div>
 		)
 	}
