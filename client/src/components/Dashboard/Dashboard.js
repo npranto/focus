@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Media from 'react-media';
+import {connect} from 'react-redux';
 
 import './Dashboard.css';
 
@@ -54,6 +55,8 @@ class Dashboard extends Component {
 	}
 
 	render() {
+		const {tasks, editingTask, currentTask} = this.props.components.dashboard;
+		
 		return (
 			<Media query="(min-width: 900px)">
 	        	{matches =>
@@ -77,4 +80,12 @@ class Dashboard extends Component {
 	}
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+	return {
+		components: state.components
+	}
+}
+
+export default connect(mapStateToProps)(Dashboard);
+
+
