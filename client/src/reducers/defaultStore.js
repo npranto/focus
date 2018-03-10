@@ -143,6 +143,11 @@ const defaultStore = {
 			profilePicture: null,
 			profilePictureUploadError: null,
 			signUpError: null
+		},
+		dashboard: {
+			tasks: [],
+			editingTask: null,
+			currentTask: null
 		}
 	}
 }
