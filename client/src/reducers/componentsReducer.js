@@ -5,7 +5,8 @@ import {
 	SHOW_UPLOAD_PROFILE_PICTURE_PREVIEW,
 	SHOW_UPLOAD_PROFILE_PICTURE_ERROR_MESSAGE,
 	SHOW_SIGN_UP_ERROR_MESSAGE,
-	REMOVE_PROFILE_PICTURE_DURING_SIGN_UP
+	REMOVE_PROFILE_PICTURE_DURING_SIGN_UP,
+	GET_ALL_TASKS_BY_CURRENT_USER
 } from './../actions/types.js';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -40,6 +41,11 @@ const componentsReducer = (state = defaultStore.components, action) => {
 		case REMOVE_PROFILE_PICTURE_DURING_SIGN_UP: {
 			let copy = cloneDeep(state);
 			copy.signUpForm.profilePicture = action.payload;
+			return copy;
+		}
+		case GET_ALL_TASKS_BY_CURRENT_USER: {
+			let copy = cloneDeep(state);
+			copy.dashboard.tasks = [...action.payload];
 			return copy;
 		}
 	}

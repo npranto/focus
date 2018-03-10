@@ -10,6 +10,7 @@ class SignInForm extends Component {
 
 	onSignInFormSubmit(form) {
 		this.props.loginWithEmailAndPassword(form);
+		this.props.getAllTasksByCurrentUser(this.props.auth.currentUser._id);
 	}
 
 	renderInputFields(inputFields) {
@@ -70,6 +71,7 @@ const validate = (form) => {
 
 const mapStateToProps = (state) => {
 	return {
+		auth: state.auth,
 		components: state.components
 	}
 }

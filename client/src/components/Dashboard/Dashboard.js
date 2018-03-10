@@ -2,9 +2,18 @@ import React, {Component} from 'react';
 import Media from 'react-media';
 import {connect} from 'react-redux';
 
+import * as actionCreators from './../../actions';
 import './Dashboard.css';
 
 class Dashboard extends Component {
+
+	componentDidMount() {
+		setTimeout(() => {
+			if (this.props.auth.isAuthenticated) {
+				this.props.getAllTasksByCurrentUser(this.props.auth.currentUser._id);
+			}
+		}, 1000);
+	}
 
 	renderFloatingCreateTaskButton() {
 		return (
@@ -82,10 +91,11 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		auth: state.auth,
 		components: state.components
 	}
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, actionCreators)(Dashboard);
 
 

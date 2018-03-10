@@ -8,7 +8,8 @@ import {
 	SHOW_UPLOAD_PROFILE_PICTURE_PREVIEW,
 	SHOW_UPLOAD_PROFILE_PICTURE_ERROR_MESSAGE,
 	SHOW_SIGN_UP_ERROR_MESSAGE,
-	REMOVE_PROFILE_PICTURE_DURING_SIGN_UP
+	REMOVE_PROFILE_PICTURE_DURING_SIGN_UP,
+	GET_ALL_TASKS_BY_CURRENT_USER
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -117,6 +118,20 @@ export const removeProfilePicture = () => {
 			type: REMOVE_PROFILE_PICTURE_DURING_SIGN_UP,
 			payload: null
 		})
+	}
+}
+
+export const getAllTasksByCurrentUser = (userId) => {
+	return async (dispatch, getState) => {
+		const tasksByCurrentUser = await axios.get('/api/tasks', {createdBy: userId})
+		console.log(tasksByCurrentUser);
+		if (tasksByCurrentUser.data.success) {
+			dispatch({
+				type: GET_ALL_TASKS_BY_CURRENT_USER,
+				payload: tasksByCurrentUser.data.data
+			})
+		}
+		
 	}
 }
 
