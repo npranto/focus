@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
 import Media from 'react-media';
 import {connect} from 'react-redux';
+import $ from 'jquery';
 
 import * as actionCreators from './../../actions';
+import CreateTask from './../CreateTask/CreateTask';
 import './Dashboard.css';
 
 class Dashboard extends Component {
+
+	constructor(props) {
+		super(props);
+
+		
+	}
 
 	componentDidMount() {
 		setTimeout(() => {
@@ -13,17 +21,38 @@ class Dashboard extends Component {
 				this.props.getAllTasksByCurrentUser(this.props.auth.currentUser._id);
 			}
 		}, 1000);
+		$(document).ready(function(){
+		    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+	    	$('#createNewTaskModal').modal();
+    		$('select').material_select();
+		});
+		
 	}
 
 	renderFloatingCreateTaskButton() {
 		return (
-			<div className="fixed-action-btn">
-				<a className="btn-floating btn-large red">
-					<i className="large material-icons">mode_edit</i>
-				</a>
-			</div>
+			  <div className="fixed-action-btn">
+			    <a className="btn-floating btn-large red modal-trigger" href="#createNewTaskModal">
+			      <i className="large material-icons">mode_edit</i>
+			    </a>
+			  </div>
 		)
 	}	
+
+	renderCreateNewTaskModal() {
+		return (
+			<div id="createNewTaskModal" className="modal modal-fixed-footer">
+			    {/* Create New Task Modal */}
+			    <div className="modal-content">
+					<CreateTask />
+			    </div>
+			    <div className="modal-footer">
+			    	<a href="#!" className="modal-action modal-close waves-effect green darken-2 btn"> Create </a>
+			   		<a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat"> Cancel </a>
+			    </div>
+			</div>
+		)
+	}
 
 	renderMiniDashboard() {
 		return (
@@ -43,6 +72,9 @@ class Dashboard extends Component {
 				{
 					this.renderFloatingCreateTaskButton()
 				}
+				{
+					this.renderCreateNewTaskModal()
+				}
 			</div>
 		)
 	}
@@ -58,6 +90,10 @@ class Dashboard extends Component {
 				</div>
 				{
 					this.renderFloatingCreateTaskButton()
+				}
+
+				{
+					this.renderCreateNewTaskModal()
 				}
 			</div>
 		)
