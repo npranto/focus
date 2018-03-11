@@ -77,7 +77,7 @@ class CreateTask extends Component {
 	}
 
 	render() {
-		const {levelOfImportance, selectedLevelOfImportance, duration} = this.props.components.createTask;
+		const {levelOfImportance, selectedLevelOfImportance, duration, startTime} = this.props.components.createTask;
 		const {invalid, pristine, submitting} = this.props;
 
 		return (
@@ -121,7 +121,7 @@ class CreateTask extends Component {
 								</div>
 								<div className="row">
 									<div className="col s12 m6 l6">
-								        <TimePicker onTimeSelected={(time) => console.log(time)}/>
+								        <TimePicker defaultTime={startTime ? startTime : null} onTimeSelected={(time) => console.log(time)}/>
 							        </div>
 						   			<div className="col s6 m3 l3">
 							        	<label> Duration (hours) </label>
