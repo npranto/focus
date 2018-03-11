@@ -21,12 +21,6 @@ class Dashboard extends Component {
 				this.props.getAllTasksByCurrentUser(this.props.auth.currentUser._id);
 			}
 		}, 1000);
-		$(document).ready(function(){
-		    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-	    	$('#createNewTaskModal').modal();
-    		$('select').material_select();
-		});
-		
 	}
 
 	renderFloatingCreateTaskButton() {
@@ -40,18 +34,7 @@ class Dashboard extends Component {
 	}	
 
 	renderCreateNewTaskModal() {
-		return (
-			<div id="createNewTaskModal" className="modal modal-fixed-footer">
-			    {/* Create New Task Modal */}
-			    <div className="modal-content">
-					<CreateTask />
-			    </div>
-			    <div className="modal-footer">
-			    	<a href="#!" className="modal-action modal-close waves-effect green darken-2 btn"> Create </a>
-			   		<a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat"> Cancel </a>
-			    </div>
-			</div>
-		)
+		return <CreateTask />   
 	}
 
 	renderMiniDashboard() {
@@ -128,7 +111,8 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
 	return {
 		auth: state.auth,
-		components: state.components
+		components: state.components,
+		form: state.form
 	}
 }
 

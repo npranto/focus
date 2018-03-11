@@ -4,3 +4,9 @@
 .create-task .create-new-task-title {
 	color: var(--theme);
 }
+.create-task input, .create-task textarea {
+	margin-bottom: 0;
+}
+.create-task form .row {
+	/*margin-bottom: 0;*/
+}

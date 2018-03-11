@@ -1,0 +1,27 @@
+.time-picker {
+	display: flex;
+	flex-direction: column;
+}
+.time-picker select {
+    width: 5em;
+    height: 3.15em;
+}
+.time-picker .hour-minute-inputs {
+	display: flex;
+}
+.time-picker .separator {
+	font-weight: bold;
+	margin-left: 3%;
+	margin-right: 3%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.period-toggler {
+	margin-left: 3%;
+	margin-right: 3%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	cursor: pointer;
+}

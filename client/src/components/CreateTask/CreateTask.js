@@ -4,6 +4,7 @@ import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
 import MdAccessTime from 'react-icons/lib/md/access-time';
 
+import TimePicker from './../TimePicker/TimePicker';
 import * as actionCreators from './../../actions';
 import './CreateTask.css';
 
@@ -13,7 +14,10 @@ class CreateTask extends Component {
 		super(props);
 
 		$(document).ready(function(){
-		    $('.timepicker').pickatime({
+		    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+	    	$('#createNewTaskModal').modal();
+    		$('select').material_select();
+	    	$('.timepicker').pickatime({
 			    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
 			    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
 			    twelvehour: true, // Use AM/PM or 24-hour format
@@ -22,14 +26,20 @@ class CreateTask extends Component {
 			    canceltext: 'Cancel', // Text for cancel-button
 			    autoclose: false, // automatic close timepicker
 			    ampmclickable: true, // make AM PM clickable
-			    aftershow: function(){} //Function for after opening timepicker
-			});		
+			    aftershow: function() {
+			    	console.log('dfgfdgg');
+			    } //Function for after opening timepicker
+			});	
 		});
 		
 	}
 
 	onLevelOfImportanceSelected(value, levelOfImportance) {
 		this.props.updateLevelOfImportance(value, levelOfImportance);
+	}
+
+	onStartTimeSelected(value) {
+		console.log(value);
 	}
 
 	onDurationHourChange(value, hours) {
@@ -68,72 +78,83 @@ class CreateTask extends Component {
 
 	render() {
 		const {levelOfImportance, selectedLevelOfImportance, duration} = this.props.components.createTask;
+		const {invalid, pristine, submitting} = this.props;
 
 		return (
-			<div className="create-task">
-				<h5 className="center-align create-new-task-title"> Create New Task </h5>
-				<div className="create-new-task-form-container row">
-				    <form className="create-new-task-form col s12 m12 l12">
-				    	<div className="row">
-				    		<Field
-					            name="title"
-					    		id="title"
-					            component={InputField}
-					            type="text"
-					            htmlFor="title"
-					            label="Title"
-				          	/>
-				          	<Field
-					            name="description"
-					    		id="description"
-					            component={TextareaField}
-					            type="text"
-					            htmlFor="description"
-					            label="Description"
-				          	/>
-				        </div>
-				        <div className="row">
-				        	<div className="col s12 m12 l12">
-					        	<label> Level of Importance </label>
-							    <select 
-							    	value={selectedLevelOfImportance.value} 
-							    	className="browser-default" 
-							    	onChange={(e) => this.onLevelOfImportanceSelected(e.target.value, levelOfImportance)}>
-									{
-										this.renderLevelOfImportanceOptions(levelOfImportance)
-									}
-							    </select>
-							</div>
-				        	<div className="input-field col s12 m6 l6">
-						        <i className="material-icons prefix">access_time</i>
-						        <input id="startTime" type="text" className="timepicker" />
-						        <label htmlFor="startTime">Start Time </label>
-					        </div>
-				   			<div className="col s6 m3 l3">
-					        	<label> Duration (hours) </label>
-							    <select 
-							    	value={duration.hour.hourSelected} 
-							    	className="browser-default" 
-							    	onChange={(e) => this.onDurationHourChange(e.target.value, duration.hour.hours)}>
-									{
-										this.renderDurationHourOptions(duration.hour.hours)
-									}
-							    </select>
-							</div>
-							<div className="col s6 m3 l3">
-					        	<label> Duration (minutes) </label>
-							    <select 
-							    	value={duration.minute.minuteSelected} 
-							    	className="browser-default" 
-							    	onChange={(e) => this.onDurationMinuteChange(e.target.value, duration.minute.minutes)}>
-									{
-										this.renderDurationHourOptions(duration.minute.minutes)
-									}
-							    </select>
-							</div>
-				        </div>
-				    </form>
-				</div>
+			<div id="createNewTaskModal" className="modal modal-fixed-footer">
+			    {/* Create New Task Modal */}
+			    <div className="modal-content">
+				    <div className="create-task">
+						<h5 className="center-align create-new-task-title"> Create New Task </h5>
+						<div className="create-new-task-form-container row">
+						    <form className="create-new-task-form col s12 m12 l12">
+						    	<div className="row">
+						    		<Field
+							            name="title"
+							    		id="title"
+							            component={InputField}
+							            type="text"
+							            htmlFor="title"
+							            label="Title"
+						          	/>
+						          	<Field
+							            name="description"
+							    		id="description"
+							            component={TextareaField}
+							            type="text"
+							            htmlFor="description"
+							            label="Description"
+						          	/>
+						        </div>
+						        <div className="row">
+						        	<div className="col s12 m12 l12">
+							        	<label> Level of Importance </label>
+									    <select 
+									    	value={selectedLevelOfImportance.value} 
+									    	className="browser-default" 
+									    	onChange={(e) => this.onLevelOfImportanceSelected(e.target.value, levelOfImportance)}>
+											{
+												this.renderLevelOfImportanceOptions(levelOfImportance)
+											}
+									    </select>
+									</div>
+								</div>
+								<div className="row">
+									<div className="col s12 m6 l6">
+								        <TimePicker 
+								        	defaultTime={{hour: 12, minute: 59, period: 'AM'}} />
+							        </div>
+						   			<div className="col s6 m3 l3">
+							        	<label> Duration (hours) </label>
+									    <select 
+									    	value={duration.hour.hourSelected} 
+									    	className="browser-default" 
+									    	onChange={(e) => this.onDurationHourChange(e.target.value, duration.hour.hours)}>
+											{
+												this.renderDurationHourOptions(duration.hour.hours)
+											}
+									    </select>
+									</div>
+									<div className="col s6 m3 l3">
+							        	<label> Duration (minutes) </label>
+									    <select 
+									    	value={duration.minute.minuteSelected} 
+									    	className="browser-default" 
+									    	onChange={(e) => this.onDurationMinuteChange(e.target.value, duration.minute.minutes)}>
+											{
+												this.renderDurationHourOptions(duration.minute.minutes)
+											}
+									    </select>
+									</div>
+								</div>
+						    </form>
+						</div>
+					</div>
+			    </div>
+			    <div className="modal-footer">
+			    	<a onClick={this.onCreateNewTaskFormSubmit} disabled={invalid || pristine || submitting} className="modal-action modal-close waves-effect green darken-2 btn"> Create </a>
+			   		<a className="modal-action modal-close waves-effect waves-green btn-flat"> Cancel </a>
+			    </div>
 			</div>
 		)
 	}
