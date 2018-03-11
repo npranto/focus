@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import cloneDeep from 'lodash.clonedeep';
+import PropTypes from 'prop-types';
 
 import './TimePicker.css';
 
@@ -130,6 +131,14 @@ class TimePicker extends Component {
 			</div>
 		)
 	}
+}
+
+TimePicker.propTypes = {
+	defaultTime: PropTypes.shape({
+	    hour: PropTypes.number.isRequired,
+	    minute: PropTypes.number.isRequired,
+	    period: PropTypes.string.isRequired
+	}),
 }
 
 export default TimePicker;
