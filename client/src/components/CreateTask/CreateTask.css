@@ -1,0 +1,6 @@
+.create-task {
+	width: 100%;
+}
+.create-task .create-new-task-title {
+	color: var(--theme);
+}

@@ -9,7 +9,10 @@ import {
 	SHOW_UPLOAD_PROFILE_PICTURE_ERROR_MESSAGE,
 	SHOW_SIGN_UP_ERROR_MESSAGE,
 	REMOVE_PROFILE_PICTURE_DURING_SIGN_UP,
-	GET_ALL_TASKS_BY_CURRENT_USER
+	GET_ALL_TASKS_BY_CURRENT_USER,
+	UPDATE_LEVEL_OF_IMPORTANCE,
+	UPDATE_DURATION_HOUR,
+	UPDATE_DURATION_MINUTE
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -134,4 +137,36 @@ export const getAllTasksByCurrentUser = (userId) => {
 		
 	}
 }
+
+export const updateLevelOfImportance = (value, levelOfImportance) => {
+	return (dispatch, getState) => {
+		const selectedLevelOfImportance = levelOfImportance.find(level => level.value == value);
+		dispatch({
+			type: UPDATE_LEVEL_OF_IMPORTANCE,
+			payload: selectedLevelOfImportance
+		})
+	}
+}
+
+export const updateDurationHour = (value, hours) => {
+	return (dispatch, getState) => {
+		const selectedHour = hours.find(hour => hour == value);
+		dispatch({
+			type: UPDATE_DURATION_HOUR,
+			payload: selectedHour
+		})
+	}
+}
+
+export const updateDurationMinute = (value, minutes) => {
+	return (dispatch, getState) => {
+		const selectedMinute = minutes.find(minute => minute == value);
+		dispatch({
+			type: UPDATE_DURATION_MINUTE,
+			payload: selectedMinute
+		})
+	}
+}
+
+
 

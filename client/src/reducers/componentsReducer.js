@@ -6,7 +6,10 @@ import {
 	SHOW_UPLOAD_PROFILE_PICTURE_ERROR_MESSAGE,
 	SHOW_SIGN_UP_ERROR_MESSAGE,
 	REMOVE_PROFILE_PICTURE_DURING_SIGN_UP,
-	GET_ALL_TASKS_BY_CURRENT_USER
+	GET_ALL_TASKS_BY_CURRENT_USER,
+	UPDATE_LEVEL_OF_IMPORTANCE,
+	UPDATE_DURATION_HOUR,
+	UPDATE_DURATION_MINUTE
 } from './../actions/types.js';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -46,6 +49,21 @@ const componentsReducer = (state = defaultStore.components, action) => {
 		case GET_ALL_TASKS_BY_CURRENT_USER: {
 			let copy = cloneDeep(state);
 			copy.dashboard.tasks = [...action.payload];
+			return copy;
+		}
+		case UPDATE_LEVEL_OF_IMPORTANCE: {
+			let copy = cloneDeep(state);
+			copy.createTask.selectedLevelOfImportance = action.payload;
+			return copy;
+		}
+		case UPDATE_DURATION_HOUR: {
+			let copy = cloneDeep(state);
+			copy.createTask.duration.hour.hourSelected = action.payload;
+			return copy;
+		}
+		case UPDATE_DURATION_MINUTE: {
+			let copy = cloneDeep(state);
+			copy.createTask.duration.minute.minuteSelected = action.payload;
 			return copy;
 		}
 	}
