@@ -121,8 +121,7 @@ class CreateTask extends Component {
 								</div>
 								<div className="row">
 									<div className="col s12 m6 l6">
-								        <TimePicker 
-								        	defaultTime={{hour: 12, minute: 59, period: 'AM'}} />
+								        <TimePicker onTimeSelected={(time) => console.log(time)}/>
 							        </div>
 						   			<div className="col s6 m3 l3">
 							        	<label> Duration (hours) </label>
