@@ -12,7 +12,8 @@ import {
 	GET_ALL_TASKS_BY_CURRENT_USER,
 	UPDATE_LEVEL_OF_IMPORTANCE,
 	UPDATE_DURATION_HOUR,
-	UPDATE_DURATION_MINUTE
+	UPDATE_DURATION_MINUTE,
+	UPDATE_START_TIME
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -168,5 +169,28 @@ export const updateDurationMinute = (value, minutes) => {
 	}
 }
 
+export const updateStartTime = (time) => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: UPDATE_START_TIME,
+			payload: time
+		})
+	}
+}
 
+export const createNewTask = (newTask) => {
+	return async (dispatch, getState) => {
+		const taskCreated = await axios.post('/api/tasks/new', newTask);
+		if (taskCreated.data.success) {
+			const tasksByCurrentUser = await axios.get('/api/tasks', {createdBy: newTask.createdBy})
+			console.log(tasksByCurrentUser);
+			if (tasksByCurrentUser.data.success) {
+				dispatch({
+					type: GET_ALL_TASKS_BY_CURRENT_USER,
+					payload: tasksByCurrentUser.data.data
+				})
+			}
+		}
+	}
+}
 
