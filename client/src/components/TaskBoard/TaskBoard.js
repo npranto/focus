@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+import Tasks from './../Tasks/Tasks';
 import './TaskBoard.css';
 
 class TaskBoard extends Component {
@@ -16,7 +17,7 @@ class TaskBoard extends Component {
 					</div>
 				</div>
 				<div className="tasks">
-					Tasks
+					<Tasks />
 				</div>
 			</div>
 		)

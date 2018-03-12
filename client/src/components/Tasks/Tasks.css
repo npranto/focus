@@ -1,0 +1,7 @@
+.tasks {
+	width: 100%;
+}
+.tasks .task {
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
