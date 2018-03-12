@@ -167,7 +167,7 @@ const defaultStore = {
 					active: false
 				}
 			]
-		}
+		},
 		createTask: {
 			levelOfImportance: [
 				{	
