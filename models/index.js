@@ -1,4 +1,4 @@
 // MODELS
-require('./Review');
-require('./User');
-require('./Task');
+module.exports = require('./Review');
+module.exports = require('./User');
+module.exports = require('./Task');

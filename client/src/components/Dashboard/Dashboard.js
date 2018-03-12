@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import $ from 'jquery';
 
 import * as actionCreators from './../../actions';
+import TaskBoard from './../TaskBoard/TaskBoard';
 import CreateTask from './../CreateTask/CreateTask';
 import './Dashboard.css';
 
@@ -69,7 +70,7 @@ class Dashboard extends Component {
 					Track Progress
 				</div>
 				<div className="tasks-container">
-					Tasks
+					<TaskBoard />
 				</div>
 				{
 					this.renderFloatingCreateTaskButton()
