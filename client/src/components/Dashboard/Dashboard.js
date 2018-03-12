@@ -12,8 +12,6 @@ class Dashboard extends Component {
 
 	constructor(props) {
 		super(props);
-
-		
 	}
 
 	componentDidMount() {
@@ -38,7 +36,7 @@ class Dashboard extends Component {
 		return <CreateTask />   
 	}
 
-	renderMiniDashboard() {
+	renderMiniDashboard(tasks) {
 		return (
 			<div className="dashboard-mini">
 			    <div className="col s12">
@@ -51,7 +49,7 @@ class Dashboard extends Component {
 					Track Progress
 				</div>
 				<div id="tasks" className="col s12" className="tasks-container">
-					Tasks
+					<TaskBoard tasks={tasks} />
 				</div>
 				{
 					this.renderFloatingCreateTaskButton()
@@ -63,14 +61,14 @@ class Dashboard extends Component {
 		)
 	}
 
-	renderDashboard(screenClass) {
+	renderDashboard(screenClass, tasks) {
 		return (
 			<div className={`dashboard ${screenClass}`}>
 				<div className="track-progress-container">
 					Track Progress
 				</div>
 				<div className="tasks-container">
-					<TaskBoard />
+					<TaskBoard tasks={tasks} />
 				</div>
 				{
 					this.renderFloatingCreateTaskButton()
@@ -90,14 +88,13 @@ class Dashboard extends Component {
 			<Media query="(min-width: 900px)">
 	        	{matches =>
 	        		matches 
-	        			? this.renderDashboard('dashboard-large-screen')
-	        			
+	        			? this.renderDashboard('dashboard-large-screen', tasks)
 	        			: (
 	        				<Media query={{maxWidth: 899, minWidth: 415}}>
 					        	{matches =>
 					        		matches 
-					        			? this.renderDashboard('dashboard-medium-screen')
-					        			: this.renderMiniDashboard()
+					        			? this.renderDashboard('dashboard-medium-screen', tasks)
+					        			: this.renderMiniDashboard(tasks)
 					        
 					        }
 					        </Media>

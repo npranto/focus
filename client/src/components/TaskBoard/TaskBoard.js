@@ -4,6 +4,9 @@ import './TaskBoard.css';
 
 class TaskBoard extends Component {
 	render() {
+		const {tasks} = this.props;
+		console.log(tasks);
+
 		return (
 			<div className="task-board">
 				<div className="header">

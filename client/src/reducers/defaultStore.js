@@ -149,6 +149,25 @@ const defaultStore = {
 			editingTask: null,
 			currentTask: null
 		},
+		taskBoard: {
+			viewModes: [
+				{
+					id: 'tasks',
+					title: 'Tasks',
+					active: true
+				},
+				{
+					id: 'calender',
+					title: 'Calender',
+					active: false
+				},
+				{
+					id: 'prioritize-mode',
+					title: 'Prioritize Mode',
+					active: false
+				}
+			]
+		}
 		createTask: {
 			levelOfImportance: [
 				{	
