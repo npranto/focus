@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
 import MdAccessTime from 'react-icons/lib/md/access-time';
+import cloneDeep from 'lodash.clonedeep';
 
 import TimePicker from './../TimePicker/TimePicker';
 import * as actionCreators from './../../actions';
@@ -38,8 +39,8 @@ class CreateTask extends Component {
 		this.props.updateLevelOfImportance(value, levelOfImportance);
 	}
 
-	onStartTimeSelected(value) {
-		console.log(value);
+	onStartTimeChange(time) {
+		this.props.updateStartTime(time);
 	}
 
 	onDurationHourChange(value, hours) {
@@ -48,6 +49,33 @@ class CreateTask extends Component {
 
 	onDurationMinuteChange(value, minutes) {
 		this.props.updateDurationMinute(value, minutes);
+	}
+
+	onCreateNewTaskFormSubmit() {
+		const {currentUser} = this.props.auth;
+		const {title, description} = this.props.form.createNewTaskForm.values;
+		const {selectedLevelOfImportance, duration, startTime} = this.props.components.createTask;
+		let newTask = {};
+		if (title) {
+			newTask['title'] = title;
+		}
+		if (description) {
+			newTask['description'] = description;
+		}
+		if (selectedLevelOfImportance && (selectedLevelOfImportance.value !== 0)) {
+			newTask['levelOfImportance'] = cloneDeep(selectedLevelOfImportance);
+		}
+		if (duration && (duration.hour.hourSelected !== 0) && (duration.minute.minuteSelected !== 0)) {
+			newTask['duration'] = {
+				hour: duration.hour.hourSelected,
+				minute: duration.minute.minuteSelected
+			}
+		}
+		if (startTime) {
+			newTask['startTime'] = cloneDeep(startTime);
+		}
+		newTask['createdBy'] = currentUser._id;
+		this.props.createNewTask(newTask);
 	}
 
 	renderLevelOfImportanceOptions(levelOfImportance) {
@@ -121,7 +149,7 @@ class CreateTask extends Component {
 								</div>
 								<div className="row">
 									<div className="col s12 m6 l6">
-								        <TimePicker defaultTime={startTime ? startTime : null} onTimeSelected={(time) => console.log(time)}/>
+								        <TimePicker defaultTime={startTime} onTimeSelected={(time) => this.onStartTimeChange(time)}/>
 							        </div>
 						   			<div className="col s6 m3 l3">
 							        	<label> Duration (hours) </label>
@@ -151,7 +179,7 @@ class CreateTask extends Component {
 					</div>
 			    </div>
 			    <div className="modal-footer">
-			    	<a onClick={this.onCreateNewTaskFormSubmit} disabled={invalid || pristine || submitting} className="modal-action modal-close waves-effect green darken-2 btn"> Create </a>
+			    	<a onClick={() => this.onCreateNewTaskFormSubmit()} disabled={invalid || pristine || submitting} className="modal-action modal-close waves-effect green darken-2 btn"> Create </a>
 			   		<a className="modal-action modal-close waves-effect waves-green btn-flat"> Cancel </a>
 			    </div>
 			</div>
@@ -207,9 +235,7 @@ const validate = (form) => {
 		errors.title = 'Must be less than 150 characters'
 	} 
 
-	if (!form.description) {
-		errors.description = 'Required!';
-	} else if (form.description.length > 500) {
+	if (form.description && form.description.length > 500) {
 		errors.description = 'Must be less than 500 characters'
 	} 
 
@@ -219,6 +245,8 @@ const validate = (form) => {
 
 const mapStateToProps = (state) => {
 	return {
+		auth: state.auth,
+		form: state.form,
 		components: state.components
 	}
 }

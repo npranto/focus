@@ -6,24 +6,54 @@ const taskSchema = new Schema({
 		type: String,
 		trim: true,
 		minlength: 1,
-		maxlength: 200,
+		maxlength: 150,
 		required: true,
 	},
 	description: {
 		type: String,
 		trim: true,
-		maxlength: 1000
+		maxlength: 500
 	},
-	startTime: {},
-	duration: {},
+	startTime: {
+		hour: {
+			type: Number,
+			min: 1,
+			max: 12 
+		},
+		minute: {
+			type: Number,
+			min: 0,
+			max: 59 
+		},
+		period: {
+			type: String,
+			enum: [
+				'AM', 
+				'PM'
+			] 
+		} 
+	},
+	duration: {
+		hour: {
+			type: Number,
+			min: 0,
+			max: 11,
+		},
+		minute: {
+			type: Number,
+			min: 0,
+			max: 59,
+		}
+	},
 	levelOfImportance: {
-		type: String,
-		enum: [
-			'IU', 
-			'IN', 
-			'NU', 
-			'NN'
-		]
+		label: {
+			type: String
+		},
+		value: {
+			type: Number,
+			min: 1,
+			max: 4,
+		} 
 	},
 	complete: {
 		type: Boolean,

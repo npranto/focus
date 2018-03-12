@@ -9,7 +9,8 @@ import {
 	GET_ALL_TASKS_BY_CURRENT_USER,
 	UPDATE_LEVEL_OF_IMPORTANCE,
 	UPDATE_DURATION_HOUR,
-	UPDATE_DURATION_MINUTE
+	UPDATE_DURATION_MINUTE,
+	UPDATE_START_TIME
 } from './../actions/types.js';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -64,6 +65,11 @@ const componentsReducer = (state = defaultStore.components, action) => {
 		case UPDATE_DURATION_MINUTE: {
 			let copy = cloneDeep(state);
 			copy.createTask.duration.minute.minuteSelected = action.payload;
+			return copy;
+		}
+		case UPDATE_START_TIME: {
+			let copy = cloneDeep(state);
+			copy.createTask.startTime = action.payload;
 			return copy;
 		}
 	}
