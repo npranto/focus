@@ -6,8 +6,6 @@ import './TaskBoard.css';
 class TaskBoard extends Component {
 	render() {
 		const {tasks} = this.props;
-		console.log(tasks);
-
 		return (
 			<div className="task-board">
 				<div className="header">
@@ -17,7 +15,7 @@ class TaskBoard extends Component {
 					</div>
 				</div>
 				<div className="tasks">
-					<Tasks />
+					<Tasks tasks={tasks}/>
 				</div>
 			</div>
 		)
