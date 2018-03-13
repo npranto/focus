@@ -157,8 +157,8 @@ const defaultStore = {
 					active: true
 				},
 				{
-					id: 'calender',
-					title: 'Calender',
+					id: 'calendar',
+					title: 'Calendar',
 					active: false
 				},
 				{

@@ -18,7 +18,7 @@ class TaskBoard extends Component {
 				<div className="header">
 					<h4> {activeViewMode.title} </h4>
 					<div className="task-view-switcher-container">
-						<TaskViewSwitcher />
+						<TaskViewSwitcher viewModes={viewModes} />
 					</div>
 				</div>
 				<div className="tasks">
