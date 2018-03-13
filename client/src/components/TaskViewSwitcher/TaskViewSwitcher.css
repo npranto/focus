@@ -1,3 +1,24 @@
 .task-view-switcher {
-	width: 
+	display: flex;
+	/*border: 1px solid lightgray;*/
+}
+.task-view-switcher .icon-container {
+	padding: 3% 5%;
+	border: 1px solid lightgray;
+	cursor: pointer;
+	transition: 0.1s ease-in;
+}
+.task-view-switcher .icon-container:nth-child(2) {
+	border-left: none;
+	border-right: none;
+}
+.task-view-switcher .icon-container:hover {
+	background: var(--theme);
+	color: white;
+	border-color: lightgray;
+}
+.task-view-switcher .active {
+	background: var(--theme);
+	color: white;
+	border-color: lightgray;
 }
