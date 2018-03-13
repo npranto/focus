@@ -101,7 +101,7 @@ class NavigationBar extends Component {
 									<div className="profile-tab valign-wrapper">
 										<p className="name valign-wrapper"> {auth.currentUser.fullName} </p>
 										<a className="avatar valign-wrapper dropdown-button" href='#' data-activates='authenticatedTabsDropdown'> 
-											<img src={auth.currentUser.profilePicture ? auth.currentUser.profilePicture : UserIcon} alt="Profile Avatar"/>
+											<img src={auth.currentUser.profilePicture ? `${process.env.PUBLIC_URL}/uploads/${auth.currentUser.profilePicture}` : UserIcon} alt="Profile Avatar"/>
 										</a>
 										<ul id='authenticatedTabsDropdown' className='dropdown-content'>
 										    <li>
