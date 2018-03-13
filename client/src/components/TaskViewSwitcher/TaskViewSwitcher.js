@@ -20,9 +20,9 @@ class TaskViewSwitcher extends Component {
 	renderViewModes(viewModes) {
 		return viewModes.map((viewMode, index) => {
 			return (
-				<div className={`${viewMode.id}-icon icon-container tooltipped ${viewMode.active ? 'active' : ''}`} data-position="bottom" data-delay="50" data-tooltip={viewMode.title}>
+				<a key={index} onClick={() => this.props.onChangeViewMode(viewMode.id)} className={`${viewMode.id}-icon icon-container tooltipped ${viewMode.active ? 'active' : ''}`} data-position="bottom" data-delay="50" data-tooltip={viewMode.title}>
 					{this.renderIconBasedOnViewModeId(viewMode.id)}
-				</div>
+				</a>
 			)
 		})
 	}
@@ -40,3 +40,5 @@ class TaskViewSwitcher extends Component {
 }
 
 export default TaskViewSwitcher;
+
+

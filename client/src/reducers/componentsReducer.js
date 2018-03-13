@@ -10,7 +10,8 @@ import {
 	UPDATE_LEVEL_OF_IMPORTANCE,
 	UPDATE_DURATION_HOUR,
 	UPDATE_DURATION_MINUTE,
-	UPDATE_START_TIME
+	UPDATE_START_TIME,
+	CHANGE_TASK_VIEW_MODE
 } from './../actions/types.js';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -70,6 +71,11 @@ const componentsReducer = (state = defaultStore.components, action) => {
 		case UPDATE_START_TIME: {
 			let copy = cloneDeep(state);
 			copy.createTask.startTime = action.payload;
+			return copy;
+		} 
+		case CHANGE_TASK_VIEW_MODE: {
+			let copy = cloneDeep(state);
+			copy.taskBoard.viewModes = action.payload;
 			return copy;
 		}
 	}

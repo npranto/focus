@@ -7,18 +7,22 @@
 	border: 1px solid lightgray;
 	cursor: pointer;
 	transition: 0.1s ease-in;
+	color: #e0e0e0;
 }
 .task-view-switcher .icon-container:nth-child(2) {
 	border-left: none;
 	border-right: none;
 }
 .task-view-switcher .icon-container:hover {
-	background: var(--theme);
+	background: #d84315;
 	color: white;
 	border-color: lightgray;
 }
+.task-view-switcher a {
+	color: inherit;
+}
 .task-view-switcher .active {
-	background: var(--theme);
+	background: #d84315;
 	color: white;
 	border-color: lightgray;
 }

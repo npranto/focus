@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 
 import Tasks from './../Tasks/Tasks';
 import TaskViewSwitcher from './../TaskViewSwitcher/TaskViewSwitcher';
+import * as actionCreators from './../../actions';
 import './TaskBoard.css';
 
 class TaskBoard extends Component {
@@ -10,7 +11,8 @@ class TaskBoard extends Component {
 		const {tasks} = this.props;
 		const {viewModes} = this.props.components.taskBoard;
 		const activeViewMode = viewModes.find((viewMode) => {
-			return viewMode.active;
+			console.log(viewMode);
+			return viewMode.active === true;
 		});
 
 		return (
@@ -18,7 +20,9 @@ class TaskBoard extends Component {
 				<div className="header">
 					<h4> {activeViewMode.title} </h4>
 					<div className="task-view-switcher-container">
-						<TaskViewSwitcher viewModes={viewModes} />
+						<TaskViewSwitcher 
+							viewModes={viewModes}
+							onChangeViewMode={(viewModeId) => this.props.changeTaskViewMode(viewModeId)} />
 					</div>
 				</div>
 				<div className="tasks">
@@ -35,4 +39,4 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(TaskBoard);
+export default connect(mapStateToProps, actionCreators)(TaskBoard);
