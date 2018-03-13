@@ -1,0 +1,41 @@
+.track-progress {
+    flex-grow: 1;
+    padding: 4%;
+}
+.track-progress .chart-keys {
+    display: flex;
+    flex-direction: column;
+}
+.track-progress .chart-keys .chart {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+}
+.track-progress .keys {
+    display: flex;
+    justify-content: space-around;
+}
+.track-progress .keys .key-container {
+    display: flex;
+}
+.track-progress .keys .key-container .key-block {
+    width: 20px;
+    height: 20px;
+}
+.track-progress .keys .complete .key-block {
+    background: #43a047;
+}
+.track-progress .keys .incomplete .key-block {
+    background: #d84315;
+}
+.track-progress .keys .key-container .label {
+    padding-left: 5%;
+}
+.track-progress .task-completed {
+    padding-top: 5%;
+    flex-shrink: 0;
+}
+.track-progress .completed-tasks-list li {
+    font-size: 1.10em;
+}
