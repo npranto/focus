@@ -10,6 +10,7 @@
 }
 .task .actions {
 	display: flex;
+	margin-top: 3%;
 }
 .task .actions a {
 	padding-left: 0;

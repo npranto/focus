@@ -7,7 +7,7 @@ class TrackProgress extends Component {
     renderCompletedTasks(tasks) {
         return tasks.map((task, index) => {
             return (
-                <li key={index}> <del className="grey-text"> {task.title} </del> </li>
+                <li key={index} className="grey-text"> <del> {task.title} </del> </li>
             )
         })
     }

@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Field, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
 import $ from 'jquery';
-import MdAccessTime from 'react-icons/lib/md/access-time';
-import cloneDeep from 'lodash.clonedeep';
 
 import TimePicker from './../TimePicker/TimePicker';
-import * as actionCreators from './../../actions';
-import './CreateTask.css';
+import './EditTask.css';
 
-class CreateTask extends Component {
+class EditTask extends Component {
 
 	constructor(props) {
 		super(props);
 
 		$(document).ready(function(){
 		    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-	    	$('#createNewTaskModal').modal();
+	    	$('#editTaskModal').modal();
     		$('select').material_select();
 	    	$('.timepicker').pickatime({
 			    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
@@ -30,50 +27,26 @@ class CreateTask extends Component {
 			    aftershow: function() {} //Function for after opening timepicker
 			});	
 		});
-		
 	}
 
 	onLevelOfImportanceSelected(value, levelOfImportance) {
-		this.props.updateLevelOfImportance(value, levelOfImportance);
+		console.log(value);
+	}
+
+	onLevelOfImportanceSelected(value, levelOfImportance) {
+		console.log(value);
 	}
 
 	onStartTimeChange(time) {
-		this.props.updateStartTime(time);
+		console.log(time);
 	}
 
 	onDurationHourChange(value, hours) {
-		this.props.updateDurationHour(value, hours);
+		console.log(value);
 	}
 
 	onDurationMinuteChange(value, minutes) {
-		this.props.updateDurationMinute(value, minutes);
-	}
-
-	onCreateNewTaskFormSubmit() {
-		const {currentUser} = this.props.auth;
-		const {title, description} = this.props.form.createNewTaskForm.values;
-		const {selectedLevelOfImportance, duration, startTime} = this.props.components.createTask;
-		let newTask = {};
-		if (title) {
-			newTask['title'] = title;
-		}
-		if (description) {
-			newTask['description'] = description;
-		}
-		if (selectedLevelOfImportance && (selectedLevelOfImportance.value !== 0)) {
-			newTask['levelOfImportance'] = cloneDeep(selectedLevelOfImportance);
-		}
-		if (duration && (duration.hour.hourSelected !== 0) && (duration.minute.minuteSelected !== 0)) {
-			newTask['duration'] = {
-				hour: duration.hour.hourSelected,
-				minute: duration.minute.minuteSelected
-			}
-		}
-		if (startTime) {
-			newTask['startTime'] = cloneDeep(startTime);
-		}
-		newTask['createdBy'] = currentUser._id;
-		this.props.createNewTask(newTask);
+		console.log(value);
 	}
 
 	renderLevelOfImportanceOptions(levelOfImportance) {
@@ -102,24 +75,26 @@ class CreateTask extends Component {
 		)
 	}
 
+
 	render() {
-		const {levelOfImportance, selectedLevelOfImportance, duration, startTime} = this.props.components.createTask;
+		const {selectedTaskForEdit, levelOfImportance, selectedLevelOfImportance, duration, startTime} = this.props.components.dashboard.editingTask;
 		const {invalid, pristine, submitting} = this.props;
 
 		return (
-			<div id="createNewTaskModal" className="modal modal-fixed-footer">
+			<div id="editTaskModal" className="edit-task modal modal-fixed-footer">
 			    {/* Create New Task Modal */}
 			    <div className="modal-content">
-				    <div className="create-task">
-						<h5 className="center-align create-new-task-title"> Create New Task </h5>
-						<div className="create-new-task-form-container row">
-						    <form className="create-new-task-form col s12 m12 l12">
+				    <div className="edit-task">
+						<h5 className="center-align edit-task-title"> Edit Task </h5>
+						<div className="edit-task-form-container row">
+						    <form className="edit-task-form col s12 m12 l12">
 						    	<div className="row">
 						    		<Field
 							            name="title"
 							    		id="title"
 							            component={InputField}
 							            type="text"
+							            defaultValue={selectedTaskForEdit ? selectedTaskForEdit.title : ""}
 							            htmlFor="title"
 							            label="Title"
 						          	/>
@@ -128,6 +103,7 @@ class CreateTask extends Component {
 							    		id="description"
 							            component={TextareaField}
 							            type="text"
+							            defaultValue={(selectedTaskForEdit && selectedTaskForEdit.description) ? selectedTaskForEdit.description : ""}
 							            htmlFor="description"
 							            label="Description"
 						          	/>
@@ -177,7 +153,7 @@ class CreateTask extends Component {
 					</div>
 			    </div>
 			    <div className="modal-footer">
-			    	<a onClick={() => this.onCreateNewTaskFormSubmit()} disabled={invalid || pristine || submitting} className="modal-action modal-close waves-effect green darken-2 btn"> Create </a>
+			    	<a onClick={() => console.log('SUBMITTING_EDIT_TASK')} disabled={invalid || pristine || submitting} className="modal-action modal-close waves-effect green darken-2 btn"> Update </a>
 			   		<a className="modal-action modal-close waves-effect waves-green btn-flat"> Cancel </a>
 			    </div>
 			</div>
@@ -186,15 +162,17 @@ class CreateTask extends Component {
 }
 
 const InputField = (props) => {
-	const {input, name, id, type, htmlFor, label} = props;
+	const {input, name, id, type, htmlFor, label, defaultValue} = props;
 	const {touched, error} = props.meta;
 	return (
 		<div className="input-field col s12 m12 l12">
           <input 
           	{...input}
           	name={name}
+          	placeholder=""
           	id={id} 
-          	type={type} />
+          	type={type} 
+          	value={defaultValue} />
           <label htmlFor={htmlFor}> {label} </label>
           <p className="validation-message right-align red-text">
 			<sub className="red-text"> {(touched && error) ? error : ''} </sub>
@@ -204,15 +182,17 @@ const InputField = (props) => {
 }
 
 const TextareaField = (props) => {
-	const {input, name, id, type, htmlFor, label} = props;
+	const {input, name, id, type, htmlFor, label, defaultValue} = props;
 	const {touched, error} = props.meta;
 	return (
 		<div className="input-field col s12 m12 l12">
 	      <textarea 
 	      	{...input}
 	      	name={name}
+	      	placeholder=""
 	      	id={id} 
-	      	type={type} 
+	      	type={type}
+	      	value={defaultValue} 
 	      	className="materialize-textarea">
 	      </textarea>
 	      <label htmlFor={htmlFor}> {label} </label>
@@ -240,11 +220,8 @@ const validate = (form) => {
 	return errors;
 }
 
-
 const mapStateToProps = (state) => {
 	return {
-		auth: state.auth,
-		form: state.form,
 		components: state.components
 	}
 }
@@ -252,7 +229,6 @@ const mapStateToProps = (state) => {
 
 
 export default reduxForm({
-	form: 'createNewTaskForm',
+	form: 'editTask',
 	validate
-})(connect(mapStateToProps, actionCreators)(CreateTask));
-
+})(connect(mapStateToProps)(EditTask));
