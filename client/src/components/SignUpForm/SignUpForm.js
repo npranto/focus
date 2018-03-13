@@ -22,8 +22,9 @@ class SignUpForm extends Component {
 			password: form.password, 
 		} 
 		if (this.props.components.signUpForm.profilePicture) {
-			profile.profilePicture = this.props.components.signUpForm.profilePicture;
+			profile['profilePicture'] = this.props.components.signUpForm.profilePicture.filename;
 		}
+		console.log(profile);
 		this.props.signUpNewUser(profile);
 	}
 

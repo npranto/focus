@@ -21,7 +21,7 @@ class TrackProgress extends Component {
             return status;
         }, {completed: 0, incomplete: 0});
         const tasksCompleted = tasks.filter(task => {
-            return !task.complete;
+            return task.complete;
         })
 
         const chartData = [
@@ -36,8 +36,16 @@ class TrackProgress extends Component {
                 color: "#43a047",
                 highlight: "#43a047",
                 label: "Complete"
+            },
+            {
+                value: ((!taskCompletionStatus.incomplete) && (!taskCompletionStatus.complete)) ? 1 : 0,
+                color: "gold",
+                highlight: "gold",
+                label: "No Tasks"
             }
         ];
+        console.log(taskCompletionStatus.incomplete);
+        console.log(taskCompletionStatus.complete);
         console.log(chartData);
         const chartOptions = {
             //Boolean - Whether we should show a stroke on each segment
