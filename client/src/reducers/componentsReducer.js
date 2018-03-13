@@ -11,7 +11,8 @@ import {
 	UPDATE_DURATION_HOUR,
 	UPDATE_DURATION_MINUTE,
 	UPDATE_START_TIME,
-	CHANGE_TASK_VIEW_MODE
+	CHANGE_TASK_VIEW_MODE,
+	SET_EDITING_TASK
 } from './../actions/types.js';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -78,6 +79,12 @@ const componentsReducer = (state = defaultStore.components, action) => {
 			copy.taskBoard.viewModes = action.payload;
 			return copy;
 		}
+		case SET_EDITING_TASK: {
+			let copy = cloneDeep(state);
+			copy.dashboard.editingTask.selectedTaskForEdit = action.payload;
+			return copy;
+		}
+
 	}
 	return state;
 }

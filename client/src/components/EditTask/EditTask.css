@@ -1,0 +1,12 @@
+.edit-task {
+	width: 100%;
+}
+.edit-task .edit-task-title {
+	color: var(--theme);
+}
+.edit-task input, .edit-task textarea {
+	margin-bottom: 0;
+}
+.edit-task form .row {
+	/*margin-bottom: 0;*/
+}

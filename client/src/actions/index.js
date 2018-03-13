@@ -14,7 +14,8 @@ import {
 	UPDATE_DURATION_HOUR,
 	UPDATE_DURATION_MINUTE,
 	UPDATE_START_TIME,
-	CHANGE_TASK_VIEW_MODE
+	CHANGE_TASK_VIEW_MODE,
+	SET_EDITING_TASK
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -209,6 +210,15 @@ export const changeTaskViewMode = (viewModeId) => {
 		dispatch({
 			type: 'CHANGE_TASK_VIEW_MODE',
 			payload: activeViewModeChanged
+		})
+	}
+}
+
+export const setEditingTask = (task) => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: SET_EDITING_TASK,
+			payload: {...task}
 		})
 	}
 }

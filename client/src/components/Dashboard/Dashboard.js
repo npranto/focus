@@ -6,6 +6,7 @@ import $ from 'jquery';
 import * as actionCreators from './../../actions';
 import TaskBoard from './../TaskBoard/TaskBoard';
 import CreateTask from './../CreateTask/CreateTask';
+import EditTask from './../EditTask/EditTask';
 import './Dashboard.css';
 import TrackProgress from "../TrackProgress/TrackProgress";
 
@@ -37,6 +38,10 @@ class Dashboard extends Component {
 		return <CreateTask />   
 	}
 
+	renderEditTaskModal() {
+		return <EditTask />   
+	}
+
 	renderMiniDashboard(tasks) {
 		return (
 			<div className="dashboard-mini">
@@ -58,6 +63,9 @@ class Dashboard extends Component {
 				{
 					this.renderCreateNewTaskModal()
 				}
+				{
+					this.renderEditTaskModal()
+				}
 			</div>
 		)
 	}
@@ -77,6 +85,9 @@ class Dashboard extends Component {
 
 				{
 					this.renderCreateNewTaskModal()
+				}
+				{
+					this.renderEditTaskModal()
 				}
 			</div>
 		)

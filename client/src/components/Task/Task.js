@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Media from 'react-media';
+import {connect} from 'react-redux';
 
+import * as actionCreator from './../../actions';
 import './Task.css';
 
 class Task extends Component {
@@ -15,7 +17,7 @@ class Task extends Component {
 					{task.description ? task.description : <i className="grey-text"> No description </i>}
 				</div>
 				<div className="actions">
-					<a className="edit orange-text btn-flat"> Edit </a>
+					<a href="#editTaskModal" onClick={() => this.props.setEditingTask(task)} className="edit orange-text btn-flat modal-trigger"> Edit </a>
 					<a className="delete red-text btn-flat"> Delete </a>
 					<a className="done green-text btn-flat"> Done </a>
 				</div>
@@ -48,4 +50,5 @@ class Task extends Component {
 	}
 }
 
-export default Task;
+export default connect(null, actionCreator)(Task);
+
