@@ -13,7 +13,8 @@ import {
 	UPDATE_LEVEL_OF_IMPORTANCE,
 	UPDATE_DURATION_HOUR,
 	UPDATE_DURATION_MINUTE,
-	UPDATE_START_TIME
+	UPDATE_START_TIME,
+	CHANGE_TASK_VIEW_MODE
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -191,6 +192,24 @@ export const createNewTask = (newTask) => {
 				})
 			}
 		}
+	}
+}
+
+export const changeTaskViewMode = (viewModeId) => {
+	return (dispatch, getState) => {
+		const {viewModes} = getState().components.taskBoard;
+		const activeViewModeChanged = viewModes.map(viewMode => {
+			if (viewMode.id === viewModeId) {
+				viewMode.active = true;
+			} else {
+				viewMode.active = false;
+			} 
+			return viewMode;
+		})
+		dispatch({
+			type: 'CHANGE_TASK_VIEW_MODE',
+			payload: activeViewModeChanged
+		})
 	}
 }
 
