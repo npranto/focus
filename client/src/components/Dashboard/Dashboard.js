@@ -7,6 +7,7 @@ import * as actionCreators from './../../actions';
 import TaskBoard from './../TaskBoard/TaskBoard';
 import CreateTask from './../CreateTask/CreateTask';
 import './Dashboard.css';
+import TrackProgress from "../TrackProgress/TrackProgress";
 
 class Dashboard extends Component {
 
@@ -46,7 +47,7 @@ class Dashboard extends Component {
 			        </ul>
 			    </div>
 			    <div id="trackProgress" className="col s12" className="track-progress-container">
-					Track Progress
+                    <TrackProgress tasks={tasks} />
 				</div>
 				<div id="tasks" className="col s12" className="tasks-container">
 					<TaskBoard tasks={tasks} />
@@ -65,7 +66,7 @@ class Dashboard extends Component {
 		return (
 			<div className={`dashboard ${screenClass}`}>
 				<div className="track-progress-container">
-					Track Progress
+                    <TrackProgress tasks={tasks} />
 				</div>
 				<div className="tasks-container">
 					<TaskBoard tasks={tasks} />

@@ -11,7 +11,6 @@ class TaskBoard extends Component {
 		const {tasks} = this.props;
 		const {viewModes} = this.props.components.taskBoard;
 		const activeViewMode = viewModes.find((viewMode) => {
-			console.log(viewMode);
 			return viewMode.active === true;
 		});
 
