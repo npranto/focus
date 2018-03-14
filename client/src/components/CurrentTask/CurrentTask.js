@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import Media from 'react-media';
+import {connect} from 'react-redux';
 import MdInfoOutline from 'react-icons/lib/md/info-outline';
 
 import Timer from './../Timer/Timer';
@@ -18,6 +19,7 @@ class CurrentTask extends Component {
 	}
 
 	render() {
+		const {currentTask} = this.props.components.dashboard;
 		return (
 			<div id="currentTaskModal" className="current-task modal bottom-sheet">
 				<div className="modal-content">
@@ -27,19 +29,28 @@ class CurrentTask extends Component {
 								matches 
 									? (
 										<div className="task" style={{width: '60%'}}>
-											<h4> Title  sfsfdfgdfgdfg dg dfgdfdfd gdfg df gdfgd fdfgdf g g dfg df gdfg  By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults.</h4>
-											<p> Description dfg df gdfd d d gdf d fd df fd gdfg gg dfdfg f gdffddf gdff By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults. </p>
-											<p className="level-of-importance"> <MdInfoOutline size={16} /> Important, Urgent </p>
+											{
+												(currentTask && currentTask.title) 
+													? <h4> {currentTask.title} </h4>
+													: ""
+											}
+											{
+												(currentTask && currentTask.description) 
+													? <p> {currentTask.description} </p>
+													: ""
+											}
+											{
+												(currentTask && currentTask.levelOfImportance) 
+													? <p className="level-of-importance"> <MdInfoOutline size={16} /> {currentTask.levelOfImportance.label} </p>
+													: ""
+											}
 										</div>
 									)
 									: (
 										<div className="task" style={{width: '100%'}}>
-											<h4> Title By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults.  </h4>
-											<p> Description By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults. By default, LocalStrategy expects to find credentials in parameters named username and password. If your site prefers to name these fields differently, options are available to change the defaults. </p>
-											<p className="level-of-importance right-align"> 
-												
-												Important, Urgent 
-											</p>
+											<h4> </h4>
+											<p> </p>
+											<p className="level-of-importance"> <MdInfoOutline size={16} /> Important, Urgent </p>
 										</div>
 									)
 							}
@@ -66,4 +77,11 @@ class CurrentTask extends Component {
 	}
 }
 
-export default CurrentTask;
+const mapStateToProps = (state) => {
+	return {
+		components: state.components
+	}
+}
+
+export default connect(mapStateToProps)(CurrentTask);
+

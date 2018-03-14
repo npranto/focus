@@ -9,7 +9,7 @@ class Task extends Component {
 
 	renderTask(task, contentHeights) {
 		return (
-			<div className={`task modal-trigger ${task.complete ? 'green lighten-4' : 'deep-orange lighten-4'}`} href="#currentTaskModal">
+			<div className={`task modal-trigger ${task.complete ? 'green lighten-4' : 'deep-orange lighten-4'}`} href="#currentTaskModal" onClick={() => this.props.setAsCurrentTask(task)}>
 				<div className="title" style={{height: contentHeights.title, overflow: 'auto'}}>
 					{task.title}
 				</div>

@@ -15,7 +15,8 @@ import {
 	UPDATE_DURATION_MINUTE,
 	UPDATE_START_TIME,
 	CHANGE_TASK_VIEW_MODE,
-	SET_EDITING_TASK
+	SET_EDITING_TASK,
+	SET_AS_CURRENT_TASK
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -255,6 +256,15 @@ export const deleteTask = (task) => {
 				})
 			}
 		}
+	}
+}
+
+export const setAsCurrentTask = (task) => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: SET_AS_CURRENT_TASK,
+			payload: {...task}
+		})
 	}
 }
 
