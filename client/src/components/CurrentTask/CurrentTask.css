@@ -1,0 +1,28 @@
+.current-task {
+	width: 100%;
+}
+.current-task .task-and-timer {
+	display: flex;
+}
+.current-task .task {
+	width: 60%;
+	background: lightpink;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+.current-task .timer-container {
+	width: 40%;
+	background: lightyellow;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.current-task .level-of-importance {
+	text-align: right;
+	margin-top: 5%;
+	color: gray;
+	font-style: italic;
+}

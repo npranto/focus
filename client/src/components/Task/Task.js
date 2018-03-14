@@ -9,7 +9,7 @@ class Task extends Component {
 
 	renderTask(task, contentHeights) {
 		return (
-			<div className={`task ${task.complete ? 'green lighten-4' : 'deep-orange lighten-4'}`}>
+			<div className={`task modal-trigger ${task.complete ? 'green lighten-4' : 'deep-orange lighten-4'}`} href="#currentTaskModal">
 				<div className="title" style={{height: contentHeights.title, overflow: 'auto'}}>
 					{task.title}
 				</div>
@@ -17,9 +17,11 @@ class Task extends Component {
 					{task.description ? task.description : <i className="grey-text"> No description </i>}
 				</div>
 				<div className="actions">
-					<a href="#editTaskModal" onClick={() => this.props.setEditingTask(task)} className="edit orange-text btn-flat modal-trigger"> Edit </a>
-					<a onClick={() => this.props.deleteTask(task)} className="delete red-text btn-flat"> Delete </a>
-					<a onClick={() => this.props.assignTaskAsComplete(task)} className="done green-text btn-flat"> Done </a>
+					{/* 
+						<a href="#editTaskModal" onClick={() => this.props.setEditingTask(task)} className="edit orange-text btn-flat modal-trigger"> Edit </a>
+					*/}
+					<button onClick={() => this.props.deleteTask(task)} className="delete red-text btn-flat"> Delete </button>
+					<button onClick={() => this.props.assignTaskAsComplete(task)} className="done green-text btn-flat"> Done </button>
 				</div>
 			</div>
 		)
