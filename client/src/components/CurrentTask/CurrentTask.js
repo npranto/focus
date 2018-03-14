@@ -4,6 +4,7 @@ import Media from 'react-media';
 import {connect} from 'react-redux';
 import MdInfoOutline from 'react-icons/lib/md/info-outline';
 
+import * as actionCreators from './../../actions';
 import Timer from './../Timer/Timer';
 import './CurrentTask.css';
 
@@ -85,7 +86,7 @@ class CurrentTask extends Component {
 					</div>
 				</div>
 				<div className="modal-footer">
-					<a href="#!" className="done modal-action modal-close waves-effect waves-light green darken-3 btn"> Done </a>
+					<a onClick={() => this.props.assignTaskAsComplete(currentTask)} className="done modal-action modal-close waves-effect waves-light green darken-3 btn"> Done </a>
 					<a href="#!" className="cancel modal-action modal-close btn-flat "> Cancel </a>
 				</div>
 			</div>
@@ -99,5 +100,5 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(CurrentTask);
+export default connect(mapStateToProps, actionCreators)(CurrentTask);
 
