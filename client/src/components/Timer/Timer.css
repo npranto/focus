@@ -12,15 +12,32 @@
 	justify-content: center;
 	flex-wrap: wrap;
 }
+.timer .timer-actions a {
+	color: #78909c;
+}
+.timer .timer-actions a:active {
+	color: white;
+}
 .timer .clock {
-	width: 10em;
-	height: 10em;
+	width: 11em;
+	height: 11em;
 	background: white;
 	border: 1em solid red;
+	border-radius: 50%;
+	border-left-color: red;
+	border-top-color: green;
+	border-right-color: yellow;
+	border-bottom-color: blue;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 }
-.timer .clock .label {
-	font-size: 3em;
+.timer .clock .hour-minute-label {
+	/*font-size: 3em;*/
+	margin: 0;
+	font-size: 1.25em;
+}
+.timer .clock .second-label {
+	font-size: 3.25em;
+	margin: 0;
 }
