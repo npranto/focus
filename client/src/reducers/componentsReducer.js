@@ -84,7 +84,6 @@ const componentsReducer = (state = defaultStore.components, action) => {
 			copy.dashboard.editingTask.selectedTaskForEdit = action.payload;
 			return copy;
 		}
-
 	}
 	return state;
 }

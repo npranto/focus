@@ -19,7 +19,7 @@ class TrackProgress extends Component {
                 ? status.complete += 1
                 : status.incomplete += 1;
             return status;
-        }, {completed: 0, incomplete: 0});
+        }, {complete: 0, incomplete: 0});
         const tasksCompleted = tasks.filter(task => {
             return task.complete;
         })

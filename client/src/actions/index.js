@@ -223,3 +223,20 @@ export const setEditingTask = (task) => {
 	}
 }
 
+export const assignTaskAsComplete = (task) => {
+	return async (dispatch, getState) => {
+		const updatedTask = {...task, complete: true};
+		const taskMarkedAsCompleted = await axios.put(`/api/tasks/${task._id}`, updatedTask);
+		if (taskMarkedAsCompleted.data.success) {
+			const tasksByCurrentUser = await axios.get('/api/tasks', {createdBy: taskMarkedAsCompleted.data.data.createdBy})
+			console.log(tasksByCurrentUser);
+			if (tasksByCurrentUser.data.success) {
+				dispatch({
+					type: GET_ALL_TASKS_BY_CURRENT_USER,
+					payload: tasksByCurrentUser.data.data
+				})
+			}
+		}
+	}
+}
+
