@@ -10,21 +10,25 @@
 }
 .task .actions {
 	display: flex;
-	margin-top: 3%;
+	justify-content: flex-end;
+	/*margin-top: 3%;*/
 }
 .task .actions a {
-	padding-left: 0;
-	padding-right: 0;
-	margin-right: 5%;
-	transition: 0.1s ease-in;
+	/*padding-left: 0;*/
+	/*padding-right: 0;*/
+	/*margin-right: 5%;*/
+	transition: 0.2s ease-in;
+}
+.task .actions .delete:hover {
+	color: red;
 }
 .task .actions a:hover {
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 .task .actions a:nth-child(3) {
-	margin-right: 0;
+	/*margin-right: 0;*/
 }
 .task .actions .done {
-	flex-grow: 1;
-	text-align: right;
+	/*flex-grow: 1;
+	text-align: right;*/
 }
