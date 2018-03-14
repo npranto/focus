@@ -78,7 +78,7 @@ class EditTask extends Component {
 
 	render() {
 		const {selectedTaskForEdit, levelOfImportance, selectedLevelOfImportance, duration, startTime} = this.props.components.dashboard.editingTask;
-		const {invalid, pristine, submitting} = this.props;
+		const {invalid, pristine, submitting, fields} = this.props;
 
 		return (
 			<div id="editTaskModal" className="edit-task modal modal-fixed-footer">
@@ -169,10 +169,9 @@ const InputField = (props) => {
           <input 
           	{...input}
           	name={name}
-          	placeholder=""
           	id={id} 
-          	type={type} 
-          	value={defaultValue} />
+          	placeholder=""
+          	type={type}  />
           <label htmlFor={htmlFor}> {label} </label>
           <p className="validation-message right-align red-text">
 			<sub className="red-text"> {(touched && error) ? error : ''} </sub>
@@ -189,10 +188,9 @@ const TextareaField = (props) => {
 	      <textarea 
 	      	{...input}
 	      	name={name}
-	      	placeholder=""
 	      	id={id} 
 	      	type={type}
-	      	value={defaultValue} 
+	      	placeholder=""
 	      	className="materialize-textarea">
 	      </textarea>
 	      <label htmlFor={htmlFor}> {label} </label>
@@ -230,5 +228,5 @@ const mapStateToProps = (state) => {
 
 export default reduxForm({
 	form: 'editTask',
-	validate
+	validate,
 })(connect(mapStateToProps)(EditTask));
