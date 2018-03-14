@@ -7,6 +7,7 @@ import * as actionCreators from './../../actions';
 import TaskBoard from './../TaskBoard/TaskBoard';
 import CreateTask from './../CreateTask/CreateTask';
 import EditTask from './../EditTask/EditTask';
+import CurrentTask from './../CurrentTask/CurrentTask';
 import './Dashboard.css';
 import TrackProgress from "../TrackProgress/TrackProgress";
 
@@ -42,6 +43,10 @@ class Dashboard extends Component {
 		return <EditTask />   
 	}
 
+	renderCurrentTaskModal() {
+		return <CurrentTask />   
+	}
+
 	renderMiniDashboard(tasks) {
 		return (
 			<div className="dashboard-mini">
@@ -66,6 +71,9 @@ class Dashboard extends Component {
 				{
 					this.renderEditTaskModal()
 				}
+				{
+					this.renderCurrentTaskModal()
+				}
 			</div>
 		)
 	}
@@ -88,6 +96,9 @@ class Dashboard extends Component {
 				}
 				{
 					this.renderEditTaskModal()
+				}
+				{
+					this.renderCurrentTaskModal()
 				}
 			</div>
 		)

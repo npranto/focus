@@ -1,0 +1,26 @@
+.timer {
+	width: 100%;
+}
+.timer .timer-animation {
+	background: lightgray;
+	display: flex;
+	justify-content: center;
+	padding: 2%;
+}
+.timer .timer-actions {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.timer .clock {
+	width: 10em;
+	height: 10em;
+	background: white;
+	border: 1em solid red;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.timer .clock .label {
+	font-size: 3em;
+}
