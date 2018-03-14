@@ -9,19 +9,23 @@ class Task extends Component {
 
 	renderTask(task, contentHeights) {
 		return (
-			<div className={`task modal-trigger ${task.complete ? 'green lighten-4' : 'deep-orange lighten-4'}`} href="#currentTaskModal" onClick={() => this.props.setAsCurrentTask(task)}>
-				<div className="title" style={{height: contentHeights.title, overflow: 'auto'}}>
+			<div className={`task ${task.complete ? 'green lighten-4' : 'red lighten-5'}`}>
+				<div className="title modal-trigger" style={{height: contentHeights.title, overflow: 'auto'}} href="#currentTaskModal" onClick={() => this.props.setAsCurrentTask(task)}>
 					{task.title}
 				</div>
-				<div className="description" style={{height: contentHeights.description, overflow: 'auto'}}>
+				<div className="description modal-trigger" style={{height: contentHeights.description, overflow: 'auto'}} href="#currentTaskModal" onClick={() => this.props.setAsCurrentTask(task)}>
 					{task.description ? task.description : <i className="grey-text"> No description </i>}
 				</div>
 				<div className="actions">
 					{/* 
 						<a href="#editTaskModal" onClick={() => this.props.setEditingTask(task)} className="edit orange-text btn-flat modal-trigger"> Edit </a>
 					*/}
-					<button onClick={() => this.props.deleteTask(task)} className="delete red-text btn-flat"> Delete </button>
-					<button onClick={() => this.props.assignTaskAsComplete(task)} className="done green-text btn-flat"> Done </button>
+					{
+						(!task.complete)
+							? <a onClick={() => this.props.assignTaskAsComplete(task)} className="done green darken-1 white-text waves-effect waves-light btn"> Done </a>
+							: ""
+					}
+					<a onClick={() => this.props.deleteTask(task)} className="delete btn-flat"> Delete </a>
 				</div>
 			</div>
 		)

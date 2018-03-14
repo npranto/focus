@@ -28,7 +28,7 @@ class CurrentTask extends Component {
 							{matches => 
 								matches 
 									? (
-										<div className="task" style={{width: '60%'}}>
+										<div className="task" style={{width: (currentTask && currentTask.duration) ? '60%' : '100%'}}>
 											{
 												(currentTask && currentTask.title) 
 													? <h4> {currentTask.title} </h4>
@@ -48,9 +48,21 @@ class CurrentTask extends Component {
 									)
 									: (
 										<div className="task" style={{width: '100%'}}>
-											<h4> </h4>
-											<p> </p>
-											<p className="level-of-importance"> <MdInfoOutline size={16} /> Important, Urgent </p>
+											{
+												(currentTask && currentTask.title) 
+													? <h4> {currentTask.title} </h4>
+													: ""
+											}
+											{
+												(currentTask && currentTask.description) 
+													? <p> {currentTask.description} </p>
+													: ""
+											}
+											{
+												(currentTask && currentTask.levelOfImportance) 
+													? <p className="level-of-importance"> <MdInfoOutline size={16} /> {currentTask.levelOfImportance.label} </p>
+													: ""
+											}
 										</div>
 									)
 							}
@@ -59,9 +71,13 @@ class CurrentTask extends Component {
 							{matches => 
 								matches 
 									? (
-										<div className="timer-container">
-											<Timer duration={{hour: 1, minute: 45}}/>
-										</div>
+										(currentTask && currentTask.duration)
+											? (
+												<div className="timer-container">
+													<Timer duration={currentTask.duration}/>
+												</div>
+											)
+											: ""
 									)
 									: ""
 							}

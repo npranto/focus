@@ -15,9 +15,9 @@ class Timer extends Component {
 					</div>
 				</div>
 				<div className="timer-actions">
-					<a class="waves-effect waves-green btn-flat"> Start </a>
-					<a class="waves-effect waves-orange btn-flat"> Pause </a>
-					<a class="waves-effect waves-red btn-flat"> Reset </a>
+					<a className="waves-effect waves-green btn-flat"> Start </a>
+					<a className="waves-effect waves-orange btn-flat"> Pause </a>
+					<a className="waves-effect waves-red btn-flat"> Reset </a>
 				</div>
 			</div>
 		)
