@@ -62,7 +62,7 @@ router.put('/:taskId', (req, res, next) => {
 })
 
 router.delete('/:taskId', (req, res, next) => {
-	Task.findByIdAndRemove(req.params.userId, (err, taskRemoved) => {
+	Task.findByIdAndRemove(req.params.taskId, (err, taskRemoved) => {
 		if (err) {
 			return res.status(400).json({
 				success: false,

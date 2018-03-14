@@ -240,3 +240,21 @@ export const assignTaskAsComplete = (task) => {
 	}
 }
 
+export const deleteTask = (task) => {
+	return async (dispatch, getState) => {
+		console.log(task);
+		const deletedTask = await axios.delete(`/api/tasks/${task._id}`);
+		console.log(deletedTask);
+		if (deletedTask.data.success) {
+			const tasksByCurrentUser = await axios.get('/api/tasks', {createdBy: deletedTask.data.data.createdBy})
+			console.log(tasksByCurrentUser);
+			if (tasksByCurrentUser.data.success) {
+				dispatch({
+					type: GET_ALL_TASKS_BY_CURRENT_USER,
+					payload: tasksByCurrentUser.data.data
+				})
+			}
+		}
+	}
+}
+
