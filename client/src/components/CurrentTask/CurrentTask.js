@@ -15,8 +15,14 @@ class CurrentTask extends Component {
 
 		$(document).ready(function(){
 		    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-	    	$('#currentTaskModal').modal();
+	    	$('#currentTaskModal').modal({
+	    		dismissible: false
+	    	});
 		});
+	}
+
+	componentWillUnmount() {
+
 	}
 
 	render() {
@@ -75,7 +81,7 @@ class CurrentTask extends Component {
 										(currentTask && currentTask.duration)
 											? (
 												<div className="timer-container">
-													<Timer duration={currentTask.duration}/>
+													<Timer duration={currentTask.duration} />
 												</div>
 											)
 											: ""
