@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import {connect} from 'react-redux';
 
+import SettingsForm from './../SettingsForm/SettingsForm';
 import './Settings.css';
 
 class Settings extends Component {
@@ -9,24 +10,22 @@ class Settings extends Component {
 		super(props);
 
 		$(document).ready(function(){
-		    $('.collapsible').collapsible();
+		    $('.delete-account-collapsible').collapsible();
 	  	});
 	}
 
 	render() {
 		const {currentUser} = this.props.auth;
-		console.log('CURRENT USER: ', currentUser);
 		return (
 			<div className="settings">
-				<h4> Settings </h4>
-				<div className="divider"></div>
+				<h3> Settings </h3>
 				<div className="settings-form-container">
-					Settings Form
+					<SettingsForm currentUser={currentUser} />
 				</div>
 				<div className="delete-account">
-					<ul className="collapsible" data-collapsible="accordion">
+					<ul className="collapsible delete-account-collapsible" data-collapsible="accordion">
 						<li>
-							<div className="collapsible-header active"><i className="material-icons">filter_drama</i> Delete Account Forever </div>
+							<div className="collapsible-header"><i className="material-icons red-text">delete</i> Delete Account Forever </div>
 							<div className="collapsible-body grey lighten-4">
 								<form>
 									<div className="row">
@@ -38,7 +37,7 @@ class Settings extends Component {
 							        </div>
 							        <div className="row">
 							        	<div className="col s12 m6 l4">
-							        		<button type="submit" className="waves-effect waves-light btn-flat red accent-2 white-text"> Delete account </button>
+							        		<button type="submit" className="waves-effect waves-light btn-flat red darken-2 white-text"> Delete account </button>
 							    		</div>
 							    	</div>
 							    </form>
