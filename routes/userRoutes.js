@@ -52,22 +52,47 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:userId', (req, res, next) => {
-	User.findByIdAndUpdate(req.params.userId, req.body, { new: true }, (err, userUpdated) => {
-		if (err) {
-			return res.status(400).json({
-				success: false,
-            	message: 'Oops! We are unable to update your profile at the moment. Please try again later.',
-            	data: err
-            });
-		}
-		if (userUpdated) {
-			return res.status(200).json({
-				success: true,
-	        	message: 'Great, your profile has been updated!',
-	        	data: userUpdated
-			})
-		}
-	})
+	if (req.body.password) {
+		bcrypt.hash(req.body.password, saltRounds)
+			.then((hash) => {
+			    // Store hash in your password DB.
+			    req.body.password = hash;
+			    User.findByIdAndUpdate(req.params.userId, req.body, { new: true }, (err, userUpdated) => {
+					if (err) {
+						return res.status(400).json({
+							success: false,
+			            	message: 'Oops! We are unable to update your profile at the moment. Please try again later.',
+			            	data: err
+			            });
+					}
+					if (userUpdated) {
+						return res.status(200).json({
+							success: true,
+				        	message: 'Great, your profile has been updated!',
+				        	data: userUpdated
+						})
+					}
+				})
+			});
+	} else {
+		User.findByIdAndUpdate(req.params.userId, req.body, { new: true }, (err, userUpdated) => {
+			if (err) {
+				return res.status(400).json({
+					success: false,
+	            	message: 'Oops! We are unable to update your profile at the moment. Please try again later.',
+	            	data: err
+	            });
+			}
+			if (userUpdated) {
+				return res.status(200).json({
+					success: true,
+		        	message: 'Great, your profile has been updated!',
+		        	data: userUpdated
+				})
+			}
+		})
+	}
+	
 });
 
 router.delete('/:userId', (req, res, next) => {

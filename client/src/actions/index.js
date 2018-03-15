@@ -268,3 +268,16 @@ export const setAsCurrentTask = (task) => {
 	}
 }
 
+export const updateCurrentUserProfile = (newProfile, userId) => {
+	return async (dispatch, getState) => {
+		const userUpdated = await axios.put(`/api/users/${userId}`, newProfile);
+		if (userUpdated.data.success) {
+			const currentUser = await axios.get('/auth/currentUser');
+			dispatch({
+				type: FETCH_CURRENT_USER,
+				payload: currentUser.data
+			})
+		}
+	}
+}
+
