@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import $ from 'jquery'
+import $ from 'jquery';
+import {connect} from 'react-redux';
 
 import './Settings.css';
 
@@ -13,6 +14,8 @@ class Settings extends Component {
 	}
 
 	render() {
+		const {currentUser} = this.props.auth;
+		console.log('CURRENT USER: ', currentUser);
 		return (
 			<div className="settings">
 				<h4> Settings </h4>
@@ -27,14 +30,14 @@ class Settings extends Component {
 							<div className="collapsible-body grey lighten-4">
 								<form>
 									<div className="row">
-								        <div class="input-field col s12 m6 l4">
+								        <div className="input-field col s12 m6 l4">
 								            <input placeholder="" id="password" type="password" />
 								            <label htmlFor="password"> Password </label>
 								        	<p className="red-text right-align"><sup> Required! </sup></p>
 								        </div>
 							        </div>
 							        <div className="row">
-							        	<div class="col s12 m6 l4">
+							        	<div className="col s12 m6 l4">
 							        		<button type="submit" className="waves-effect waves-light btn-flat red accent-2 white-text"> Delete account </button>
 							    		</div>
 							    	</div>
@@ -48,4 +51,11 @@ class Settings extends Component {
 	}
 }
 
-export default Settings;
+const mapStateToProps = (state) => {
+	return {
+		auth: state.auth
+	}
+}
+
+export default connect(mapStateToProps)(Settings);
+
