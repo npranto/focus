@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import {connect} from 'react-redux';
 
-import SettingsForm from './../SettingsForm/SettingsForm';
+import FormikSettingsForm from './../SettingsForm/SettingsForm';
 import './Settings.css';
 
 class Settings extends Component {
@@ -20,8 +20,13 @@ class Settings extends Component {
 			<div className="settings">
 				<h3> Settings </h3>
 				<div className="settings-form-container">
-					<SettingsForm currentUser={currentUser} />
+					{
+						currentUser
+							? <FormikSettingsForm currentUser={currentUser} />
+							: ""
+					}
 				</div>
+				<br />
 				<div className="delete-account">
 					<ul className="collapsible delete-account-collapsible" data-collapsible="accordion">
 						<li>
