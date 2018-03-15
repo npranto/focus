@@ -8,52 +8,52 @@ class Timer extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			timer: null,
-			hourLeft: this.props.duration.hour,
-			minuteLeft: this.props.duration.minute,
-			secondLeft: this.props.duration && this.props.duration.second ? this.props.duration.hour: 0,
-			counter: this.secondLeft + (this.minuteLeft * 60) + (this.hourLeft * 60 * 60)
-		}
+		// this.state = {
+		// 	timer: null,
+		// 	hourLeft: this.props.duration.hour,
+		// 	minuteLeft: this.props.duration.minute,
+		// 	secondLeft: this.props.duration && this.props.duration.second ? this.props.duration.hour: 0,
+		// 	counter: this.secondLeft + (this.minuteLeft * 60) + (this.hourLeft * 60 * 60)
+		// }
 	}
 
-	componentDidMount() {
-		this.setState((prevState) => {
-			let minuteToSeconds = prevState.minuteLeft * 60;
-			let hourToSeconds = prevState.hourLeft * 60 * 60;
-			return {
-				counter: prevState.secondLeft + minuteToSeconds + hourToSeconds
-			}
-		})
-	}
+	// componentDidMount() {
+	// 	this.setState((prevState) => {
+	// 		let minuteToSeconds = prevState.minuteLeft * 60;
+	// 		let hourToSeconds = prevState.hourLeft * 60 * 60;
+	// 		return {
+	// 			counter: prevState.secondLeft + minuteToSeconds + hourToSeconds
+	// 		}
+	// 	})
+	// }
 
-	componentWillUnmount() {
-		clearInterval(this.state.timer);
-	}
+	// componentWillUnmount() {
+	// 	clearInterval(this.state.timer);
+	// }
 
-	startTimer() {
-		let timer = setInterval(() => {
-			this.tick();
-		}, 500)
-		this.setState({
-			timer: timer
-		});
-	}
+	// startTimer() {
+	// 	let timer = setInterval(() => {
+	// 		this.tick();
+	// 	}, 500)
+	// 	this.setState({
+	// 		timer: timer
+	// 	});
+	// }
 
-	tick() {
-		this.setState((prevState) => {
-			let newCounter = prevState.counter - 1;
-			let newHourLeft = Math.floor(newCounter / (60 * 60));
-			let newMinuteLeft = (Math.floor(newCounter / 60)) - (newHourLeft * 60);
-			let newSecondLeft = Math.floor(((newCounter / 60) - Math.floor(newCounter / 60)) * 60);
-			return {
-				hourLeft: newHourLeft,
-				minuteLeft: newMinuteLeft,
-				secondLeft: newSecondLeft,
-				counter: newCounter
-			}
-		})
-	}
+	// tick() {
+	// 	this.setState((prevState) => {
+	// 		let newCounter = prevState.counter - 1;
+	// 		let newHourLeft = Math.floor(newCounter / (60 * 60));
+	// 		let newMinuteLeft = (Math.floor(newCounter / 60)) - (newHourLeft * 60);
+	// 		let newSecondLeft = Math.floor(((newCounter / 60) - Math.floor(newCounter / 60)) * 60);
+	// 		return {
+	// 			hourLeft: newHourLeft,
+	// 			minuteLeft: newMinuteLeft,
+	// 			secondLeft: newSecondLeft,
+	// 			counter: newCounter
+	// 		}
+	// 	})
+	// }
 
 	formatHour(hour) {
 		return (hour < 10) ? `0${hour}` : `${hour}`;
@@ -68,12 +68,13 @@ class Timer extends Component {
 	}
 
 	render() {
+		const {duration} = this.props;
 		return (
 			<div className="timer">
 				<div className="timer-animation">
 					<div className="clock">
-						<p className="second-label center-align"> {this.formatSecond(this.state.secondLeft)} </p>
-						<p className="hour-minute-label center-align"> {this.formatHour(this.state.hourLeft)}:{this.formatMinute(this.state.minuteLeft)} </p>
+						<p className="second-label center-align"> {this.formatSecond(duration.second ? duration.second : 0)} </p>
+						<p className="hour-minute-label center-align"> {this.formatHour(duration.hour)}:{this.formatMinute(duration.minute)} </p>
 					</div>
 				</div>
 				<div className="timer-actions">
