@@ -1,0 +1,7 @@
+.settings {
+	width: 100%;
+	padding: 1% 5%;
+}
+.settings .delete-account input {
+	margin-bottom: 0;
+}
