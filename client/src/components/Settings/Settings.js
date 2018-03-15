@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import {connect} from 'react-redux';
 
+import * as actionCreators from './../../actions';
 import FormikSettingsForm from './../SettingsForm/SettingsForm';
 import './Settings.css';
 
@@ -14,6 +15,20 @@ class Settings extends Component {
 	  	});
 	}
 
+	submitSettingsForm(values, userId) {
+		let newProfile = {};
+		if (values.firstName) {
+			newProfile['firstName'] = values.firstName;
+		}
+		if (values.lastName) {
+			newProfile['lastName'] = values.lastName;
+		}
+		if (values.newPassword) {
+			newProfile['password'] = values.newPassword;
+		}
+		this.props.updateCurrentUserProfile(newProfile, userId);
+	}
+
 	render() {
 		const {currentUser} = this.props.auth;
 		return (
@@ -22,7 +37,7 @@ class Settings extends Component {
 				<div className="settings-form-container">
 					{
 						currentUser
-							? <FormikSettingsForm currentUser={currentUser} />
+							? <FormikSettingsForm currentUser={currentUser} onSubmitSettingsForm={(values) => this.submitSettingsForm(values, currentUser._id)}/>
 							: ""
 					}
 				</div>
@@ -61,5 +76,5 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(Settings);
+export default connect(mapStateToProps, actionCreators)(Settings);
 
