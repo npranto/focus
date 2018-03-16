@@ -5,6 +5,7 @@ const Task = mongoose.model('Task');
 
 // TASK ROUTES
 router.get('/', (req, res, next) => {
+	console.log('REQUEST USER >>>>> \n', req.user);
 	Task.find({createdBy: req.user._id}, (err, tasksFound) => {
 		if (err) {
 			return res.status(400).json({
