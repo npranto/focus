@@ -10,7 +10,9 @@ class SignInForm extends Component {
 
 	onSignInFormSubmit(form) {
 		this.props.loginWithEmailAndPassword(form);
-		this.props.getAllTasksByCurrentUser(this.props.auth.currentUser._id);
+		setTimeout(() => {
+			this.props.getAllTasksByCurrentUser(this.props.auth.currentUser._id);
+		}, 1000);
 	}
 
 	renderInputFields(inputFields) {
