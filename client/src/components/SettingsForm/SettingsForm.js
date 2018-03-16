@@ -17,9 +17,8 @@ class SettingsForm extends Component {
 	}
 
 	render() {
-		const {currentUser, values, errors, touched, isSubmitting} = this.props;
-		console.log(touched);
-
+		const {currentUser, values, errors, touched, isSubmitting, isValid} = this.props;
+		
 		return (
 			<Form id="settingsForm">
 				<ul className="collapsible settings-form-collapsible" data-collapsible="accordion">
@@ -99,7 +98,7 @@ class SettingsForm extends Component {
 					</li>*/}
 				</ul>
 	        	<div className="col s12 m6 l4">
-	        		<button type="submit" disabled={isSubmitting} className="waves-effect waves-light btn-flat red darken-2 white-text"> Update </button>
+	        		<button type="submit" disabled={isSubmitting || !isValid} className="waves-effect waves-light btn-flat red darken-2 white-text"> Update </button>
 	    		</div>
 			</Form>
 		)

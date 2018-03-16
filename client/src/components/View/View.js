@@ -8,7 +8,7 @@ import SignUp from './../SignUp/SignUp';
 import TermsOfConditions from './../TermsOfConditions/TermsOfConditions';
 import PrivacyPolicy from './../PrivacyPolicy/PrivacyPolicy';
 import Dashboard from './../Dashboard/Dashboard';
-import Settings from './../Settings/Settings';
+import FormikSettings from './../Settings/Settings';
 import './View.css';
 
 const PublicRouteIf = (props) => {
@@ -73,7 +73,7 @@ class View extends Component {
 					path="/users/:userId/settings" 
 					auth={auth} 
 					redirectTo="/sign-in"
-					component={Settings} />
+					component={FormikSettings} />
 			</div>
 		)
 	}

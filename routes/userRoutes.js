@@ -100,7 +100,7 @@ router.delete('/:userId', (req, res, next) => {
 		if (err) {
 			return res.status(400).json({
 				success: false,
-            	message: 'Oops! We are unable to delete your account at the moment. Please try again later.',
+            	message: 'Oops! Unable to delete your account right now, try again later',
             	data: err
             });
 		}
@@ -113,5 +113,35 @@ router.delete('/:userId', (req, res, next) => {
 		}
 	})
 });
+
+router.post('/:userId/checkPassword', (req, res, next) => {
+	console.log(req.body);
+	User.findById(req.params.userId, (err, userFound) => {
+		if (err) {
+			return res.status(400).json({
+				success: false,
+            	message: 'Oops! Unable to locate you as a valid user',
+            	data: err
+            });
+		}
+		if (userFound) {
+			bcrypt.compare(req.body.password, userFound.password)
+				.then((match) => {
+				    if (!match) {
+						return res.status(200).json({
+							success: false,
+			            	message: 'Incorrect password, try again!',
+			            	data: null
+			            });
+				    }
+				    return res.status(200).json({
+						success: true,
+		            	message: 'Passwords match!',
+		            	data: null
+		            });
+				});
+		}
+	})
+})
 
 module.exports = router;
