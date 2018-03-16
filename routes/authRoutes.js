@@ -26,7 +26,6 @@ router.post('/local', (req, res, next) => {
 				data: null
 			})
 		}
-		console.log(err);
 		req.logIn(user, (err) => {
 			if (err) { 
 				return next(err); 
