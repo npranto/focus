@@ -81,7 +81,7 @@ class ForgetPassword extends Component {
 			<li className="z-depth-4">
 				<div 
 					className={`collapsible-header ${letsSignIn.done ? 'fade' : ''} ${letsSignIn.active ? 'active' : ''}`}>
-					<i className="material-icons">update</i> 
+					<i className="material-icons">call_made</i> 
 					Let's Sign In
 				</div>
 				<div className="collapsible-body">

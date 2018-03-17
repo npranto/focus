@@ -14,6 +14,9 @@ class VerifyCodeInForgetPassword extends Component {
 		return (
 			<Form className="verify-code-in-forget-password">
 				<div className="row">
+					<p className="flow-text"> Check your email for a verification code ( i.e., <code>ByamOdWV</code> ) </p>
+				</div>
+				<div className="row">
 			        <div className="input-field col s12 m6 l4">
 			            <Field 
 			            	name="code"

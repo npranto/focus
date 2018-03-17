@@ -36,6 +36,11 @@ const userSchema = new Schema({
 		type: String,
 		trim: true,
 		maxlength: 100
+	},
+	resetPasswordTokens: {
+		type: Array,
+		default: [],
+		required: true
 	}
 })
 

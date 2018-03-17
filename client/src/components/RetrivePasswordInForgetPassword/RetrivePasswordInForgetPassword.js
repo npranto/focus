@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withFormik, Form, Field} from 'formik';
-import yup from 'yup';
+import axios from 'axios';
 
 import './RetrivePasswordInForgetPassword.css';
 
@@ -13,6 +13,9 @@ class RetrivePasswordInForgetPassword extends Component {
 		const {values, touched, errors, isValid, isSubmitting} = this.props;
 		return (
 			<Form className="retrive-password-in-forget-password">
+				<div className="row">
+					<p className="flow-text"> Ok, let's get you focusing quick, what's your email? </p>
+				</div>
 				<div className="row">
 			        <div className="input-field col s12 m6 l4">
 			            <Field 
@@ -54,9 +57,10 @@ const FormikRetrivePasswordInForgetPassword = withFormik({
 		}
 	},
 	validate,
-	handleSubmit(values, {props}) {
+	async handleSubmit(values, {props}) {
 		console.log(values);
-		props.onTransitioningFromStep();
+		// const checkEmailStatus = await axios.post('/api/users/checkEmail', values)
+		// props.onTransitioningFromStep();
 	}
 })(RetrivePasswordInForgetPassword);
 
