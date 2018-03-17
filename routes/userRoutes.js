@@ -2,9 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const User = mongoose.model('User');
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const voucher_codes = require('voucher-code-generator');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // USER ROUTES
 router.post('/', (req, res, next) => {
@@ -167,7 +169,7 @@ router.post('/checkEmail', (req, res, next) => {
 			    length: 10
 			}).pop();
 			// add code to user model
-			User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: generatedCode}, (err, userUpdatedWithToken) => {
+			User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: [...userFound.resetPasswordTokens, generatedCode]}, (err, userUpdatedWithToken) => {
 				if (err) {
 					return res.status(400).json({
 						success: false,
@@ -177,6 +179,40 @@ router.post('/checkEmail', (req, res, next) => {
 				}
 				if (userUpdatedWithToken) {
 					// send email to user with code
+					const msg = {
+						to: 'npranto@gmail.com',
+						from: 'noreply@focus.dev',
+						subject: 'Focus: Reset Password Code',
+						text: `${userUpdatedWithToken.firstName} ${userUpdatedWithToken.firstName}: Copy the code and paste it to "Verify Code" form`,
+						html: `
+							<div class="reset-password-template">
+								<h1> Hello ${userUpdatedWithToken.firstName}, </h1>
+								<p class="flow-text" style="font-size: 14px">
+									You are just a few steps away, I promise! Just copy the code you see below and paste it in "Verify Code" form and press "Verify Code." Then, you can move onto the next step in successfully resetting your password.
+								</p>
+								<h3> Code: ${userUpdatedWithToken.resetPasswordTokens.pop()} </h3>
+								<br />
+								<p style="font-size: 14px"> Thank you for using Focus, hope you are enjoying it!</p>
+								<p style="font-size: 14px; color: gray">Focus</p>
+							<div>
+						`,
+					};
+					sgMail.send(msg)
+						.then((json) => {
+							if (json) {
+								return res.status(200).json({
+									success: true,
+					            	message: 'Code sent to email!',
+					            	data: userUpdatedWithToken
+					            });
+							} else {
+								return res.status(200).json({
+									success: false,
+					            	message: 'Oops! Unable to email verification code, try again later',
+					            	data: err
+					            });
+							}
+						})
 					
 				}
 			})

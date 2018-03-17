@@ -17,7 +17,8 @@ import {
 	CHANGE_TASK_VIEW_MODE,
 	SET_EDITING_TASK,
 	SET_AS_CURRENT_TASK,
-	TRANSITIONING_FROM_STEP
+	TRANSITIONING_FROM_STEP,
+	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -298,4 +299,12 @@ export const transitioningFromStep = (step) => {
 	}
 }
 
+export const saveUserIdForResetPasswordToken = (userId) => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN,
+			payload: userId
+		})
+	}
+}
 

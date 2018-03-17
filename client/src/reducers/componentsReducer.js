@@ -14,7 +14,8 @@ import {
 	CHANGE_TASK_VIEW_MODE,
 	SET_EDITING_TASK,
 	SET_AS_CURRENT_TASK,
-	TRANSITIONING_FROM_STEP
+	TRANSITIONING_FROM_STEP,
+	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN
 } from './../actions/types.js';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -94,6 +95,11 @@ const componentsReducer = (state = defaultStore.components, action) => {
 		case TRANSITIONING_FROM_STEP: {
 			let copy = cloneDeep(state);
 			copy.forgetPassword = action.payload;
+			return copy;
+		}
+		case SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN: {
+			let copy = cloneDeep(state);
+			copy.forgetPassword.resettingPasswordForUserId = action.payload;
 			return copy;
 		}
 	}
