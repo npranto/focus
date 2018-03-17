@@ -5,6 +5,7 @@ import {Route, withRouter, Redirect} from 'react-router-dom';
 import Landing from './../Landing/Landing';
 import SignIn from './../SignIn/SignIn';
 import SignUp from './../SignUp/SignUp';
+import ForgetPassword from './../ForgetPassword/ForgetPassword';
 import TermsOfConditions from './../TermsOfConditions/TermsOfConditions';
 import PrivacyPolicy from './../PrivacyPolicy/PrivacyPolicy';
 import Dashboard from './../Dashboard/Dashboard';
@@ -62,6 +63,11 @@ class View extends Component {
 					auth={auth} 
 					redirectTo={(auth && auth.currentUser) ? `/users/${auth.currentUser._id}/dashboard` : '/'} 
 					component={SignUp} />
+				<PublicRouteIf 
+					path="/forget-password" 
+					auth={auth} 
+					redirectTo={(auth && auth.currentUser) ? `/users/${auth.currentUser._id}/dashboard` : '/'} 
+					component={ForgetPassword} />
 				<Route path="/terms-of-conditions" component={TermsOfConditions} />
 				<Route path="/privacy-policy" component={PrivacyPolicy} />
 				<ProtectedRouteIf 
