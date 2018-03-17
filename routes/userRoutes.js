@@ -167,55 +167,101 @@ router.post('/checkEmail', (req, res, next) => {
 			// create a new code
 			let generatedCode = voucher_codes.generate({
 			    length: 10
-			}).pop();
+			});
+
+			console.log('GENERATED CODE: ', generatedCode);
 			// add code to user model
-			User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: [...userFound.resetPasswordTokens, generatedCode]}, (err, userUpdatedWithToken) => {
-				if (err) {
-					return res.status(400).json({
-						success: false,
-		            	message: 'Oops! Unable to update your profile with reset password token, try again later',
-		            	data: err
-		            });
-				}
-				if (userUpdatedWithToken) {
-					// send email to user with code
-					const msg = {
-						to: 'npranto@gmail.com',
-						from: 'noreply@focus.dev',
-						subject: 'Focus: Reset Password Code',
-						text: `${userUpdatedWithToken.firstName} ${userUpdatedWithToken.firstName}: Copy the code and paste it to "Verify Code" form`,
-						html: `
-							<div class="reset-password-template">
-								<h1> Hello ${userUpdatedWithToken.firstName}, </h1>
-								<p class="flow-text" style="font-size: 14px">
-									You are just a few steps away, I promise! Just copy the code you see below and paste it in "Verify Code" form and press "Verify Code." Then, you can move onto the next step in successfully resetting your password.
-								</p>
-								<h3> Code: ${userUpdatedWithToken.resetPasswordTokens.pop()} </h3>
-								<br />
-								<p style="font-size: 14px"> Thank you for using Focus, hope you are enjoying it!</p>
-								<p style="font-size: 14px; color: gray">Focus</p>
-							<div>
-						`,
-					};
-					sgMail.send(msg)
-						.then((json) => {
-							if (json) {
-								return res.status(200).json({
-									success: true,
-					            	message: 'Code sent to email!',
-					            	data: userUpdatedWithToken
-					            });
-							} else {
-								return res.status(200).json({
-									success: false,
-					            	message: 'Oops! Unable to email verification code, try again later',
-					            	data: err
-					            });
-							}
-						})
-					
-				}
-			})
+			if (generatedCode) {
+				User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: [...userFound.resetPasswordTokens, generatedCode[0]]}, (err, userUpdatedWithToken) => {
+					if (err) {
+						return res.status(400).json({
+							success: false,
+			            	message: 'Oops! Unable to update your profile with reset password token, try again later',
+			            	data: err
+			            });
+					}
+					if (userUpdatedWithToken) {
+						console.log('userUpdatedWithToken', userUpdatedWithToken);
+						// send email to user with code
+						const msg = {
+							to: 'npranto@gmail.com',
+							from: 'noreply@focus.dev',
+							subject: 'Focus: Reset Password Code',
+							text: `${userUpdatedWithToken.firstName} ${userUpdatedWithToken.firstName}: Copy the code and paste it to "Verify Code" form`,
+							html: `
+								<div class="reset-password-template">
+									<h1> Hello ${userUpdatedWithToken.firstName}, </h1>
+									<p class="flow-text" style="font-size: 14px">
+										You are just a few steps away, I promise! Just copy the code you see below and paste it in "Verify Code" form and press "Verify Code." Then, you can move onto the next step in successfully resetting your password.
+									</p>
+									<h3> Code: ${userUpdatedWithToken.resetPasswordTokens[userUpdatedWithToken.resetPasswordTokens.length-1]} </h3>
+									<br />
+									<p style="font-size: 14px"> Thank you for using Focus, hope you are enjoying it!</p>
+									<p style="font-size: 14px; color: gray">Focus</p>
+								<div>
+							`,
+						};
+						sgMail.send(msg)
+							.then((json) => {
+								if (json) {
+									return res.status(200).json({
+										success: true,
+						            	message: 'Code sent to email!',
+						            	data: userUpdatedWithToken
+						            });
+								} else {
+									return res.status(200).json({
+										success: false,
+						            	message: 'Oops! Unable to email verification code, try again later',
+						            	data: err
+						            });
+								}
+							})
+						
+					}
+				})
+			}
+			
+		}
+	})
+})
+
+router.put('/:userId/verifyCode', (req, res, next) => {
+	User.findById(req.params.userId, (err, userFound) => {
+		if (err) {
+			return res.status(400).json({
+				success: false,
+            	message: 'Oops! Unable to find user on database',
+            	data: err
+            });
+		}
+		if (userFound) {
+			const codeFound = userFound.resetPasswordTokens[userFound.resetPasswordTokens.length-1] === req.body.code;
+			if (!codeFound) {
+				return res.status(200).json({
+					success: false,
+	            	message: 'Incorrect token! Check email for most recent code',
+	            	data: err
+	            });
+			}
+			if (codeFound) {
+				User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: []}, (err, userUpdated) => {
+					if (err) {
+						return res.status(400).json({
+							success: false,
+			            	message: 'Oops! Unable to update user reset password token',
+			            	data: err
+			            });
+					}
+					if (userUpdated) {
+						return res.status(200).json({
+							success: true,
+			            	message: 'User has been updated with no more reset password tokens',
+			            	data: userUpdated
+			            });
+					}
+				})
+			}
 		}
 	})
 })

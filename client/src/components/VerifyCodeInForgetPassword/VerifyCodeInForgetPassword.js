@@ -59,6 +59,7 @@ const FormikVerifyCodeInForgetPassword = withFormik({
 	validate,
 	handleSubmit(values, {props}) {
 		console.log(values);
+		// const codeVerifiedStatus = axios.put(`/api/users/${props.userId}`, values);
 		props.onTransitioningFromStep();
 	}
 })(VerifyCodeInForgetPassword);

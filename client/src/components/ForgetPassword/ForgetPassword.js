@@ -44,7 +44,7 @@ class ForgetPassword extends Component {
 		)
 	}
 
-	renderVerifyCode(verifyCode) {
+	renderVerifyCode(verifyCode, resettingPasswordForUserId) {
 		return (
 			<li className={`z-depth-4 ${verifyCode.done ? 'fade' : ''}`}>
 				<div 
@@ -54,7 +54,9 @@ class ForgetPassword extends Component {
 				</div>
 				<div className="collapsible-body">
 					<div className="verify-code-container">
-						<FormikVerifyCodeInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(verifyCode)} />
+						<FormikVerifyCodeInForgetPassword 
+							userId={resettingPasswordForUserId} 
+							onTransitioningFromStep={() => this.props.transitioningFromStep(verifyCode)} />
 					</div>
 				</div>
 			</li>
@@ -97,7 +99,7 @@ class ForgetPassword extends Component {
 	}
 
 	render() {
-		const {retrivePassword, verifyCode, updateNewPassword, letsSignIn} = this.props.components.forgetPassword;
+		const {retrivePassword, verifyCode, updateNewPassword, letsSignIn, resettingPasswordForUserId} = this.props.components.forgetPassword;
 		return (
 			<div className="forget-password">
 				<h3> Forget Password </h3>
@@ -110,7 +112,7 @@ class ForgetPassword extends Component {
 					}
 					{
 						verifyCode.show
-							? this.renderVerifyCode(verifyCode) 
+							? this.renderVerifyCode(verifyCode, resettingPasswordForUserId) 
 							: ""
 					}
 					{
