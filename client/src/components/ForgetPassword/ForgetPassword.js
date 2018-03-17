@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import $ from 'jquery';
 
+import * as actionCreators from './../../actions';
 import FormikRetrivePasswordInForgetPassword from './../RetrivePasswordInForgetPassword/RetrivePasswordInForgetPassword';
 import FormikVerifyCodeInForgetPassword from './../VerifyCodeInForgetPassword/VerifyCodeInForgetPassword';
 import FormikUpdateNewPasswordInForgetPassword from './../UpdateNewPasswordInForgetPassword/UpdateNewPasswordInForgetPassword';
+import LetsSignInInForgetPassword from './../LetsSignInInForgetPassword/LetsSignInInForgetPassword';
 import './ForgetPassword.css';
 
 class ForgetPassword extends Component {
@@ -15,77 +17,109 @@ class ForgetPassword extends Component {
 		$(document).ready(function(){
 			$('.forget-password-collapsible').collapsible();
 		});
+
+		// style={{pointerEvents: 'none', opacity: 0.3}}
 	}
 
-	renderRetrivePassword(showRetrivePassword) {
+	renderRetrivePassword(retrivePassword) {
 		return (
 			<li className="z-depth-4">
-				<div class={`collapsible-header ${showRetrivePassword ? 'active' : ''}`}><i class="material-icons">call_missed_outgoing</i> Retrive Password </div>
+				<div 
+					class={`collapsible-header ${retrivePassword.show ? 'active' : ''}`} 
+					style={retrivePassword.done ? {pointerEvents: 'none', opacity: 0.3} : {}}>
+					<i class="material-icons">call_missed_outgoing</i> 
+					Retrive Password 
+				</div>
 				<div class="collapsible-body">
-					<div className="retrive-password">
-						<FormikRetrivePasswordInForgetPassword />
+					<div className="retrive-password-container">
+						<FormikRetrivePasswordInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(retrivePassword)} />
 					</div>
 				</div>
 			</li>
 		)
 	}
 
-	renderVerifyCode(showVerifyCode) {
+	renderVerifyCode(verifyCode) {
 		return (
 			<li className="z-depth-4">
-				<div class={`collapsible-header ${showVerifyCode ? 'active' : ''}`}><i class="material-icons">code</i> Verify Code </div>
+				<div 
+					class={`collapsible-header ${verifyCode.show ? 'active' : ''}`} 
+					style={verifyCode.done ? {pointerEvents: 'none', opacity: 0.3} : {}}>
+					<i class="material-icons">code</i> 
+					Verify Code 
+				</div>
 				<div class="collapsible-body">
-					<div className="retrive-password">
-						<FormikVerifyCodeInForgetPassword />
+					<div className="verify-code-container">
+						<FormikVerifyCodeInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(verifyCode)} />
 					</div>
 				</div>
 			</li>
 		)
 	}
 
-	renderUpdateNewPassword(showUpdateNewPassword) {
+	renderUpdateNewPassword(updateNewPassword) {
 		return (
 			<li className="z-depth-4">
-				<div class={`collapsible-header ${showUpdateNewPassword ? 'active' : ''}`}><i class="material-icons">call_missed_outgoing</i> Retrive Password </div>
+				<div 
+					class={`collapsible-header ${updateNewPassword.show ? 'active' : ''}`} 
+					style={updateNewPassword.done ? {pointerEvents: 'none', opacity: 0.3} : {}}>
+					<i class="material-icons">update</i> 
+					Update New Password 
+				</div>
 				<div class="collapsible-body">
-					<div className="retrive-password">
-						<FormikUpdateNewPasswordInForgetPassword />
+					<div className="update-new-password-container">
+						<FormikUpdateNewPasswordInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(updateNewPassword)} />
 					</div>
 				</div>
 			</li>
 		)
 	}
 
-	renderLetsSignIn(showLetsSignIn) {
+	renderLetsSignIn(letsSignIn) {
 		return (
 			<li className="z-depth-4">
-				<div class={`collapsible-header ${showLetsSignIn ? 'active' : ''}`}><i class="material-icons">call_missed_outgoing</i> Retrive Password </div>
+				<div 
+					class={`collapsible-header ${letsSignIn.show ? 'active' : ''}`} 
+					style={letsSignIn.done ? {pointerEvents: 'none', opacity: 0.3} : {}}>
+					<i class="material-icons">update</i> 
+					Let's Sign In
+				</div>
 				<div class="collapsible-body">
-					<div className="retrive-password">
-						<FormikRetrivePasswordInForgetPassword />
+					<div className="lets-sign-in-container">
+						<LetsSignInInForgetPassword />
 					</div>
 				</div>
 			</li>
+			
 		)
 	}
 
 	render() {
-		const {showRetrivePassword, showVerifyCode, showUpdateNewPassword, showLetsSignIn} = this.props.components.forgetPassword;
+		const {retrivePassword, verifyCode, updateNewPassword, letsSignIn} = this.props.components.forgetPassword;
 		return (
 			<div className="forget-password">
 				<h3> Forget Password </h3>
 
 				<ul class="forget-password-collapsible" data-collapsible="accordion">
 					{
-						showRetrivePassword 
-							? this.renderRetrivePassword(showRetrivePassword) 
-							: showVerifyCode 
-								? this.renderVerifyCode(showVerifyCode) 
-								: showUpdateNewPassword 
-									? this.renderUpdateNewPassword(showUpdateNewPassword) 
-									: showLetsSignIn 
-										? this.renderLetsSignIn(showLetsSignIn) 
-										: ""
+						retrivePassword
+							? this.renderRetrivePassword(retrivePassword) 
+							: ""
+					}
+					{
+						verifyCode
+							? this.renderVerifyCode(verifyCode) 
+							: ""
+					}
+					{
+						updateNewPassword
+							? this.renderUpdateNewPassword(updateNewPassword) 
+							: ""
+					}
+					{
+						letsSignIn
+							? this.renderLetsSignIn(letsSignIn) 
+							: ""
 					}
 				</ul>
 			</div>
@@ -99,5 +133,5 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(ForgetPassword);
+export default connect(mapStateToProps, actionCreators)(ForgetPassword);
 

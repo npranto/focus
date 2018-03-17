@@ -247,10 +247,30 @@ const defaultStore = {
 			startTime: null
 		},
 		forgetPassword: {
-			showRetrivePassword: false,
-			showVerifyCode: false,
-			showUpdateNewPassword: true,
-			showLetsSignIn: false
+			retrivePassword: {
+				step: 'retrivePassword',
+				show: true,
+				done: false,
+				nextStep: 'verifyCode'
+			},
+			verifyCode: {
+				step: 'verifyCode',
+				show: false,
+				done: false,
+				nextStep: 'updateNewPassword'
+			},
+			updateNewPassword: {
+				step: 'updateNewPassword',
+				show: false,
+				done: false,
+				nextStep: 'letsSignIn'
+			},
+			letsSignIn: {
+				step: 'letsSignIn',
+				show: false,
+				done: false,
+				nextStep: null
+			},
 		}
 	}
 }

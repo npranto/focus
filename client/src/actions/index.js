@@ -16,7 +16,8 @@ import {
 	UPDATE_START_TIME,
 	CHANGE_TASK_VIEW_MODE,
 	SET_EDITING_TASK,
-	SET_AS_CURRENT_TASK
+	SET_AS_CURRENT_TASK,
+	TRANSITION_FROM_STEP
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -280,4 +281,7 @@ export const updateCurrentUserProfile = (newProfile, userId) => {
 		}
 	}
 }
+
+
+
 

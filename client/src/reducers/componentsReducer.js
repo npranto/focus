@@ -13,7 +13,8 @@ import {
 	UPDATE_START_TIME,
 	CHANGE_TASK_VIEW_MODE,
 	SET_EDITING_TASK,
-	SET_AS_CURRENT_TASK
+	SET_AS_CURRENT_TASK,
+	TRANSITION_FROM_STEP
 } from './../actions/types.js';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -88,6 +89,11 @@ const componentsReducer = (state = defaultStore.components, action) => {
 		case SET_AS_CURRENT_TASK: {
 			let copy = cloneDeep(state);
 			copy.dashboard.currentTask = action.payload;
+			return copy;
+		}
+		case TRANSITION_FROM_STEP: {
+			let copy = cloneDeep(state);
+			copy.forgetPassword = action.payload;
 			return copy;
 		}
 	}

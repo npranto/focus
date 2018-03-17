@@ -54,8 +54,9 @@ const FormikRetrivePasswordInForgetPassword = withFormik({
 		}
 	},
 	validate,
-	handleSubmit(values) {
+	handleSubmit(values, {props}) {
 		console.log(values);
+		props.onTransitioningFromStep();
 	}
 })(RetrivePasswordInForgetPassword);
 
