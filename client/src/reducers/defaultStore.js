@@ -245,6 +245,12 @@ const defaultStore = {
 				}
 			},
 			startTime: null
+		},
+		forgetPassword: {
+			showRetrivePassword: false,
+			showVerifyCode: false,
+			showUpdateNewPassword: true,
+			showLetsSignIn: false
 		}
 	}
 }
