@@ -17,20 +17,23 @@ class ForgetPassword extends Component {
 		$(document).ready(function(){
 			$('.forget-password-collapsible').collapsible();
 		});
+	}
 
-		// style={{pointerEvents: 'none', opacity: 0.3}}
+	componentDidUpdate() {
+		$(document).ready(function(){
+			$('.forget-password-collapsible').collapsible();
+		});
 	}
 
 	renderRetrivePassword(retrivePassword) {
 		return (
-			<li className="z-depth-4">
+			<li className={`z-depth-4 ${retrivePassword.done ? 'fade' : ''}`}>
 				<div 
-					class={`collapsible-header ${retrivePassword.show ? 'active' : ''}`} 
-					style={retrivePassword.done ? {pointerEvents: 'none', opacity: 0.3} : {}}>
-					<i class="material-icons">call_missed_outgoing</i> 
+					className={`collapsible-header ${retrivePassword.active ? 'active' : ''}`}>
+					<i className="material-icons">call_missed_outgoing</i> 
 					Retrive Password 
 				</div>
-				<div class="collapsible-body">
+				<div className="collapsible-body">
 					<div className="retrive-password-container">
 						<FormikRetrivePasswordInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(retrivePassword)} />
 					</div>
@@ -41,14 +44,13 @@ class ForgetPassword extends Component {
 
 	renderVerifyCode(verifyCode) {
 		return (
-			<li className="z-depth-4">
+			<li className={`z-depth-4 ${verifyCode.done ? 'fade' : ''}`}>
 				<div 
-					class={`collapsible-header ${verifyCode.show ? 'active' : ''}`} 
-					style={verifyCode.done ? {pointerEvents: 'none', opacity: 0.3} : {}}>
-					<i class="material-icons">code</i> 
+					className={`collapsible-header  ${verifyCode.active ? 'active' : ''}`}>
+					<i className="material-icons">code</i> 
 					Verify Code 
 				</div>
-				<div class="collapsible-body">
+				<div className="collapsible-body">
 					<div className="verify-code-container">
 						<FormikVerifyCodeInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(verifyCode)} />
 					</div>
@@ -59,14 +61,13 @@ class ForgetPassword extends Component {
 
 	renderUpdateNewPassword(updateNewPassword) {
 		return (
-			<li className="z-depth-4">
+			<li className={`z-depth-4 ${updateNewPassword.done ? 'fade' : ''}`}>
 				<div 
-					class={`collapsible-header ${updateNewPassword.show ? 'active' : ''}`} 
-					style={updateNewPassword.done ? {pointerEvents: 'none', opacity: 0.3} : {}}>
-					<i class="material-icons">update</i> 
+					className={`collapsible-header ${updateNewPassword.active ? 'active' : ''}`}>
+					<i className="material-icons">update</i> 
 					Update New Password 
 				</div>
-				<div class="collapsible-body">
+				<div className="collapsible-body">
 					<div className="update-new-password-container">
 						<FormikUpdateNewPasswordInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(updateNewPassword)} />
 					</div>
@@ -79,12 +80,11 @@ class ForgetPassword extends Component {
 		return (
 			<li className="z-depth-4">
 				<div 
-					class={`collapsible-header ${letsSignIn.show ? 'active' : ''}`} 
-					style={letsSignIn.done ? {pointerEvents: 'none', opacity: 0.3} : {}}>
-					<i class="material-icons">update</i> 
+					className={`collapsible-header ${letsSignIn.done ? 'fade' : ''} ${letsSignIn.active ? 'active' : ''}`}>
+					<i className="material-icons">update</i> 
 					Let's Sign In
 				</div>
-				<div class="collapsible-body">
+				<div className="collapsible-body">
 					<div className="lets-sign-in-container">
 						<LetsSignInInForgetPassword />
 					</div>
@@ -100,24 +100,24 @@ class ForgetPassword extends Component {
 			<div className="forget-password">
 				<h3> Forget Password </h3>
 
-				<ul class="forget-password-collapsible" data-collapsible="accordion">
+				<ul className="forget-password-collapsible" data-collapsible="accordion">
 					{
-						retrivePassword
+						retrivePassword.show
 							? this.renderRetrivePassword(retrivePassword) 
 							: ""
 					}
 					{
-						verifyCode
+						verifyCode.show
 							? this.renderVerifyCode(verifyCode) 
 							: ""
 					}
 					{
-						updateNewPassword
+						updateNewPassword.show
 							? this.renderUpdateNewPassword(updateNewPassword) 
 							: ""
 					}
 					{
-						letsSignIn
+						letsSignIn.show
 							? this.renderLetsSignIn(letsSignIn) 
 							: ""
 					}

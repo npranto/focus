@@ -17,7 +17,7 @@ import {
 	CHANGE_TASK_VIEW_MODE,
 	SET_EDITING_TASK,
 	SET_AS_CURRENT_TASK,
-	TRANSITION_FROM_STEP
+	TRANSITIONING_FROM_STEP
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -282,6 +282,20 @@ export const updateCurrentUserProfile = (newProfile, userId) => {
 	}
 }
 
-
+export const transitioningFromStep = (step) => {
+	return (dispatch, getState) => {
+		let steps = getState().components.forgetPassword;
+		steps[step.step].active = false;
+		steps[step.step].done = true;
+		if (step.nextStep) {
+			steps[step.nextStep].show = true;
+			steps[step.nextStep].active = true;
+		}
+		dispatch({
+			type: TRANSITIONING_FROM_STEP,
+			payload: steps
+		})
+	}
+}
 
 

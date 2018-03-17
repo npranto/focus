@@ -17,8 +17,8 @@ class SignIn extends Component {
 					</div>
 					<GoogleOauth />
 					<br />
-					<a href="/forget-password" className="forget-password"> Forget Password? </a>
-					<a href="/sign-up" className="create-new-account"> Create New Account </a>
+					<a href="/forget-password" className="forget-password-link"> Forget Password? </a>
+					<a href="/sign-up" className="create-new-account-link"> Create New Account </a>
 
 				</div>
 			</div>
