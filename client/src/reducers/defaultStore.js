@@ -251,24 +251,28 @@ const defaultStore = {
 				step: 'retrivePassword',
 				show: true,
 				done: false,
+				active: true,
 				nextStep: 'verifyCode'
 			},
 			verifyCode: {
 				step: 'verifyCode',
 				show: false,
 				done: false,
+				active: false,
 				nextStep: 'updateNewPassword'
 			},
 			updateNewPassword: {
 				step: 'updateNewPassword',
 				show: false,
 				done: false,
+				active: false,
 				nextStep: 'letsSignIn'
 			},
 			letsSignIn: {
 				step: 'letsSignIn',
 				show: false,
 				done: false,
+				active: false,
 				nextStep: null
 			},
 		}
