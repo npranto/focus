@@ -35,7 +35,9 @@ class ForgetPassword extends Component {
 				</div>
 				<div className="collapsible-body">
 					<div className="retrive-password-container">
-						<FormikRetrivePasswordInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(retrivePassword)} />
+						<FormikRetrivePasswordInForgetPassword 
+							onTransitioningFromStep={() => this.props.transitioningFromStep(retrivePassword)} 
+							onEmailCodeSuccess={(userId) => this.props.saveUserIdForResetPasswordToken(userId)} />
 					</div>
 				</div>
 			</li>

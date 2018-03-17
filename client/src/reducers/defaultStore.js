@@ -275,6 +275,7 @@ const defaultStore = {
 				active: false,
 				nextStep: null
 			},
+			resettingPasswordForUserId: null
 		}
 	}
 }
