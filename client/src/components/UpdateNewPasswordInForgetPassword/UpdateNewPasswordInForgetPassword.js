@@ -14,6 +14,9 @@ class UpdateNewPasswordInForgetPassword extends Component {
 		return (
 			<Form className="update-new-password-in-forget-password">
 				<div className="row">
+					<p className="flow-text"> Set new password and confirm... </p>
+				</div>
+				<div className="row">
 			        <div className="input-field col s12 m6 l4">
 			            <Field 
 			            	name="newPassword"

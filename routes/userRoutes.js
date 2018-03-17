@@ -4,6 +4,7 @@ const router = express.Router();
 const User = mongoose.model('User');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
+const voucher_codes = require('voucher-code-generator');
 
 // USER ROUTES
 router.post('/', (req, res, next) => {
@@ -140,6 +141,45 @@ router.post('/:userId/checkPassword', (req, res, next) => {
 		            	data: null
 		            });
 				});
+		}
+	})
+})
+
+router.post('/checkEmail', (req, res, next) => {
+	User.findOne(req.body, (err, userFound) => {
+		if (err) {
+			return res.status(400).json({
+				success: false,
+            	message: 'Oops! Unable to check your email right now, try again later',
+            	data: err
+            });
+		}
+		if (!userFound) {
+			return res.status(200).json({
+				success: false,
+            	message: 'Oops! Unable to find your email, check your email',
+            	data: err
+            });
+		}
+		if (userFound) {
+			// create a new code
+			let generatedCode = voucher_codes.generate({
+			    length: 10
+			}).pop();
+			// add code to user model
+			User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: generatedCode}, (err, userUpdatedWithToken) => {
+				if (err) {
+					return res.status(400).json({
+						success: false,
+		            	message: 'Oops! Unable to update your profile with reset password token, try again later',
+		            	data: err
+		            });
+				}
+				if (userUpdatedWithToken) {
+					// send email to user with code
+					
+				}
+			})
 		}
 	})
 })
