@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withFormik, Form, Field} from 'formik';
 import yup from 'yup';
+import axios from 'axios';
 
 import './UpdateNewPasswordInForgetPassword.css';
 
@@ -76,8 +77,10 @@ const FormikUpdateNewPasswordInForgetPassword = withFormik({
 		}
 	},
 	validate,
-	handleSubmit(values, {props}) {
+	async handleSubmit(values, {props}) {
 		console.log(values);
+		const passwordResetStatus = await axios.put(`/api/users/${props.userId}/resetPassword`, {password: values.newPassword});
+		console.log('PASSWORD RESET STATUS \n', passwordResetStatus);
 		props.onTransitioningFromStep();
 	}
 })(UpdateNewPasswordInForgetPassword);
