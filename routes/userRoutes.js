@@ -172,7 +172,7 @@ router.post('/checkEmail', (req, res, next) => {
 			console.log('GENERATED CODE: ', generatedCode);
 			// add code to user model
 			if (generatedCode) {
-				User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: [...userFound.resetPasswordTokens, generatedCode[0]]}, (err, userUpdatedWithToken) => {
+				User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: [...userFound.resetPasswordTokens, generatedCode[0]]}, {new: true, upsert:true}, (err, userUpdatedWithToken) => {
 					if (err) {
 						return res.status(400).json({
 							success: false,
@@ -192,7 +192,7 @@ router.post('/checkEmail', (req, res, next) => {
 								<div class="reset-password-template">
 									<h1> Hello ${userUpdatedWithToken.firstName}, </h1>
 									<p class="flow-text" style="font-size: 14px">
-										You are just a few steps away, I promise! Just copy the code you see below and paste it in "Verify Code" form and press "Verify Code." Then, you can move onto the next step in successfully resetting your password.
+										You are just a few steps away, I promise! Just copy the code you see below and paste it in "Verify Code" form and press "Verify Code."
 									</p>
 									<h3> Code: ${userUpdatedWithToken.resetPasswordTokens[userUpdatedWithToken.resetPasswordTokens.length-1]} </h3>
 									<br />
@@ -201,23 +201,21 @@ router.post('/checkEmail', (req, res, next) => {
 								<div>
 							`,
 						};
-						sgMail.send(msg)
-							.then((json) => {
-								if (json) {
-									return res.status(200).json({
-										success: true,
-						            	message: 'Code sent to email!',
-						            	data: userUpdatedWithToken
-						            });
-								} else {
-									return res.status(200).json({
-										success: false,
-						            	message: 'Oops! Unable to email verification code, try again later',
-						            	data: err
-						            });
-								}
-							})
-						
+						sgMail.send(msg).then((json) => {
+							if (json) {
+								return res.status(200).json({
+									success: true,
+					            	message: 'Code sent to email!',
+					            	data: userUpdatedWithToken
+					            });
+							} else {
+								return res.status(200).json({
+									success: false,
+					            	message: 'Oops! Unable to email verification code, try again later',
+					            	data: err
+					            });
+							}
+						})
 					}
 				})
 			}
