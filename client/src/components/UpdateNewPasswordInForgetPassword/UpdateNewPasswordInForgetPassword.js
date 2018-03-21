@@ -77,11 +77,20 @@ const FormikUpdateNewPasswordInForgetPassword = withFormik({
 		}
 	},
 	validate,
-	async handleSubmit(values, {props}) {
+	async handleSubmit(values, {props, setErrors, resetForm, setSubmitting}) {
 		console.log(values);
 		const passwordResetStatus = await axios.put(`/api/users/${props.userId}/resetPassword`, {password: values.newPassword});
 		console.log('PASSWORD RESET STATUS \n', passwordResetStatus);
-		props.onTransitioningFromStep();
+		if (!passwordResetStatus.data.success) {
+			setErrors({
+				newPassword: passwordResetStatus.data.message
+			});
+		}
+		if (passwordResetStatus.data.success) {
+			props.onTransitioningFromStep();
+			resetForm();
+		}
+		setSubmitting(false);
 	}
 })(UpdateNewPasswordInForgetPassword);
 
