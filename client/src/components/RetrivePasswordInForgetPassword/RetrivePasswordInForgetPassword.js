@@ -57,7 +57,7 @@ const FormikRetrivePasswordInForgetPassword = withFormik({
 		}
 	},
 	validate,
-	async handleSubmit(values, {props, setErrors, resetForm}) {
+	async handleSubmit(values, {props, setErrors, resetForm, setSubmitting}) {
 		console.log(values);
 		const checkEmailStatus = await axios.post('/api/users/checkEmail', values)
 		console.log(checkEmailStatus);
@@ -71,6 +71,7 @@ const FormikRetrivePasswordInForgetPassword = withFormik({
 			props.onTransitioningFromStep();
 			resetForm();
 		}
+		setSubmitting(false);
 	}
 })(RetrivePasswordInForgetPassword);
 
