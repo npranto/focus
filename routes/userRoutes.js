@@ -243,7 +243,7 @@ router.put('/:userId/verifyCode', (req, res, next) => {
 	            });
 			}
 			if (codeFound) {
-				User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: []}, (err, userUpdated) => {
+				User.findByIdAndUpdate(userFound._id, {resetPasswordTokens: []}, {new: true, upsert:true}, (err, userUpdated) => {
 					if (err) {
 						return res.status(400).json({
 							success: false,

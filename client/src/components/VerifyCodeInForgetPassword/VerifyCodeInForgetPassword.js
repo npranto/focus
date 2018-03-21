@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withFormik, Form, Field} from 'formik';
 import yup from 'yup';
+import axios from 'axios';
 
 import './VerifyCodeInForgetPassword.css';
 
@@ -25,7 +26,7 @@ class VerifyCodeInForgetPassword extends Component {
 			            	type="text"
 			            	value={values.code} />
 			            <label htmlFor="code"> Code </label>
-			        	<p className="red-text right-align"><sup> {(touched && touched.email && errors && errors.email) ? errors.email : ''} </sup></p>
+			        	<p className="red-text right-align"><sup> {(touched && touched.code && errors && errors.code) ? errors.code : ''} </sup></p>
 			        </div>
 		        </div>
 		        <div className="row">
@@ -57,10 +58,20 @@ const FormikVerifyCodeInForgetPassword = withFormik({
 		}
 	},
 	validate,
-	handleSubmit(values, {props}) {
+	async handleSubmit(values, {props, setErrors, resetForm, setSubmitting}) {
 		console.log(values);
-		// const codeVerifiedStatus = axios.put(`/api/users/${props.userId}`, values);
-		props.onTransitioningFromStep();
+		const codeVerifiedStatus = await axios.put(`/api/users/${props.userId}/verifyCode`, values);
+		console.log('CODE VERIFIED STATUS \n', codeVerifiedStatus);
+		if (!codeVerifiedStatus.data.success) {
+			setErrors({
+				code: codeVerifiedStatus.data.message
+			});
+		}
+		if (codeVerifiedStatus.data.success) {
+			props.onTransitioningFromStep();
+			resetForm();
+		}
+		setSubmitting(false);
 	}
 })(VerifyCodeInForgetPassword);
 
