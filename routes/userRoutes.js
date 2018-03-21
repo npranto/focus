@@ -264,4 +264,34 @@ router.put('/:userId/verifyCode', (req, res, next) => {
 	})
 })
 
+router.put('/:userId/resetPassword', (req, res, next) => {
+	if (!req.body || !req.body.password) {
+		return res.status(400).json({
+			success: false,
+        	message: 'Please pass in a new password to update!',
+        	data: null
+        });
+	} 
+	bcrypt.hash(req.body.password, saltRounds).then((hash) => {
+	    // Store hash in your password DB.
+	    req.body.password = hash;
+	    User.findByIdAndUpdate(req.params.userId, req.body, { new: true }, (err, userUpdated) => {
+			if (err) {
+				return res.status(400).json({
+					success: false,
+	            	message: 'Oops! We are unable to update your password right now, try again later',
+	            	data: err
+	            });
+			}
+			if (userUpdated) {
+				return res.status(200).json({
+					success: true,
+		        	message: 'Great, your password has been reset!',
+		        	data: userUpdated
+				})
+			}
+		})
+	});
+})
+
 module.exports = router;

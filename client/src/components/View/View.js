@@ -68,8 +68,6 @@ class View extends Component {
 					auth={auth} 
 					redirectTo={(auth && auth.currentUser) ? `/users/${auth.currentUser._id}/dashboard` : '/'} 
 					component={ForgetPassword} />
-				<Route path="/terms-of-conditions" component={TermsOfConditions} />
-				<Route path="/privacy-policy" component={PrivacyPolicy} />
 				<ProtectedRouteIf 
 					path="/users/:userId/dashboard" 
 					auth={auth} 
@@ -80,6 +78,8 @@ class View extends Component {
 					auth={auth} 
 					redirectTo="/sign-in"
 					component={FormikSettings} />
+				<Route path="/terms-of-conditions" component={TermsOfConditions} />
+				<Route path="/privacy-policy" component={PrivacyPolicy} />
 			</div>
 		)
 	}

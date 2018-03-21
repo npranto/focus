@@ -63,7 +63,7 @@ class ForgetPassword extends Component {
 		)
 	}
 
-	renderUpdateNewPassword(updateNewPassword) {
+	renderUpdateNewPassword(updateNewPassword, resettingPasswordForUserId) {
 		return (
 			<li className={`z-depth-4 ${updateNewPassword.done ? 'fade' : ''}`}>
 				<div 
@@ -73,7 +73,9 @@ class ForgetPassword extends Component {
 				</div>
 				<div className="collapsible-body">
 					<div className="update-new-password-container">
-						<FormikUpdateNewPasswordInForgetPassword onTransitioningFromStep={() => this.props.transitioningFromStep(updateNewPassword)} />
+						<FormikUpdateNewPasswordInForgetPassword 
+							userId={resettingPasswordForUserId}							
+							onTransitioningFromStep={() => this.props.transitioningFromStep(updateNewPassword)} />
 					</div>
 				</div>
 			</li>
@@ -117,7 +119,7 @@ class ForgetPassword extends Component {
 					}
 					{
 						updateNewPassword.show
-							? this.renderUpdateNewPassword(updateNewPassword) 
+							? this.renderUpdateNewPassword(updateNewPassword, resettingPasswordForUserId) 
 							: ""
 					}
 					{
