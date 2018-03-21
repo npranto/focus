@@ -24,7 +24,7 @@ class Review extends Component {
 					</p>
 					<p className="reviewer-rating">
 						<Rating 
-							start={0} 
+							start={1} 
 							stop={5} 
 							initialRating={4} // rating given by reviewer
 							readonly 

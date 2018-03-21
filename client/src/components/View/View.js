@@ -10,6 +10,7 @@ import TermsOfConditions from './../TermsOfConditions/TermsOfConditions';
 import PrivacyPolicy from './../PrivacyPolicy/PrivacyPolicy';
 import Dashboard from './../Dashboard/Dashboard';
 import FormikSettings from './../Settings/Settings';
+import GiveFeedback from './../GiveFeedback/GiveFeedback';
 import './View.css';
 
 const PublicRouteIf = (props) => {
@@ -78,6 +79,11 @@ class View extends Component {
 					auth={auth} 
 					redirectTo="/sign-in"
 					component={FormikSettings} />
+				<ProtectedRouteIf 
+					path="/users/:userId/give-feedback" 
+					auth={auth} 
+					redirectTo="/sign-in"
+					component={GiveFeedback} />
 				<Route path="/terms-of-conditions" component={TermsOfConditions} />
 				<Route path="/privacy-policy" component={PrivacyPolicy} />
 			</div>
