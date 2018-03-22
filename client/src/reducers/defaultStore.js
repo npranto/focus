@@ -284,8 +284,7 @@ const defaultStore = {
 				{ rate: 3, description: 'It\'s okay', 		hoveringOver: false },
 				{ rate: 4, description: 'Like it!', 		hoveringOver: false },
 				{ rate: 5, description: 'Love it!',			hoveringOver: false } 
-			],
-			chosenRating: null
+			]
 		}
 	}
 }
