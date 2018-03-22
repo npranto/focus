@@ -3,29 +3,43 @@ import {withFormik, Form} from 'formik';
 import FaStarO from 'react-icons/lib/fa/star-o';
 import FaStar from 'react-icons/lib/fa/star';
 import Rating from 'react-rating';
+import $ from 'jquery';
 
 import './GiveFeedbackForm.css';
 
 class GiveFeedbackForm extends Component {
+
+	constructor(props) {
+		super(props);
+
+		$(document).ready(function(){
+		    $('.tooltipped').tooltip({delay: 50});
+	  	});
+	}
+
 	render() {
+		const {hoveringOverRating} = this.props;
+
 		return (
 			<Form className="give-feedback-form">
-				<div class="row">
-			        <div class="input-field col s12 m12 l12">
-						<input placeholder="Front End Developer" id="role" type="text" className="validate" />
+				<div className="row">
+			        <div className="input-field col s12 m12 l12">
+						<input id="role" type="text" />
 						<label htmlFor="role"> Role </label>
 			        </div>
 		        </div>
-		        <div class="row">
-			        <div class="input-field col s12 m12 l12">
-						<input placeholder="Microsoft" id="organization" type="text" className="validate" />
+		        <div className="row">
+			        <div className="input-field col s12 m12 l12">
+						<input id="organization" type="text" />
 						<label htmlFor="organization"> Company / Institution / Organization </label>
 			        </div>
 		        </div>
-		        <div class="row">
-			        <div class="input-field col s12 m12 l12">
-			        	<label htmlFor="organization"> Company / Institution / Organization </label>
-			        	<div>
+		        <div className="row">
+			        <div className="input-field col s12 m12 l12">
+			        	<p className="organization"> How would you rate your experience with Focus? </p>
+			        </div>
+			        <div className="col s12 m12 l12">
+			        	<a className="tooltipped" data-position="right" data-delay="50" data-tooltip={hoveringOverRating ? hoveringOverRating.description : ''}>
 			        		<Rating 
 								start={0} 
 								stop={5} 
@@ -36,9 +50,10 @@ class GiveFeedbackForm extends Component {
 								fullSymbol={
 									<FaStar size={24}/>
 								} 
+								onHover={(rate) => this.props.onHoverOverRating(rate)}
 							/>
-			        	</div>
-			        </div>
+			        	</a>
+		        	</div>
 		        </div>
 
 		        
