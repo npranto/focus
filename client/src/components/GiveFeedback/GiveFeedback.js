@@ -15,7 +15,20 @@ class GiveFeedback extends Component {
 		}
 	}
 
+	prepareToCreateNewReview(feedback, currentUser) {
+		let newReview = {
+			...feedback
+		};
+		if (!newReview.submitAnonymously) {
+			newReview['firstName'] = currentUser.firstName;
+			newReview['lastName'] = currentUser.lastName;
+		}
+		delete newReview.submitAnonymously;
+		this.props.createNewReview(newReview, currentUser._id);
+	}
+
 	render() {
+		const {currentUser} = this.props.auth;
 		const {scale} = this.props.components.giveFeedback;
 
 		return (
@@ -27,10 +40,12 @@ class GiveFeedback extends Component {
 					</p>
 				</div>
 				<div className="row">
-					<div className="col s12 m6 l6">
+					<div className="col s12 m12 l12">
 						<FormikGiveFeedbackForm 
 							chosenRating={this.state.chosenRating}
-							onRatingSelected={(rate) => this.setState({chosenRating: rate})} />
+							onRatingSelected={(rate) => this.setState({chosenRating: rate})}
+							resetChosenRating={() => this.setState({chosenRating: 0})}
+							onSubmitFeedback={(feedback) => this.prepareToCreateNewReview(feedback, currentUser)} />
 					</div>
 				</div>
 			</div>
@@ -40,6 +55,7 @@ class GiveFeedback extends Component {
 
 const mapStateToProps = (state) => {
 	return {
+		auth: state.auth,
 		components: state.components
 	}
 }

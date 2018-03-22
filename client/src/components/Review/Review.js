@@ -4,7 +4,7 @@ import FaStarO from 'react-icons/lib/fa/star-o';
 import FaStar from 'react-icons/lib/fa/star';
 import Media from 'react-media';
 
-import ProfilePicturePlaceholderPortrait from './../../assets/profile-picture-placeholder-portrait.jpg';
+import UserIcon from './../../assets/user-icon.png';
 import './Review.css';
 
 class Review extends Component {
@@ -16,7 +16,7 @@ class Review extends Component {
 	renderReview(screenClass, review) {
 		return (
 			<li className={`collection-item avatar grey lighten-4 ${screenClass}`}>
-				<img src={review.photo ? review.photo : ProfilePicturePlaceholderPortrait} alt="Reviewer Avatar" className="circle" />
+				<img src={review.photo ? review.photo : UserIcon} alt="Reviewer Avatar" className="circle" />
 				<span className="title"> {review.firstName} {review.lastName} </span>
 				<div className="reviewer-info">
 					<p className="reviewer-role-organization">
@@ -37,7 +37,7 @@ class Review extends Component {
 						/>
 					</p>
 					<blockquote className="reviewer-feedback">
-						{review.feedback}
+						{review.review}
 					</blockquote>
 					
 				</div>

@@ -3,4 +3,11 @@
 }
 .give-feedback-form .feedback-rating {
 	color: var(--theme);
+	padding-top: 3%;
+}
+.give-feedback-form .organization {
+	color: #9e9e9e;
+}
+.give-feedback-form input,  .give-feedback-form textarea{
+	margin-bottom: 0 !important;
 }

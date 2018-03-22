@@ -6,13 +6,11 @@ const reviewSchema = new Schema({
 		type: String,
 		trim: true,
 		maxlength: 75,
-		required: true
 	},
 	lastName: {
 		type: String,
 		trim: true,
 		maxlength: 75,
-		required: true
 	},
 	role: {
 		type: String,
@@ -25,7 +23,12 @@ const reviewSchema = new Schema({
 		trim: true,
 		maxlength: 150,
 	},
-	feedback: {
+	rating: {
+		type: Number,
+		max: 5,
+		min: 1
+	},
+	review: {
 		type: String,
 		trim: true,
 		required: true,
