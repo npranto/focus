@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Review = mongoose.model('Review');
+const User = mongoose.model('User');
 
 
 const generateRandomIndexes = (numberOfRandomIndexes, totalIndexes) => {
@@ -44,23 +45,35 @@ router.get('/random', (req, res, next) => {
     });
 });
 
-router.post('/new', (req, res, next) => {
-	new Review(req.body).save((err, reviewCreated) => {
+router.post('/:userId/new', (req, res, next) => {
+	User.findById(req.params.userId, (err, userFound) => {
 		if (err) {
 			return res.status(400).json({
 				success: false,
-				message: 'Oops! We are unable to create a new review at the moment. Please try again later.',
+				message: 'Hah! Looks like you do not have an account with Focus',
 				data: null
 			})
-		}
-		if (reviewCreated) {
-			res.status(201).json({
-				success: true,
-				message: 'Awesome! Your review has been submitted!',
-				data: reviewCreated
+		} 
+		if (userFound) {
+			new Review(req.body).save((err, reviewCreated) => {
+				if (err) {
+					return res.status(400).json({
+						success: false,
+						message: 'Oops! We are unable to create a new review at the moment. Please try again later.',
+						data: null
+					})
+				}
+				if (reviewCreated) {
+					res.status(201).json({
+						success: true,
+						message: 'Awesome! Your review has been submitted!',
+						data: reviewCreated
+					})
+				}
 			})
 		}
 	})
+	
 })
 
 module.exports = router;

@@ -18,8 +18,7 @@ import {
 	SET_EDITING_TASK,
 	SET_AS_CURRENT_TASK,
 	TRANSITIONING_FROM_STEP,
-	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN,
-	SET_CHOSEN_FEEDBACK_RATE
+	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -309,19 +308,17 @@ export const saveUserIdForResetPasswordToken = (userId) => {
 	}
 }
 
-export const setChosenRating = (chosenRate) => {
-	return (dispatch, getState) => {
-		const {scale} = getState().components.giveFeedback;
-		console.log('SCALE: \n', scale);
-		const chosenRating = scale.find(rate => {
-			console.log(rate.rate, chosenRate);
-			return rate.rate === chosenRate
-		});
-		console.log('CHOSEN RATE: \n', chosenRating);
-		dispatch({
-			type: SET_CHOSEN_FEEDBACK_RATE,
-			payload: chosenRating
-		})
+export const createNewReview = (newReview, userId) => {
+	return async (dispatch, getState) => {
+		const newReviewStatus = await axios.post(`/api/reviews/${userId}/new`, newReview);
+		if (newReviewStatus.data.success) {
+			const topFiveHighlyRatedReviews = await axios.get('/api/reviews/random');
+			dispatch({
+				type: FETCH_TOP_FIVE_HIGHLY_RATED_REVIEWS,
+				payload: topFiveHighlyRatedReviews.data.data
+			})
+		}
 	}
-}
+}	
+
 
