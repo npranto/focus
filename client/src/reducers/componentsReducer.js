@@ -15,7 +15,8 @@ import {
 	SET_EDITING_TASK,
 	SET_AS_CURRENT_TASK,
 	TRANSITIONING_FROM_STEP,
-	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN
+	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN,
+	UPDATE_FEEDBACK_SCALE
 } from './../actions/types.js';
 import cloneDeep from 'lodash.clonedeep';
 
@@ -100,6 +101,11 @@ const componentsReducer = (state = defaultStore.components, action) => {
 		case SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN: {
 			let copy = cloneDeep(state);
 			copy.forgetPassword.resettingPasswordForUserId = action.payload;
+			return copy;
+		}
+		case UPDATE_FEEDBACK_SCALE: {
+			let copy = cloneDeep(state);
+			copy.giveFeedback.scale = action.payload;
 			return copy;
 		}
 	}

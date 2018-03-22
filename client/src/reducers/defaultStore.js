@@ -276,6 +276,16 @@ const defaultStore = {
 				nextStep: null
 			},
 			resettingPasswordForUserId: null
+		},
+		giveFeedback: {
+			scale: [
+				{ rate: 1, description: 'Not my thing', 	hoveringOver: false },
+				{ rate: 2, description: 'Could be better', 	hoveringOver: false },
+				{ rate: 3, description: 'It\'s okay', 		hoveringOver: false },
+				{ rate: 4, description: 'Like it!', 		hoveringOver: false },
+				{ rate: 5, description: 'Love it!',			hoveringOver: false } 
+			],
+			chosenRating: null
 		}
 	}
 }

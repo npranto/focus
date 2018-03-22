@@ -18,7 +18,8 @@ import {
 	SET_EDITING_TASK,
 	SET_AS_CURRENT_TASK,
 	TRANSITIONING_FROM_STEP,
-	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN
+	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN,
+	UPDATE_FEEDBACK_SCALE
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -307,4 +308,15 @@ export const saveUserIdForResetPasswordToken = (userId) => {
 		})
 	}
 }
+
+export const updateFeedbackScale = (updatedScale) => {
+	return (dispatch, getState) => {
+		dispatch({
+			type: UPDATE_FEEDBACK_SCALE,
+			payload: updatedScale
+		})
+	}
+}	
+
+
 
