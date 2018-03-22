@@ -19,7 +19,7 @@ import {
 	SET_AS_CURRENT_TASK,
 	TRANSITIONING_FROM_STEP,
 	SAVE_USER_ID_FOR_RESET_PASSWORK_TOKEN,
-	UPDATE_FEEDBACK_SCALE
+	SET_CHOSEN_FEEDBACK_RATE
 } from './types.js';
 
 export const fetchCurrentUser = () => {
@@ -309,14 +309,19 @@ export const saveUserIdForResetPasswordToken = (userId) => {
 	}
 }
 
-export const updateFeedbackScale = (updatedScale) => {
+export const setChosenRating = (chosenRate) => {
 	return (dispatch, getState) => {
+		const {scale} = getState().components.giveFeedback;
+		console.log('SCALE: \n', scale);
+		const chosenRating = scale.find(rate => {
+			console.log(rate.rate, chosenRate);
+			return rate.rate === chosenRate
+		});
+		console.log('CHOSEN RATE: \n', chosenRating);
 		dispatch({
-			type: UPDATE_FEEDBACK_SCALE,
-			payload: updatedScale
+			type: SET_CHOSEN_FEEDBACK_RATE,
+			payload: chosenRating
 		})
 	}
-}	
-
-
+}
 

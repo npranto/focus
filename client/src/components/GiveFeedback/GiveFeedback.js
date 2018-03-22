@@ -7,21 +7,16 @@ import './GiveFeedback.css';
 
 class GiveFeedback extends Component {
 
-	updateHoveringOverRating(chosenRate, scale) {
-		const scaleUpdated = scale.map(rate => {
-			(rate.rate === chosenRate) 
-				? rate.hoveringOver = true
-				: rate.hoveringOver = false;
-			return rate;
-		});
-		this.props.updateFeedbackScale(scaleUpdated);
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			chosenRating: 0
+		}
 	}
 
 	render() {
 		const {scale} = this.props.components.giveFeedback;
-		const hoveringOverRating = scale.find(rate => {
-			return rate.hoveringOver;
-		})
 
 		return (
 			<div className="give-feedback">
@@ -34,8 +29,8 @@ class GiveFeedback extends Component {
 				<div className="row">
 					<div className="col s12 m6 l6">
 						<FormikGiveFeedbackForm 
-							hoveringOverRating={hoveringOverRating}
-							onHoverOverRating={(rate) => this.updateHoveringOverRating(rate, scale)} />
+							chosenRating={this.state.chosenRating}
+							onRatingSelected={(rate) => this.setState({chosenRating: rate})} />
 					</div>
 				</div>
 			</div>
